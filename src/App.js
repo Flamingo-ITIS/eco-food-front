@@ -7,7 +7,7 @@ import {makeStyles} from "@material-ui/styles";
 
 export const useStyles = makeStyles({
     card: {
-        width: 300,
+        width: 250,
         height: 400,
         margin: "auto",
         transition: "0.3s",
@@ -20,7 +20,7 @@ export const useStyles = makeStyles({
         // flexDirection: "row",
     },
     media: {
-        height: 100,
+        height: 150,
     },
     heading: {
         fontWeight: "bold"

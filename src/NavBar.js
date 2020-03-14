@@ -17,7 +17,7 @@ const style = {
 const useStyles = makeStyles(theme => ({
     container: {
         display: 'inline-flex',
-        justifyContent: "flex-start",
+        justifyContent: "flex-between",
         flexWrap: 'nowrap',
     },
     textField: {
@@ -49,7 +49,7 @@ const NavBar = () => {
                     <TextField
                         id="outlined-search"
                         name="name"
-                        label="Search users"
+                        label="Search products"
                         type="search"
                         className={classes.textField}
                         margin="normal"

@@ -11,6 +11,7 @@ import {useStyles} from "../App";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import Avatar from "@material-ui/core/Avatar";
 
 const ProductsList = ({products}) => {
     const classes = useStyles();
@@ -72,16 +73,11 @@ const ProductsList = ({products}) => {
                 <ul>
                     <li>
                         <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="/public/logo192.png"
-                                    title="Contemplative Reptile"
-                                />
-                                <div>
-                                    <img src='/public/logo192.png'/>
-                                </div>
-                            </CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image="/static/images/tomato3.jpg"
+                                title="Paella dish"
+                            />
                             <div>
                                 <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
                                 <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
@@ -89,12 +85,16 @@ const ProductsList = ({products}) => {
                             </div>
                             <CardContent>
                                 <h2>
-                                    <Link to={``}
+                                    <Link to={`/product`}
                                           style={{textDecoration: 'none'}}>
                                         Товар
                                     </Link>
                                 </h2>
                                 <p>
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
                                     Здесь будет описание
                                 </p>
                             </CardContent>
@@ -102,16 +102,11 @@ const ProductsList = ({products}) => {
                     </li>
                     <li>
                         <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="/public/logo192.png"
-                                    title="Contemplative Reptile"
-                                />
-                                <div>
-                                    <img src='/public/logo192.png'/>
-                                </div>
-                            </CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image="/static/images/tomato3.jpg"
+                                title="Paella dish"
+                            />
                             <div>
                                 <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
                                 <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
@@ -125,6 +120,10 @@ const ProductsList = ({products}) => {
                                     </Link>
                                 </h2>
                                 <p>
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
                                     Здесь будет описание
                                 </p>
                             </CardContent>
@@ -132,16 +131,11 @@ const ProductsList = ({products}) => {
                     </li>
                     <li>
                         <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="/public/logo192.png"
-                                    title="Contemplative Reptile"
-                                />
-                                <div>
-                                    <img src='/public/logo192.png'/>
-                                </div>
-                            </CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image="/static/images/tomato3.jpg"
+                                title="Paella dish"
+                            />
                             <div>
                                 <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
                                 <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
@@ -155,6 +149,10 @@ const ProductsList = ({products}) => {
                                     </Link>
                                 </h2>
                                 <p>
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
                                     Здесь будет описание
                                 </p>
                             </CardContent>
@@ -162,16 +160,11 @@ const ProductsList = ({products}) => {
                     </li>
                     <li>
                         <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="/public/logo192.png"
-                                    title="Contemplative Reptile"
-                                />
-                                <div>
-                                    <img src='/public/logo192.png'/>
-                                </div>
-                            </CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image="/static/images/tomato3.jpg"
+                                title="Paella dish"
+                            />
                             <div>
                                 <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
                                 <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
@@ -185,6 +178,10 @@ const ProductsList = ({products}) => {
                                     </Link>
                                 </h2>
                                 <p>
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
                                     Здесь будет описание
                                 </p>
                             </CardContent>
@@ -192,16 +189,11 @@ const ProductsList = ({products}) => {
                     </li>
                     <li>
                         <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="/public/logo192.png"
-                                    title="Contemplative Reptile"
-                                />
-                                <div>
-                                    <img src='/public/logo192.png'/>
-                                </div>
-                            </CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image="/static/images/tomato3.jpg"
+                                title="Paella dish"
+                            />
                             <div>
                                 <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
                                 <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
@@ -215,6 +207,10 @@ const ProductsList = ({products}) => {
                                     </Link>
                                 </h2>
                                 <p>
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
                                     Здесь будет описание
                                 </p>
                             </CardContent>
@@ -222,16 +218,11 @@ const ProductsList = ({products}) => {
                     </li>
                     <li>
                         <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="/public/logo192.png"
-                                    title="Contemplative Reptile"
-                                />
-                                <div>
-                                    <img src='/public/logo192.png'/>
-                                </div>
-                            </CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image="/static/images/tomato3.jpg"
+                                title="Paella dish"
+                            />
                             <div>
                                 <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
                                 <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
@@ -245,6 +236,10 @@ const ProductsList = ({products}) => {
                                     </Link>
                                 </h2>
                                 <p>
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
                                     Здесь будет описание
                                 </p>
                             </CardContent>
@@ -252,16 +247,11 @@ const ProductsList = ({products}) => {
                     </li>
                     <li>
                         <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="/public/logo192.png"
-                                    title="Contemplative Reptile"
-                                />
-                                <div>
-                                    <img src='/public/logo192.png'/>
-                                </div>
-                            </CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image="/static/images/tomato3.jpg"
+                                title="Paella dish"
+                            />
                             <div>
                                 <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
                                 <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
@@ -275,6 +265,10 @@ const ProductsList = ({products}) => {
                                     </Link>
                                 </h2>
                                 <p>
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
                                     Здесь будет описание
                                 </p>
                             </CardContent>
@@ -282,16 +276,11 @@ const ProductsList = ({products}) => {
                     </li>
                     <li>
                         <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="/public/logo192.png"
-                                    title="Contemplative Reptile"
-                                />
-                                <div>
-                                    <img src='/public/logo192.png'/>
-                                </div>
-                            </CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image="/static/images/tomato3.jpg"
+                                title="Paella dish"
+                            />
                             <div>
                                 <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
                                 <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
@@ -306,11 +295,14 @@ const ProductsList = ({products}) => {
                                 </h2>
                                 <p>
                                     Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
+                                    Здесь будет описание
                                 </p>
                             </CardContent>
                         </Card>
                     </li>
-
                 </ul>
             </div>
         </div>

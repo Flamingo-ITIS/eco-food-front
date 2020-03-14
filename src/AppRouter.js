@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React from "react";
 import Profile from "./User/Profile";
 import ProductsList from "./Products/ProductsList";
+import Product from "./Product/Product";
 
 const AppRouter = () => {
     return(
@@ -17,8 +18,11 @@ const AppRouter = () => {
                     <Route path="/user/ordered_products">
                         <Profile/>
                     </Route>
-                    <Route path="/">
+                    <Route path="/products">
                         <ProductsList/>
+                    </Route>
+                    <Route path="/product">
+                        <Product/>
                     </Route>
                 </Switch>
             </Router>
