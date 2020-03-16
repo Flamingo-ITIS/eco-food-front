@@ -9,6 +9,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/core/styles";
 import {IsTokenValid} from "./Session/Login";
+import {Link} from "react-router-dom";
 
 const style = {
     flexGrow: 1
@@ -59,11 +60,11 @@ const NavBar = () => {
                             setInput(event.target.value);
                         }}
                     />
-                    <Button color="inherit">
-                        Button
+                    <Button href="/products" color="inherit">
+                        Каталог
                     </Button>
-                    <Button color="inherit">
-                        Button
+                    <Button href="/main" color="inherit">
+                        НА ГЛАВНУЮ
                     </Button>
                     <Button color="inherit">
                         Button

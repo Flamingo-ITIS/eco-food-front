@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Овощь",
+      "description": "Здессь будет такое крутое описание, что прям вах!!!!!!",
+      "pictureUrl": "https://foodcity.ru/storage/products/October2018/eP9jt5L6V510QjjT4a1B.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Фруктъ",
+      "description": "Здессь будет такое крутое описание, что прям вах!!!!!!",
+      "pictureUrl": "https://s.06452.com.ua/section/newsInternalIcon/upload/images/news/icon/000/039/692/33bb1ef4743912e7d178c90f66f89ae1_5b69921d56e37.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Ягода$",
+      "description": "Здессь будет такое крутое описание, что прям вах!!!!!!",
+      "pictureUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTKZeezyTTnJt6riis18mMc5svVGwdBb3slprqFL-fFj0dMBq9g"
+    },
+    {
+      "id": 4,
+      "title": "Овощь",
+      "description": "Здессь будет такое крутое описание, что прям вах!!!!!!",
+      "pictureUrl": "https://foodcity.ru/storage/products/October2018/eP9jt5L6V510QjjT4a1B.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Фруктъ"
+    },
+    {
+      "id": 6,
+      "title": "Ягода$"
+    }
+  ]
+}

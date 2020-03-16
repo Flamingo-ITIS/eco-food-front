@@ -39,7 +39,7 @@ const Product = ({product}) => {
                 <Paper className={classes.image}>
                     <CardMedia
                         className={classes.media}
-                        image="/static/images/tomato3.jpg"
+                        image="https://foodcity.ru/storage/products/October2018/eP9jt5L6V510QjjT4a1B.jpg"
                         title="Paella dish"
                     />
                     <div>

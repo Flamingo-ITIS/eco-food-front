@@ -6,6 +6,11 @@ import AppRouter from "./AppRouter";
 import {makeStyles} from "@material-ui/styles";
 
 export const useStyles = makeStyles({
+    flex: {
+        display: 'flex',
+        flexWrap: 'nowrap',
+        justifyContent: 'center',
+    },
     card: {
         width: 250,
         height: 400,
@@ -21,6 +26,8 @@ export const useStyles = makeStyles({
     },
     media: {
         height: 150,
+        width: 150,
+        margin: "0 auto"
     },
     heading: {
         fontWeight: "bold"

@@ -71,238 +71,33 @@ const ProductsList = ({products}) => {
                     </FormGroup>
                 </div>
                 <ul>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={`/product`}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                                <p>
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                                <p>
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                                <p>
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                                <p>
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                                <p>
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                                <p>
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                                <p>
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                                <p>
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                    Здесь будет описание
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </li>
+                    {products.map(product =>
+                        <li key={product.id}>
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    className={classes.media}
+                                    image={product.pictureUrl}
+                                    title="product"
+                                />
+                                <div>
+                                    <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
+                                    <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
+                                    <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
+                                </div>
+                                <CardContent>
+                                    <h2 style={{margin: "0"}}>
+                                        <Link to={`/product`}
+                                              style={{textDecoration: 'none'}}>
+                                            {product.title}
+                                        </Link>
+                                    </h2>
+                                    <p>
+                                        {product.description}
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </li>
+                    )}
                 </ul>
             </div>
         </div>

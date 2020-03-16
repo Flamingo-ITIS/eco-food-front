@@ -3,6 +3,8 @@ import React from "react";
 import Profile from "./User/Profile";
 import ProductsList from "./Products/ProductsList";
 import Product from "./Product/Product";
+import Main from "./Main";
+import data from "./products"
 
 const AppRouter = () => {
     return(
@@ -19,10 +21,16 @@ const AppRouter = () => {
                         <Profile/>
                     </Route>
                     <Route path="/products">
-                        <ProductsList/>
+                        <ProductsList products={data.products}/>
                     </Route>
                     <Route path="/product">
                         <Product/>
+                    </Route>
+                    <Route path="/main">
+                        <Main products={data.products}/>
+                    </Route>
+                    <Route path="/profile">
+                        <Profile/>
                     </Route>
                 </Switch>
             </Router>
