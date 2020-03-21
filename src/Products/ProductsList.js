@@ -12,6 +12,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Avatar from "@material-ui/core/Avatar";
+import {Paper} from "@material-ui/core";
 
 const ProductsList = ({products}) => {
     const classes = useStyles();
@@ -20,55 +21,57 @@ const ProductsList = ({products}) => {
             <h1>Каталог</h1>
             <div style={{display: 'flex', flexWrap: 'nowrap'}}>
                 <div>
-                    <h3>Фильтры</h3>
-                    <FormGroup>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Primary"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Primary"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Primary"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Primary"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Primary"
-                        />
+                    <Paper style={{padding: '30px', backgroundColor: '#ffede1'}}>
+                        <h3>Фильтры</h3>
+                        <FormGroup>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        value="checkedB"
+                                        color="primary"
+                                    />
+                                }
+                                label="Primary"
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        value="checkedB"
+                                        color="primary"
+                                    />
+                                }
+                                label="Primary"
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        value="checkedB"
+                                        color="primary"
+                                    />
+                                }
+                                label="Primary"
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        value="checkedB"
+                                        color="primary"
+                                    />
+                                }
+                                label="Primary"
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        value="checkedB"
+                                        color="primary"
+                                    />
+                                }
+                                label="Primary"
+                            />
 
-                    </FormGroup>
+                        </FormGroup>
+                    </Paper>
                 </div>
                 <ul>
                     {products.map(product =>

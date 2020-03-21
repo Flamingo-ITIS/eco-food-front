@@ -11,11 +11,16 @@ const Main = ({products}) => {
     const classes = useStyles();
     return (
         <div>
-            <Slider dots>
-                <div>
-                    <img src="https://dizao-shop.ru/upload/iblock/106/slaydery_dizao_shopru1.jpg" alt={"banner"}/>
-                </div>
-            </Slider>
+            <div>
+                <Slider dots centerMode>
+                    <div>
+                        <img src="https://dizao-shop.ru/upload/iblock/106/slaydery_dizao_shopru1.jpg" alt={"banner"}/>
+                    </div>
+                    <div style={{height: '500px'}}>
+                        <img src="/static/banner.jpg" alt={"banner"}/>
+                    </div>
+                </Slider>
+            </div>
             <h1>Блог</h1>
             <div>
                 <ul className={classes.flex}>
@@ -24,7 +29,7 @@ const Main = ({products}) => {
                             <Card className={classes.card}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/static/images/tomato.png"
+                                    image={product.pictureUrl}
                                     title="product"
                                 />
                                 <CardContent>
@@ -51,7 +56,7 @@ const Main = ({products}) => {
                             <Card className={classes.card}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/static/images/tomato.png"
+                                    image={product.pictureUrl}
                                     title="product"
                                 />
                                 <CardContent>

@@ -15,6 +15,7 @@ export const useStyles = makeStyles({
         width: 250,
         height: 400,
         margin: "auto",
+        padding: "5px",
         transition: "0.3s",
         boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
         "&:hover": {
@@ -26,7 +27,7 @@ export const useStyles = makeStyles({
     },
     media: {
         height: 150,
-        width: 150,
+        width: 250,
         margin: "0 auto"
     },
     heading: {

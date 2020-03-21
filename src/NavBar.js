@@ -16,10 +16,14 @@ const style = {
 };
 
 const useStyles = makeStyles(theme => ({
+    navBar: {
+        background: '#ffede1'
+    },
     container: {
-        display: 'inline-flex',
-        justifyContent: "flex-between",
+        display: 'flex',
+        justifyContent: "space-around",
         flexWrap: 'nowrap',
+        height: '100px',
     },
     textField: {
         marginLeft: theme.spacing(1),
@@ -30,7 +34,11 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(3, 2),
         textAlign: "center",
         margin: "10px",
-    }
+    },
+    logo: {
+        height: '100px',
+        filter: 'invert(100%)',
+},
 }));
 
 const NavBar = () => {
@@ -42,11 +50,9 @@ const NavBar = () => {
 
     return (
         <div>
-            <AppBar style={{background: '#2e3b55'}} position="static">
+            <AppBar className={classes.navBar} position="static">
                 <Toolbar className={classes.container}>
-                    <Typography variant="h6" style={style}>
-                        Farmer2U
-                    </Typography>
+                    <img className={classes.logo} src="/static/logo.png"/>
                     <TextField
                         id="outlined-search"
                         name="name"
@@ -60,34 +66,36 @@ const NavBar = () => {
                             setInput(event.target.value);
                         }}
                     />
-                    <Button href="/products" color="inherit">
-                        Каталог
-                    </Button>
-                    <Button href="/main" color="inherit">
-                        НА ГЛАВНУЮ
-                    </Button>
-                    <Button color="inherit">
-                        Button
-                    </Button>
+                    <div>
+                        <Button href="/products">
+                            Каталог
+                        </Button>
+                        <Button href="/main">
+                            НА ГЛАВНУЮ
+                        </Button>
+                        <Button >
+                            Просто кнопка
+                        </Button>
+                    </div>
                     {IsTokenValid() ? (
                         <div>
-                            <Button href="/profile" color="inherit">
+                            <Button href="/profile">
                                 <AccountBoxIcon/>
                                 Profile
                             </Button>
-                            <Button color='inherit' href="/" onClick={exit}>
+                            <Button href="/" onClick={exit}>
                                 <ExitToAppIcon/>
                                 Exit
                             </Button>
                         </div>
                     ) : (
                         <div>
-                            <Button href="/login" color="inherit">
+                            <Button href="/login">
                                 <LockOpenIcon/>
                                 Вход
                             </Button>
 
-                            <Button href="/user/ordered_products" color="inherit">
+                            <Button href="/user/ordered_products">
                                 <LockOpenIcon/>
                                 Корзина
                             </Button>
