@@ -4,7 +4,10 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
 import {Paper} from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
-import {Link} from "react-router-dom";
+import {
+    Link,
+    useParams
+} from "react-router-dom";
 import CardActionArea from "@material-ui/core/CardActionArea";
 
 export const useStyles = makeStyles({
@@ -31,16 +34,20 @@ export const useStyles = makeStyles({
 });
 
 const Product = ({product}) => {
+    // let {id} = useParams();
+    console.log({product});
+    // product = products.find(product => (product.id === id));
     const classes = useStyles();
     return (
         <div>
-            <h1>Товар</h1>
+            <h1>{product.title}</h1>
             <div className={classes.flex}>
                 <Paper className={classes.image}>
                     <CardMedia
                         className={classes.media}
-                        image="https://foodcity.ru/storage/products/October2018/eP9jt5L6V510QjjT4a1B.jpg"
-                        title="Paella dish"
+                        // image="https://foodcity.ru/storage/products/October2018/eP9jt5L6V510QjjT4a1B.jpg"
+                        image = {product.pictureUrl}
+                        title= {product.title}
                     />
                     <div>
                         <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
@@ -58,8 +65,11 @@ const Product = ({product}) => {
                 </Paper>
                 <Paper className={classes.info}>
                     <h3>Описание</h3>
+                    {/*<p>*/}
+                    {/*    Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).*/}
+                    {/*</p>*/}
                     <p>
-                        Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).
+                        {product.description}
                     </p>
                 </Paper>
             </div>

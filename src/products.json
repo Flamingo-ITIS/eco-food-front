@@ -4,43 +4,50 @@
       "id": 1,
       "title": "Помидоры «Красное солнце»",
       "description": "Сочные помидоры «Красное солнце» - это помидоры-антиоксиданты. В их составе рекордное содержание ликопена. Ликопен - вещество, которое  активно борется с лишним весом, образованием тромбов, снижает  концентрацию «плохого» холестерина в крови.",
-      "pictureUrl": "https://otyrar.kz/wp-content/uploads/2016/10/zhylyzhay_2.jpg"
+      "pictureUrl": "https://otyrar.kz/wp-content/uploads/2016/10/zhylyzhay_2.jpg",
+      "price": 340
     },
     {
       "id": 2,
       "title": "Шпинат",
       "description": "Шпинат насыщает, снабжает организм питательными веществами, выводит шлаки и токсины.",
-      "pictureUrl": "https://avatars.mds.yandex.net/get-zen_doc/118604/pub_5ddeed39c08b3c09e9ae4b49_5de6970da660d700aecef733/scale_1200"
+      "pictureUrl": "https://avatars.mds.yandex.net/get-zen_doc/118604/pub_5ddeed39c08b3c09e9ae4b49_5de6970da660d700aecef733/scale_1200",
+      "price": 340
     },
     {
       "id": 3,
       "title": "Брокколи",
       "description": "По питательным свойствам белки брокколи могут сравниться с белками мяса – например, говядины, или с белками куриных яиц. Среди растений с ней могли бы сравниться спаржа, картофель, сладкая кукуруза или шпинат, однако в них белка всё-таки меньше.",
-      "pictureUrl": "https://pics.botanichka.ru/wp-content/uploads/2017/05/Broccoli-6.jpg"
+      "pictureUrl": "https://pics.botanichka.ru/wp-content/uploads/2017/05/Broccoli-6.jpg",
+      "price": 340
     },
     {
       "id": 4,
       "title": "Грецкий орех",
       "description": "В ядрах грецких орехов много магния и калия, необходимых для здоровья сердца, если есть по два ореха в день, память улучшится, а четыре грецких ореха в день не только улучшат иммунитет, но и зарядят антиоксидантами.",
-      "pictureUrl": "https://changes.club/image/84/92/84922111-7ff3-4f73-9d1f-5fe14ab16c0e$Read.SmallTo(1600,800).jpg"
+      "pictureUrl": "https://changes.club/image/84/92/84922111-7ff3-4f73-9d1f-5fe14ab16c0e$Read.SmallTo(1600,800).jpg",
+      "price": 340
     },
     {
       "id": 5,
       "title": "Морошка",
       "description": "Морошка богата микроэлементами, особенно кроветворного ряда — магний, кальций, калий, железо, алюминий, фосфор, кобальт, кремний, и витаминами С, В1, В3, РР, А.",
-      "pictureUrl": "https://perfumediary.com/wp-content/uploads/2018/03/cloudberry-1-1521455772.jpg"
+      "pictureUrl": "https://perfumediary.com/wp-content/uploads/2018/03/cloudberry-1-1521455772.jpg",
+      "price": 340
     },
     {
       "id": 6,
       "title": "Яблоки",
       "description": "Яблоки содержат ряд витаминов и микроэлементов, повышающих иммунитет и улучшающих работу сердечно-сосудистой системы. Также в яблоке много пищевых волокон – клетчатки, которая обогащает наш рацион и заставляет работать кишечник.",
-      "pictureUrl": "https://www.zgarden.pl/foto/produkt_big/26/134409_jablon_czerwone_jablka.jpg"
+      "pictureUrl": "https://www.zgarden.pl/foto/produkt_big/26/134409_jablon_czerwone_jablka.jpg",
+      "price": 340
     },
     {
       "id": 7,
       "title": "Огурцы",
       "description": "Огурцы на 95% состоят из воды и содержат очень малое количество белков, жиров и углеводов.",
-      "pictureUrl": "https://avatars.mds.yandex.net/get-zen_doc/987771/pub_5b69bbddf2aaf000a9831c8b_5b69bc820d140c00a877aff7/scale_1200"
+      "pictureUrl": "https://avatars.mds.yandex.net/get-zen_doc/987771/pub_5b69bbddf2aaf000a9831c8b_5b69bc820d140c00a877aff7/scale_1200",
+      "price": 340
     }
   ]
 }

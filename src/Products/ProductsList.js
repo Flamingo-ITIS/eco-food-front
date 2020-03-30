@@ -89,7 +89,7 @@ const ProductsList = ({products}) => {
                                 </div>
                                 <CardContent>
                                     <h2 style={{margin: "0"}}>
-                                        <Link to={`/product`}
+                                        <Link to={`/product/${product.id}`}
                                               style={{textDecoration: 'none'}}>
                                             {product.title}
                                         </Link>

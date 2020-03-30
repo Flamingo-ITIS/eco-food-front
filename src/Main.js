@@ -12,12 +12,21 @@ const Main = ({products}) => {
     return (
         <div>
             <div>
-                <Slider dots centerMode>
+                <Slider dots>
+                    {/*<div>*/}
+                    {/*    <img src="https://dizao-shop.ru/upload/iblock/106/slaydery_dizao_shopru1.jpg" alt={"banner"}/>*/}
+                    {/*</div>*/}
                     <div>
-                        <img src="https://dizao-shop.ru/upload/iblock/106/slaydery_dizao_shopru1.jpg" alt={"banner"}/>
+                        <img src="/static/banners/banner_1.jpg" alt={"banner"}/>
                     </div>
-                    <div style={{height: '500px'}}>
-                        <img src="/static/banner.jpg" alt={"banner"}/>
+                    <div>
+                        <img src="/static/banners/banner_2.png" alt={"banner"}/>
+                    </div>
+                    <div>
+                        <img src="/static/banners/banner_3.png" alt={"banner"}/>
+                    </div>
+                    <div>
+                        <img src="/static/banners/banner_4.png" alt={"banner"}/>
                     </div>
                 </Slider>
             </div>

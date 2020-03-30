@@ -46,7 +46,7 @@ function App() {
   return (
       <div>
           <NavBar/>
-          <Container>
+          <Container style={{margin: "50px"}}>
               <AppRouter/>
           </Container>
       </div>
