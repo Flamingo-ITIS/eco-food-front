@@ -48,6 +48,9 @@ const Profile = () => {
                     <h3>Пол: мужской</h3>
                     <h3>Статус: продавец</h3>
                 </Paper>
+                <Button href="/seller/published_products">
+                    Опубликованные товары
+                </Button>
             </div>
         </div>
     )

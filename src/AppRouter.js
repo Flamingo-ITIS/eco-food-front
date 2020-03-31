@@ -15,6 +15,7 @@ import data from "./products"
 import Login from "./Session/Login";
 import SignUp from "./Session/SignUp";
 import Cart from "./Products/Cart";
+import Published_products from "./User/Seller/Published_products";
 
 const AppRouter = () => {
     return(
@@ -47,6 +48,9 @@ const AppRouter = () => {
                     </Route>
                     <Route path="/cart">
                         <Cart products={data.products}/>
+                    </Route>
+                    <Route path="/seller/published_products">
+                        <Published_products products={data.products}/>
                     </Route>
                 </Switch>
             </Router>

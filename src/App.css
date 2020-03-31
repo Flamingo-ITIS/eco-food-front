@@ -1,16 +1,12 @@
 *{
   color: black;
   font-family: 'Montserrat', sans-serif;
+  margin: 0
 }
 .App {
   text-align: center;
 }
 
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 div {
   text-align: center;
   justify-content: center;
@@ -18,7 +14,6 @@ div {
 
 li {
   list-style-type: none;
-  margin: 5px;
 }
 
 i {

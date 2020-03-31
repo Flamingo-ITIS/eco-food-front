@@ -2,14 +2,13 @@ import React, {useState} from 'react'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/core/styles";
 import {IsTokenValid} from "./Session/Login";
-import {Link} from "react-router-dom";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const style = {
     flexGrow: 1
@@ -81,11 +80,15 @@ const NavBar = () => {
                         <div>
                             <Button href="/profile">
                                 <AccountBoxIcon/>
-                                Profile
+                                Профиль
+                            </Button>
+                            <Button href="/cart">
+                                <ShoppingCartIcon/>
+                                Корзина
                             </Button>
                             <Button href="/" onClick={exit}>
                                 <ExitToAppIcon/>
-                                Exit
+                                Выход
                             </Button>
                         </div>
                     ) : (

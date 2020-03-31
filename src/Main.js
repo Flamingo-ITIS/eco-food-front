@@ -59,7 +59,7 @@ const Main = ({products}) => {
             </div>
             <h1>Топ товаров</h1>
             <div>
-                <ul>
+                <ul className={classes.ulWrap}>
                     {products.map(product =>
                         <li key={product.id}>
                             <Card className={classes.card}>

@@ -10,11 +10,12 @@ export const useStyles = makeStyles({
         display: 'flex',
         flexWrap: 'nowrap',
         justifyContent: 'center',
+        margin: '10px'
     },
     card: {
         width: 250,
         height: 400,
-        margin: "auto",
+        margin: "20px",
         padding: "5px",
         transition: "0.3s",
         boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
@@ -40,13 +41,19 @@ export const useStyles = makeStyles({
         display: "inline-block",
         border: "2px solid white"
     },
+    ulWrap: {
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        margin: "10px",
+}
 });
 
 function App() {
   return (
       <div>
           <NavBar/>
-          <Container style={{margin: "50px"}}>
+          <Container maxWidth="fixed">
               <AppRouter/>
           </Container>
       </div>

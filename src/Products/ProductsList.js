@@ -21,7 +21,7 @@ const ProductsList = ({products}) => {
             <h1>Каталог</h1>
             <div style={{display: 'flex', flexWrap: 'nowrap'}}>
                 <div>
-                    <Paper style={{padding: '30px', backgroundColor: '#ffede1'}}>
+                    <Card style={{padding: '30px', backgroundColor: '#ffede1'}}>
                         <h3>Фильтры</h3>
                         <FormGroup>
                             <FormControlLabel
@@ -71,9 +71,9 @@ const ProductsList = ({products}) => {
                             />
 
                         </FormGroup>
-                    </Paper>
+                    </Card>
                 </div>
-                <ul>
+                <ul className={classes.ulWrap}>
                     {products.map(product =>
                         <li key={product.id}>
                             <Card className={classes.card}>

@@ -40,7 +40,7 @@ export const useStyles = makeStyles({
         },
     },
     content: {
-      width: '500px'
+        width: '500px'
     },
     media: {
         height: 150,
@@ -59,12 +59,12 @@ export const useStyles = makeStyles({
     }
 });
 
-export const Cart = ({products}) => {
+export const Published_products = ({products}) => {
     const classes = useStyles();
     return (
         <div>
             <h1>
-                Корзина
+                Опубликованные товары
             </h1>
             <div className={classes.container}>
                 <ul className={classes.ulNoWrap}>
@@ -107,20 +107,8 @@ export const Cart = ({products}) => {
                         </li>
                     )}
                 </ul>
-                <Card style={{padding: "10px", margin: "25px"}}>
-                    <h1>
-                        Итого
-                    </h1>
-                    <p> тут типа сколько товаров куда как оплатить и другая важная(нет) инфа</p>
-                    <br/>
-                    <hr/>
-                    <br/>
-                    <Button variant="contained" style={{backgroundColor: "#FF5722"}}>
-                        Оформить заказ
-                    </Button>
-                </Card>
             </div>
         </div>
     )
 }
-export default Cart;
+export default Published_products;
