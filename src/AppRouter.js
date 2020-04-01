@@ -11,11 +11,12 @@ import Profile from "./User/Profile";
 import ProductsList from "./Products/ProductsList";
 import Product from "./Product/Product";
 import Main from "./Main";
-import data from "./products"
+import data from "./data"
 import Login from "./Session/Login";
 import SignUp from "./Session/SignUp";
 import Cart from "./Products/Cart";
 import Published_products from "./User/Seller/Published_products";
+import Orders from "./User/Orders";
 
 const AppRouter = () => {
     return(
@@ -52,6 +53,9 @@ const AppRouter = () => {
                     <Route path="/seller/published_products">
                         <Published_products products={data.products}/>
                     </Route>
+                    <Route path="/user/orders">
+                        <Orders orders={data.orders}/>
+                    </Route>
                 </Switch>
             </Router>
         </div>
@@ -64,8 +68,7 @@ const style={
 
 const GetProduct = () => {
     let {id} = useParams();
-    console.log(id);
-    return <Product product={data.products.find(product => (product.id === parseInt(id)))}/>
+    return <Product product={data.products.find(product => (product.id === parseInt(id)))} similar_products={data.products}/>
 }
 
 export default AppRouter;

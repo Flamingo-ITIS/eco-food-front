@@ -11,12 +11,13 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
 export const useStyles = makeStyles({
-    WrapContainer: {
+    wrapContainer: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        padding: '10px'
     },
     noWrapContainer: {
         display: 'flex',
@@ -24,6 +25,7 @@ export const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        margin: '10px'
     },
     card: {
         display: 'flex',
@@ -92,16 +94,18 @@ export const Published_products = ({products}) => {
                                     </h2>
                                 </CardContent>
                                 <div className={classes.noWrapContainer}>
-                                    <IconButton>
-                                        <IndeterminateCheckBoxIcon/>
-                                    </IconButton>
-                                    <h5>1</h5>
-                                    <IconButton>
-                                        <AddBoxIcon/>
-                                    </IconButton>
+                                    <h2>10 шт.</h2>
                                 </div>
                                 <div>
                                     <h2>{product.price} РУБ</h2>
+                                </div>
+                                <div className={classes.wrapContainer} style={{maxWidth: "100px"}}>
+                                    <Button style={{backgroundColor: "#62C5FF", width: "100%", margin: "5px", padding: "15px"}}>
+                                        Изменить
+                                    </Button>
+                                    <Button style={{backgroundColor: "#DA1313", width: "100%", margin: "5px"}}>
+                                        Удалить
+                                    </Button>
                                 </div>
                             </Card>
                         </li>

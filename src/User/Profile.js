@@ -8,12 +8,18 @@ import CardContent from "@material-ui/core/CardContent";
 import {Link} from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
+import ListAltIcon from '@material-ui/icons/ListAlt';
 
 export const useStyles = makeStyles({
-    flex: {
+    noWrapContainer: {
         display: 'flex',
         flexWrap: 'nowrap',
         justifyContent: 'center',
+    },
+    wrapContainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: "center",
     },
     info: {
         padding: 10,
@@ -30,7 +36,7 @@ const Profile = () => {
     return (
         <div>
             <h1>Мой профиль</h1>
-            <div className={classes.flex}>
+            <div className={classes.noWrapContainer}>
                 <Paper className={classes.image}>
                     <div>
                         <Avatar variant="square"
@@ -48,9 +54,20 @@ const Profile = () => {
                     <h3>Пол: мужской</h3>
                     <h3>Статус: продавец</h3>
                 </Paper>
-                <Button href="/seller/published_products">
-                    Опубликованные товары
-                </Button>
+                <div className={classes.wrapContainer} style={{justifyContent: "left"}}>
+                    <Button href="/seller/published_products">
+                        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
+                        <h3>
+                            Опубликованные товары
+                        </h3>
+                    </Button>
+                    <Button href="/user/orders">
+                        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
+                        <h3>
+                            Мои заказы
+                        </h3>
+                    </Button>
+                </div>
             </div>
         </div>
     )

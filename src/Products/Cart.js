@@ -43,8 +43,8 @@ export const useStyles = makeStyles({
       width: '500px'
     },
     media: {
-        height: 150,
-        width: 250,
+        height: 100,
+        width: 200,
         margin: "0 auto"
     },
     container: {
@@ -115,7 +115,7 @@ export const Cart = ({products}) => {
                     <br/>
                     <hr/>
                     <br/>
-                    <Button variant="contained" style={{backgroundColor: "#FF5722"}}>
+                    <Button variant="contained" style={{backgroundColor: "#C70039", color: "white"}}>
                         Оформить заказ
                     </Button>
                 </Card>

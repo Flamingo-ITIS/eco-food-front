@@ -11,10 +11,26 @@ import {
 import CardActionArea from "@material-ui/core/CardActionArea";
 
 export const useStyles = makeStyles({
-    flex: {
+    noWrapContainer: {
         display: 'flex',
         flexWrap: 'nowrap',
         justifyContent: 'center',
+    },
+    wrapContainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+    },
+    card: {
+        width: 250,
+        height: 400,
+        margin: "20px",
+        padding: "5px",
+        transition: "0.3s",
+        boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+        "&:hover": {
+            boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+        },
     },
     info: {
         padding: 10,
@@ -33,21 +49,22 @@ export const useStyles = makeStyles({
     },
 });
 
-const Product = ({product}) => {
+const Product = ({product, similar_products}) => {
     // let {id} = useParams();
     console.log({product});
+    console.log({similar_products});
     // product = products.find(product => (product.id === id));
     const classes = useStyles();
     return (
         <div>
             <h1>{product.title}</h1>
-            <div className={classes.flex}>
+            <div className={classes.noWrapContainer}>
                 <Paper className={classes.image}>
                     <CardMedia
                         className={classes.media}
                         // image="https://foodcity.ru/storage/products/October2018/eP9jt5L6V510QjjT4a1B.jpg"
-                        image = {product.pictureUrl}
-                        title= {product.title}
+                        image={product.pictureUrl}
+                        title={product.title}
                     />
                     <div>
                         <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
@@ -60,7 +77,6 @@ const Product = ({product}) => {
                         <i className="fas fa-star" style={{cursor: 'pointer'}}/>
                         <i className="far fa-star" style={{cursor: 'pointer'}}/>
                         <i className="far fa-star" style={{cursor: 'pointer'}}/>
-
                     </div>
                 </Paper>
                 <Paper className={classes.info}>
@@ -75,95 +91,31 @@ const Product = ({product}) => {
             </div>
             <div>
                 <h1>Похожие товары</h1>
-                <ul>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                            </CardContent>
-                        </Card>
-                    </li>
-                    <li>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="/static/images/tomato3.jpg"
-                                title="Paella dish"
-                            />
-                            <div>
-                                <i className="fas fa-search-plus" style={{cursor: 'pointer'}}/>
-                                <i className="far fa-heart" style={{cursor: 'pointer'}}/>
-                                <i className="fas fa-cart-arrow-down" style={{cursor: 'pointer'}}/>
-                            </div>
-                            <CardContent>
-                                <h2>
-                                    <Link to={``}
-                                          style={{textDecoration: 'none'}}>
-                                        Товар
-                                    </Link>
-                                </h2>
-                            </CardContent>
-                        </Card>
-                    </li>
+                <ul className={classes.wrapContainer}>
+                    {similar_products.map(product =>
+                        <li key={product.id}>
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    className={classes.media}
+                                    image={product.pictureUrl}
+                                    title={product.title}
+                                />
+                                <div>
+                                    <i className="fas fa-search-plus" style={{cursor: 'pointer'}}/>
+                                    <i className="far fa-heart" style={{cursor: 'pointer'}}/>
+                                    <i className="fas fa-cart-arrow-down" style={{cursor: 'pointer'}}/>
+                                </div>
+                                <CardContent>
+                                    <h2>
+                                        <Link to={``}
+                                              style={{textDecoration: 'none'}}>
+                                            {product.title}
+                                        </Link>
+                                    </h2>
+                                </CardContent>
+                            </Card>
+                        </li>
+                    )}
                 </ul>
             </div>
         </div>

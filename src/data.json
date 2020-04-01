@@ -49,5 +49,28 @@
       "pictureUrl": "https://avatars.mds.yandex.net/get-zen_doc/987771/pub_5b69bbddf2aaf000a9831c8b_5b69bc820d140c00a877aff7/scale_1200",
       "price": 340
     }
+  ],
+  "orders": [
+    {
+      "id": 3465,
+      "date": "01.03.2020",
+      "status": "в обработке",
+      "total": 2800,
+      "payment": "банковская карта"
+    },
+    {
+      "id": 4567,
+      "date": "30.03.2020",
+      "status": "закрыт",
+      "total": 4000,
+      "payment": "банковская карта"
+    },
+    {
+      "id": 4808,
+      "date": "01.04.2020",
+      "status": "закрыт",
+      "total": 300,
+      "payment": "банковская карта"
+    }
   ]
 }
