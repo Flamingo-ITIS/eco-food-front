@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Card from "@material-ui/core/Card";
 import {Link} from "react-router-dom";
 import CardContent from "@material-ui/core/CardContent";
@@ -14,8 +14,20 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Avatar from "@material-ui/core/Avatar";
 import {Paper} from "@material-ui/core";
 
-const ProductsList = ({products}) => {
+const ProductsList = () => {
     const classes = useStyles();
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'},
+        };
+        fetch('http://localhost:9000/product', requestOptions)
+            .then(response => response.json())
+            .then(data => setProducts(data));
+    }, []);
+    console.log(products);
     return (
         <div>
             <h1>Каталог</h1>
