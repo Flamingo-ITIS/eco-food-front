@@ -30,61 +30,8 @@ const ProductsList = ({products}) => {
     // console.log(products);
     return (
         <div>
-            <h1>Каталог</h1>
+            <h1>Избранное</h1>
             <div style={{display: 'flex', flexWrap: 'nowrap'}}>
-                <div>
-                    <Card style={{padding: '30px', backgroundColor: '#ffede1'}}>
-                        <h3>Фильтры</h3>
-                        <FormGroup>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        value="checkedB"
-                                        color="primary"
-                                    />
-                                }
-                                label="Primary"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        value="checkedB"
-                                        color="primary"
-                                    />
-                                }
-                                label="Primary"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        value="checkedB"
-                                        color="primary"
-                                    />
-                                }
-                                label="Primary"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        value="checkedB"
-                                        color="primary"
-                                    />
-                                }
-                                label="Primary"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        value="checkedB"
-                                        color="primary"
-                                    />
-                                }
-                                label="Primary"
-                            />
-
-                        </FormGroup>
-                    </Card>
-                </div>
                 <ul className={classes.ulWrap}>
                     {products.map(product =>
                         <li key={product.id}>
@@ -96,7 +43,7 @@ const ProductsList = ({products}) => {
                                 />
                                 <div>
                                     <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                                    <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
+                                    <i className="fas fa-heart fa-2x" style={{cursor: 'pointer', color: 'red'}}/>
                                     <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
                                 </div>
                                 <CardContent>

@@ -17,15 +17,14 @@ import SignUp from "./Session/SignUp";
 import Cart from "./Products/Cart";
 import Published_products from "./User/Seller/Published_products";
 import Orders from "./User/Orders";
+import FavouriteProducts from "./User/FavouriteProducts";
+import ChatPage from "./User/Seller/ChatPage";
 
 const AppRouter = () => {
     return(
         <div style={style}>
             <Router>
                 <Switch>
-                    <Route path="/user/profile">
-                        <Profile/>
-                    </Route>
                     <Route path="/login">
                         <Login/>
                     </Route>
@@ -53,8 +52,14 @@ const AppRouter = () => {
                     <Route path="/seller/published_products">
                         <Published_products products={data.products}/>
                     </Route>
+                    <Route path="/seller/chat">
+                        <ChatPage/>
+                    </Route>
                     <Route path="/user/orders">
                         <Orders orders={data.orders}/>
+                    </Route>
+                    <Route path="/user/favourite_products">
+                        <FavouriteProducts products={data.products}/>
                     </Route>
                 </Switch>
             </Router>

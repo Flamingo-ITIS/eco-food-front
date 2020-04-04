@@ -67,6 +67,18 @@ const Profile = () => {
                             Мои заказы
                         </h3>
                     </Button>
+                    <Button href="/user/favourite_products">
+                        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
+                        <h3>
+                            Избранное
+                        </h3>
+                    </Button>
+                    <Button href="/seller/chat">
+                        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
+                        <h3>
+                            Диалог с продавцом
+                        </h3>
+                    </Button>
                 </div>
             </div>
         </div>
