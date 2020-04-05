@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Container from "@material-ui/core/Container";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import TextField from "@material-ui/core/TextField";
@@ -8,7 +8,7 @@ import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-export const IsTokenValid = () => localStorage.getItem("token") && ((localStorage.getItem("token").length) === 40);
+export const IsTokenValid = () => localStorage.getItem("token");
 
 export const useStyles = makeStyles(theme => ({
     paper: {
@@ -35,14 +35,53 @@ export const useStyles = makeStyles(theme => ({
     }
 }));
 
+
+async function handleSubmit(event) {
+    event.preventDefault();
+    const userData = new FormData(event.target);
+    const username = userData.get("username");
+    const password = userData.get("password");
+    const data = "username=" + username + "&password=" + password;
+
+
+    // const express = require('express');
+    // const cors = require('cors');
+    // const app = express();
+    //
+    // app.get('/login', cors(), function (req, res, next) {
+    //     res.json({msg: 'This is CORS-enabled for a Single Route'})
+    // })
+
+    console.log(data);
+    const url = "http://localhost:9000/login";
+    console.log("start");
+    const response = await fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        credentials: 'same-origin',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Access-Control-Allow-Origin': '*',
+            'Accept': 'application/json'
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *client
+        body: data // body data type must match "Content-Type" header
+    }).then(response => response.json())
+        .then(result => console.log(result));
+    // if (response.body != null) {
+    //     localStorage.setItem("token", response.body);
+    //     return <Switch to="/profile"/>
+    // } else {
+    //     return <Switch to="/login"/>
+    // }
+    // return await response.json(); // parses JSON response into native JavaScript objects
+}
+
 const Login = () => {
     const classes = useStyles();
     const [login, setLogin] = React.useState("");
     const [password, setPassword] = React.useState("");
-
-    const handleSubmit = () => {
-        return <Switch to="/profile"/>
-    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -50,9 +89,9 @@ const Login = () => {
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>
-                <Typography component="h1" variant="h5">
+                <h1>
                     Вход
-                </Typography>
+                </h1>
                 <form className={classes.form}
                       noValidate
                       onSubmit={handleSubmit}>
@@ -61,9 +100,9 @@ const Login = () => {
                         margin="normal"
                         required
                         fullWidth
-                        id="login"
+                        id="username"
                         label="Логин"
-                        name="login"
+                        name="username"
                         autoFocus
                         onChange={event => {
                             setLogin(event.target.value);

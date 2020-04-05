@@ -14,20 +14,23 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Avatar from "@material-ui/core/Avatar";
 import {Paper} from "@material-ui/core";
 
-const ProductsList = ({products}) => {
+const ProductsList = () => {
     const classes = useStyles();
-    // const [products, setProducts] = useState([]);
-    // useEffect(() => {
-    //     const requestOptions = {
-    //         method: 'GET',
-    //         headers: { 'Content-Type': 'application/json',
-    //             'Access-Control-Allow-Origin': '*'},
-    //     };
-    //     fetch('http://localhost:9000/product', requestOptions)
-    //         .then(response => response.json())
-    //         .then(data => setProducts(data));
-    // }, []);
-    // console.log(products);
+    const [products, setProducts] = useState([]);
+    console.log(localStorage.getItem("token"));
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSaW5hdCIsImF1dGgiOlsiUEFSVE5FUiJdLCJpYXQiOjE1ODYxMTg0MTcsImV4cCI6MTU4NjcyMzIxN30.RZO9SzLAIzw9sN7DAUMAMWKcM0qL-8aRsUc4ZWJU1ao"
+            },
+        };
+        fetch('http://localhost:9000/product', requestOptions)
+            .then(response => response.json())
+            .then(data => setProducts(data));
+    }, []);
+    console.log(products);
     return (
         <div>
             <h1>Каталог</h1>

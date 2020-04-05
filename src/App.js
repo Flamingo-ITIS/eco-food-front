@@ -43,18 +43,23 @@ export const useStyles = makeStyles({
         flexWrap: "wrap",
         justifyContent: "center",
         margin: "10px",
-}
+    }
 });
 
 function App() {
-  return (
-      <div>
-          <NavBar/>
-          <Container maxWidth="fixed">
-              <AppRouter/>
-          </Container>
-      </div>
-  );
+    // const express = require('express');
+    // const cors = require('cors');
+    // const app = express();
+    //
+    // app.use(cors());
+    return (
+        <div>
+            <NavBar/>
+            <Container maxWidth="fixed">
+                <AppRouter/>
+            </Container>
+        </div>
+    );
 }
 
 export default App;

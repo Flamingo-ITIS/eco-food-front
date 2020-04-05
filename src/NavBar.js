@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     logo: {
         height: '100px',
         filter: 'invert(100%)',
-},
+    },
 }));
 
 const NavBar = () => {
@@ -72,39 +72,35 @@ const NavBar = () => {
                         <Button href="/main">
                             НА ГЛАВНУЮ
                         </Button>
-                        <Button >
+                        <Button>
                             Просто кнопка
                         </Button>
                     </div>
-                    {IsTokenValid() ? (
-                        <div>
-                            <Button href="/profile">
-                                <AccountBoxIcon/>
-                                Профиль
-                            </Button>
-                            <Button href="/cart">
-                                <ShoppingCartIcon/>
-                                Корзина
-                            </Button>
-                            <Button href="/" onClick={exit}>
-                                <ExitToAppIcon/>
-                                Выход
-                            </Button>
-                        </div>
-                    ) : (
-                        <div>
-                            <Button href="/login">
-                                <LockOpenIcon/>
-                                Вход
-                            </Button>
+                    <div>
+                        <Button href="/profile">
+                            <AccountBoxIcon/>
+                            Профиль
+                        </Button>
+                        <Button href="/cart">
+                            <ShoppingCartIcon/>
+                            Корзина
+                        </Button>
+                        <Button href="/" onClick={exit}>
+                            <ExitToAppIcon/>
+                            Выход
+                        </Button>
+                    </div>
+                    <div>
+                        <Button href="/login">
+                            <LockOpenIcon/>
+                            Вход
+                        </Button>
 
-                            <Button href="/user/ordered_products">
-                                <LockOpenIcon/>
-                                Корзина
-                            </Button>
-                        </div>
-
-                    )}
+                        <Button href="/sign_up">
+                            <LockOpenIcon/>
+                            Регистрация
+                        </Button>
+                    </div>
                 </Toolbar>
             </AppBar>
         </div>
