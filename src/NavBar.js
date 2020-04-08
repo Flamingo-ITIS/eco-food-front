@@ -2,13 +2,16 @@ import React, {useState} from 'react'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/core/styles";
 import {IsTokenValid} from "./Session/Login";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCartTwoTone';
+import Avatar from "@material-ui/core/Avatar";
+import DnsIcon from '@material-ui/icons/DnsTwoTone';
+import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
+import AppsIcon from '@material-ui/icons/Apps';
 
 const style = {
     flexGrow: 1
@@ -16,7 +19,7 @@ const style = {
 
 const useStyles = makeStyles(theme => ({
     navBar: {
-        background: '#ffede1'
+        background: '#e0fcd4'
     },
     container: {
         display: 'flex',
@@ -27,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
-        width: 200,
+        width: 400,
     },
     centerRow: {
         padding: theme.spacing(3, 2),
@@ -38,11 +41,20 @@ const useStyles = makeStyles(theme => ({
         height: '100px',
         filter: 'invert(100%)',
     },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: "#ed6a5a",
+    },
+    button: {
+        margin: "10px",
+        padding: "5px",
+        color: "black"
+    },
 }));
 
 const NavBar = () => {
     const classes = useStyles();
-    const [input, setInput] = useState("");
+    const [search_input, setSearch_input] = useState("");
     const exit = () => {
         localStorage.clear();
     };
@@ -55,49 +67,52 @@ const NavBar = () => {
                     <TextField
                         id="outlined-search"
                         name="name"
-                        label="Search products"
+                        label="Поиск товара"
                         type="search"
                         className={classes.textField}
                         margin="normal"
                         variant="outlined"
-                        value={input}
+                        value={search_input}
                         onChange={event => {
-                            setInput(event.target.value);
+                            setSearch_input(event.target.value);
                         }}
                     />
                     <div>
-                        <Button href="/products">
+                        <Button className={classes.button} href="/products">
+                            <DnsIcon/>
                             Каталог
                         </Button>
-                        <Button href="/main">
-                            НА ГЛАВНУЮ
+                        <Button className={classes.button} href="/main">
+                            <AppsIcon/>
+                            Главная
                         </Button>
-                        <Button>
-                            Просто кнопка
-                        </Button>
-                    </div>
-                    <div>
-                        <Button href="/profile">
-                            <AccountBoxIcon/>
-                            Профиль
-                        </Button>
-                        <Button href="/cart">
+                        <Button className={classes.button} href="/cart">
                             <ShoppingCartIcon/>
                             Корзина
                         </Button>
-                        <Button href="/" onClick={exit}>
-                            <ExitToAppIcon/>
-                            Выход
-                        </Button>
                     </div>
+                    {/*<div>*/}
+                    {/*    <Button href="/profile">*/}
+                    {/*        <AccountBoxIcon/>*/}
+                    {/*        Профиль*/}
+                    {/*    </Button>*/}
+                    {/*    <Button href="/" onClick={exit}>*/}
+                    {/*        <ExitToAppIcon/>*/}
+                    {/*        Выход*/}
+                    {/*    </Button>*/}
+                    {/*</div>*/}
                     <div>
                         <Button href="/login">
-                            <LockOpenIcon/>
+                            <Avatar className={classes.avatar}>
+                                <LockOpenIcon/>
+                            </Avatar>
                             Вход
                         </Button>
 
                         <Button href="/sign_up">
-                            <LockOpenIcon/>
+                            <Avatar className={classes.avatar}>
+                                <ContactsOutlinedIcon/>
+                            </Avatar>
                             Регистрация
                         </Button>
                     </div>

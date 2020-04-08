@@ -6,6 +6,9 @@ import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
 import {useStyles} from "../Session/Login";
 import Profile from "../User/Profile";
+import Grid from "@material-ui/core/Grid";
+import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
+import Paper from "@material-ui/core/Paper";
 
 export const IsTokenValid = () => localStorage.getItem("token") && ((localStorage.getItem("token").length) === 40);
 
@@ -13,7 +16,9 @@ async function handleSubmit(event) {
     event.preventDefault();
     const userData = new FormData(event.target);
     const object = {};
-    userData.forEach((value, key) => {object[key] = value});
+    userData.forEach((value, key) => {
+        object[key] = value
+    });
     const json = JSON.stringify(object);
     console.log(json);
 
@@ -29,7 +34,7 @@ async function handleSubmit(event) {
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer', // no-referrer, *client
         body: json // body data type must match "Content-Type" header
-    },[]);
+    }, []);
     console.log(response.json());
     // return await response.json(); // parses JSON response into native JavaScript objects
 }
@@ -43,10 +48,15 @@ const SignUp = () => {
     const [password, setPassword] = React.useState("");
 
     return (
-        <Container component="main" maxWidth="xs">
-            <div className={classes.paper}>
+        <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+        >
+            <Paper className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <AddIcon/>
+                    <ContactsOutlinedIcon/>
                 </Avatar>
                 <h1>
                     Регистрация
@@ -105,7 +115,7 @@ const SignUp = () => {
                         required
                         fullWidth
                         id="username"
-                        label="username"
+                        label="Имя пользователя"
                         name="username"
                     />
                     <Button
@@ -118,8 +128,8 @@ const SignUp = () => {
                         Зарегистрироваться
                     </Button>
                 </form>
-            </div>
-        </Container>
+            </Paper>
+        </Grid>
     )
 };
 export default SignUp

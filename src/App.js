@@ -55,7 +55,7 @@ function App() {
     return (
         <div>
             <NavBar/>
-            <Container maxWidth="fixed">
+            <Container fixed>
                 <AppRouter/>
             </Container>
         </div>

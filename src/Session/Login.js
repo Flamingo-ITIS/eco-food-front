@@ -7,6 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import {Link} from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Paper from "@material-ui/core/Paper";
 
 export const IsTokenValid = () => localStorage.getItem("token");
 
@@ -14,12 +18,17 @@ export const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
+        maxWidth: 400,
         flexDirection: 'column',
         alignItems: 'center',
+        border: "1px solid black",
+        borderRadius: "5px",
+        padding: "30px",
+        boxShadow: "0 8px 20px -12px rgba(0,0,0,0.3)",
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: "#ed6a5a",
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -27,6 +36,9 @@ export const useStyles = makeStyles(theme => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        backgroundColor: "#ed6a5a",
+        padding: "5px",
+        color: "white"
     },
     centerRow: {
         padding: theme.spacing(3, 2),
@@ -84,8 +96,13 @@ const Login = () => {
     const [password, setPassword] = React.useState("");
 
     return (
-        <Container component="main" maxWidth="xs">
-            <div className={classes.paper}>
+        <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+        >
+            <Paper className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>
@@ -132,8 +149,14 @@ const Login = () => {
                         Вход
                     </Button>
                 </form>
-            </div>
-        </Container>
+                <div>
+                    Еще не зарегистрированы?
+                    <Link to="/sign_up">
+                        Регистрация
+                    </Link>
+                </div>
+            </Paper>
+        </Grid>
     )
 };
 export default Login

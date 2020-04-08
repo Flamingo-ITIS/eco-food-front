@@ -9,23 +9,14 @@ import {Link} from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import Grid from "@material-ui/core/Grid";
 
 export const useStyles = makeStyles({
-    noWrapContainer: {
-        display: 'flex',
-        flexWrap: 'nowrap',
-        justifyContent: 'center',
-    },
-    wrapContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: "center",
-    },
     info: {
         padding: 10,
         margin: 10,
-        width: 800,
-        height: 300,
+        width: 400,
+        height: 200,
         textAlign: 'left',
     },
 });
@@ -36,11 +27,16 @@ const Profile = () => {
     return (
         <div>
             <h1>Мой профиль</h1>
-            <div className={classes.noWrapContainer}>
+            <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="flex-start"
+            >
                 <Paper className={classes.image}>
                     <div>
                         <Avatar variant="square"
-                                style={{width: '300px', height: '300px'}}
+                                style={{width: '200px', height: '200px'}}
                         />
                     </div>
                     <Button>
@@ -54,33 +50,48 @@ const Profile = () => {
                     <h3>Пол: мужской</h3>
                     <h3>Статус: продавец</h3>
                 </Paper>
-                <div className={classes.wrapContainer} style={{justifyContent: "left"}}>
-                    <Button href="/seller/published_products">
-                        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
-                        <h3>
-                            Опубликованные товары
-                        </h3>
-                    </Button>
-                    <Button href="/user/orders">
-                        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
-                        <h3>
-                            Мои заказы
-                        </h3>
-                    </Button>
-                    <Button href="/user/favourite_products">
-                        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
-                        <h3>
-                            Избранное
-                        </h3>
-                    </Button>
-                    <Button href="/seller/chat">
-                        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
-                        <h3>
-                            Диалог с продавцом
-                        </h3>
-                    </Button>
-                </div>
-            </div>
+                <Paper>
+                    <Grid
+                        container
+                        direction="column"
+                        justify="center"
+                        alignItems="flex-start"
+                    >
+                        <div>
+                            <Button href="/seller/published_products">
+                                <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
+                                <h3>
+                                    Опубликованные товары
+                                </h3>
+                            </Button>
+                        </div>
+                        <div>
+                            <Button href="/user/orders">
+                                <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
+                                <h3>
+                                    Мои заказы
+                                </h3>
+                            </Button>
+                        </div>
+                        <div>
+                            <Button href="/user/favourite_products">
+                                <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
+                                <h3>
+                                    Избранное
+                                </h3>
+                            </Button>
+                        </div>
+                        <div>
+                            <Button href="/seller/chat">
+                                <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
+                                <h3>
+                                    Диалог с продавцом
+                                </h3>
+                            </Button>
+                        </div>
+                    </Grid>
+                </Paper>
+            </Grid>
         </div>
     )
 };
