@@ -8,9 +8,15 @@ import {
     Link,
     useParams
 } from "react-router-dom";
-import CardActionArea from "@material-ui/core/CardActionArea";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
+import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
+import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
+import Typography from "@material-ui/core/Typography";
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
     noWrapContainer: {
         display: 'flex',
         flexWrap: 'nowrap',
@@ -36,18 +42,30 @@ export const useStyles = makeStyles({
         padding: 10,
         margin: 10,
         width: 800,
-        height: 300,
+        height: 350,
         textAlign: 'left',
+        boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     },
     image: {
         padding: 10,
         margin: 10,
-        height: 300
+        height: 350,
+        width: 300,
+        boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     },
     media: {
-        height: 150,
+        height: 200,
+        width: 300,
     },
-});
+    iconButton: {
+        backgroundColor: theme.palette.primary.light,
+        color: "black",
+        // border: "1px solid black",
+        margin: "10px",
+        padding: "10px",
+        boxShadow: "0 8px 20px -12px rgba(0,0,0,0.8)",
+    },
+}));
 
 const Product = ({product, similar_products}) => {
     // let {id} = useParams();
@@ -56,39 +74,76 @@ const Product = ({product, similar_products}) => {
     // product = products.find(product => (product.id === id));
     const classes = useStyles();
     return (
-        <div>
-            <h1>{product.title}</h1>
-            <div className={classes.noWrapContainer}>
+        <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            spacing={40}
+        >
+            <Typography variant="h2">
+                {product.title}
+            </Typography>
+            <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+            >
                 <Paper className={classes.image}>
                     <CardMedia
                         className={classes.media}
-                        // image="https://foodcity.ru/storage/products/October2018/eP9jt5L6V510QjjT4a1B.jpg"
                         image={product.pictureUrl}
                         title={product.title}
                     />
                     <div>
-                        <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>
-                        <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>
-                        <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>
+                        <IconButton className={classes.iconButton}>
+                            <InfoIcon fontSize="large"/>
+                        </IconButton>
+                        <IconButton className={classes.iconButton}>
+                            <LoyaltyIcon fontSize="large"/>
+                        </IconButton>
+                        <IconButton className={classes.iconButton}>
+                            <AddShoppingCartOutlinedIcon fontSize="large"/>
+                        </IconButton>
                     </div>
                     <div>
-                        <i className="fas fa-star" style={{cursor: 'pointer'}}/>
-                        <i className="fas fa-star" style={{cursor: 'pointer'}}/>
-                        <i className="fas fa-star" style={{cursor: 'pointer'}}/>
-                        <i className="far fa-star" style={{cursor: 'pointer'}}/>
-                        <i className="far fa-star" style={{cursor: 'pointer'}}/>
+                        <IconButton>
+                            <GradeOutlinedIcon/>
+                        </IconButton>
+                        <IconButton>
+                            <GradeOutlinedIcon/>
+                        </IconButton>
+                        <IconButton>
+                            <GradeOutlinedIcon/>
+                        </IconButton>
+                        <IconButton>
+                            <GradeOutlinedIcon/>
+                        </IconButton>
+                        <IconButton>
+                            <GradeOutlinedIcon/>
+                        </IconButton>
+
                     </div>
                 </Paper>
                 <Paper className={classes.info}>
-                    <h3>Описание</h3>
-                    {/*<p>*/}
-                    {/*    Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).*/}
-                    {/*</p>*/}
-                    <p>
-                        {product.description}
-                    </p>
+                    <Grid
+                        container
+                        direction="column"
+                        justify="center"
+                        alignItems="center"
+                        spacing={40}
+                    >
+                        <Typography variant="h4">
+                            Описание
+                        </Typography>
+                        <br/>
+                        <Typography variant="body1">
+                            {product.description}
+                        </Typography>
+                    </Grid>
                 </Paper>
-            </div>
+            </Grid>
             <div>
                 <h1>Похожие товары</h1>
                 <ul className={classes.wrapContainer}>
@@ -118,7 +173,7 @@ const Product = ({product, similar_products}) => {
                     )}
                 </ul>
             </div>
-        </div>
+        </Grid>
     )
 };
 

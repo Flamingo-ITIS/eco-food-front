@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
-import {useStyles} from "../Session/Login";
+import {useStyles} from "./Login";
 import Profile from "../User/Profile";
 import Grid from "@material-ui/core/Grid";
 import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
@@ -54,7 +54,7 @@ const SignUp = () => {
             justify="center"
             alignItems="center"
         >
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} elevation={3}>
                 <Avatar className={classes.avatar}>
                     <ContactsOutlinedIcon/>
                 </Avatar>

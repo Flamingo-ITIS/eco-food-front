@@ -5,7 +5,7 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import {Link} from "react-router-dom";
-import {useStyles} from "./App";
+import {useStyles} from "../App";
 
 const Main = ({products}) => {
     const classes = useStyles();

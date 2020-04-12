@@ -19,7 +19,7 @@ const style = {
 
 const useStyles = makeStyles(theme => ({
     navBar: {
-        background: '#e0fcd4'
+        background: theme.palette.primary.light
     },
     container: {
         display: 'flex',
@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: "#ed6a5a",
+        backgroundColor: theme.palette.primary.main,
     },
     button: {
         margin: "10px",

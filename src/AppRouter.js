@@ -7,18 +7,18 @@ import {
     useParams
 } from "react-router-dom";
 import React from "react";
-import Profile from "./User/Profile";
-import ProductsList from "./Products/ProductsList";
-import Product from "./Product/Product";
-import Main from "./Main";
+import Profile from "./components/User/Profile";
+import ProductsList from "./components/Products/ProductsList";
+import Product from "./components/Product/Product";
+import Main from "./components/Main";
 import data from "./data"
-import Login from "./Session/Login";
-import SignUp from "./Session/SignUp";
-import Cart from "./Products/Cart";
-import Published_products from "./User/Seller/Published_products";
-import Orders from "./User/Orders";
-import FavouriteProducts from "./User/FavouriteProducts";
-import ChatPage from "./User/Seller/ChatPage";
+import Login from "./components/Session/Login";
+import SignUp from "./components/Session/SignUp";
+import Cart from "./components/Products/Cart";
+import Published_products from "./components/User/Seller/Published_products";
+import Orders from "./components/User/Orders";
+import FavouriteProducts from "./components/User/FavouriteProducts";
+import ChatPage from "./components/User/Seller/ChatPage";
 
 const AppRouter = () => {
     return(

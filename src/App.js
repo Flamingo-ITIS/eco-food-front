@@ -1,9 +1,24 @@
 import React from 'react';
 import './App.css';
-import NavBar from "./NavBar";
+import NavBar from "./components/NavBar";
 import Container from "@material-ui/core/Container";
 import AppRouter from "./AppRouter";
 import {makeStyles} from "@material-ui/styles";
+import { createMuiTheme } from '@material-ui/core/styles';
+import ThemeProvider from "@material-ui/styles/ThemeProvider";
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#E9AA39',
+            light: '#F9E0B5',
+        },
+        secondary: {
+            main: '#699819',
+            light: '#D3F59B',
+        },
+    },
+});
 
 export const useStyles = makeStyles({
     flex: {
@@ -53,12 +68,12 @@ function App() {
     //
     // app.use(cors());
     return (
-        <div>
+        <ThemeProvider theme={theme}>
             <NavBar/>
             <Container fixed>
                 <AppRouter/>
             </Container>
-        </div>
+        </ThemeProvider>
     );
 }
 

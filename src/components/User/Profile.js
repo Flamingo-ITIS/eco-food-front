@@ -1,5 +1,5 @@
 import React from 'react'
-import '../App.css';
+import '../../App.css';
 import {makeStyles} from "@material-ui/styles";
 import {Paper} from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -69,7 +69,7 @@ const Profile = () => {
                             <Button href="/user/orders">
                                 <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
                                 <h3>
-                                    Мои заказы
+                                    Мои покупки
                                 </h3>
                             </Button>
                         </div>

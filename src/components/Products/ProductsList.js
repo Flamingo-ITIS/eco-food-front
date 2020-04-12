@@ -9,12 +9,17 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
-import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/core/Slider";
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
     card: {
         width: 250,
         height: 400,
@@ -41,7 +46,10 @@ export const useStyles = makeStyles({
         lineHeight: 1.8
     },
     iconButton: {
-        // backgroundColor: "#fc462d",
+        backgroundColor: theme.palette.primary.light,
+        "&:hover": {
+            backgroundColor: theme.palette.primary.main,
+        },
         color: "black",
         // border: "1px solid black",
         margin: "10px",
@@ -49,9 +57,17 @@ export const useStyles = makeStyles({
     },
     description: {
         margin: "5px"
+    },
+    filter: {
+        padding: '30px',
+        margin: '20px',
+        backgroundColor: theme.palette.primary.light
     }
-});
+}));
 
+function valuetext(value) {
+    return `${value}°C`;
+}
 
 const ProductsList = ({products}) => {
     const classes = useStyles();
@@ -70,6 +86,27 @@ const ProductsList = ({products}) => {
     //         .then(data => setProducts(data));
     // }, []);
     console.log(products);
+
+    const [age, setAge] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+    const [price, setPrice] = React.useState([0, 10000]);
+
+    // const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    //     setAge(event.target.value as number);
+    // };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleChangePrice = (event, newValue) => {
+        setPrice(newValue);
+    }
+
     return (
         <div>
             <h1>Каталог</h1>
@@ -79,17 +116,18 @@ const ProductsList = ({products}) => {
                 justify="flex-start"
                 alignItems="flex-start"
             >
-                <Card style={{padding: '30px', margin: '20px', backgroundColor: '#e0fcd4'}}>
+                <Card className={classes.filter}>
                     <h3>Фильтры</h3>
                     <FormGroup>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Primary"
+                        <Typography id="range-slider" gutterBottom>
+                            Цена
+                        </Typography>
+                        <Slider
+                            value={price}
+                            onChange={handleChangePrice}
+                            valueLabelDisplay="auto"
+                            aria-labelledby="range-slider"
+                            getAriaValueText={valuetext}
                         />
                         <FormControlLabel
                             control={
@@ -98,7 +136,7 @@ const ProductsList = ({products}) => {
                                     color="primary"
                                 />
                             }
-                            label="Primary"
+                            label="Дата"
                         />
                         <FormControlLabel
                             control={
@@ -107,27 +145,27 @@ const ProductsList = ({products}) => {
                                     color="primary"
                                 />
                             }
-                            label="Primary"
+                            label="Оценка"
                         />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Primary"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Primary"
-                        />
-
+                        <br/>
+                        <InputLabel>Категория</InputLabel>
+                        <Select
+                            style={{width: 150}}
+                            open={open}
+                            onClose={handleClose}
+                            onOpen={handleOpen}
+                            value={age}
+                            onChange={event => {
+                                setAge(event.target.value);
+                            }}
+                        >
+                            <MenuItem value="">
+                                <em>Нет</em>
+                            </MenuItem>
+                            <MenuItem value={10}>Фрукты</MenuItem>
+                            <MenuItem value={20}>Овощи</MenuItem>
+                            <MenuItem value={30}>Орехи</MenuItem>
+                        </Select>
                     </FormGroup>
                 </Card>
 

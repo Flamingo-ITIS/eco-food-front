@@ -21,14 +21,12 @@ export const useStyles = makeStyles(theme => ({
         maxWidth: 400,
         flexDirection: 'column',
         alignItems: 'center',
-        border: "1px solid black",
         borderRadius: "5px",
         padding: "30px",
-        boxShadow: "0 8px 20px -12px rgba(0,0,0,0.3)",
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: "#ed6a5a",
+        backgroundColor: theme.palette.primary.main,
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -36,7 +34,7 @@ export const useStyles = makeStyles(theme => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
-        backgroundColor: "#ed6a5a",
+        backgroundColor: theme.palette.primary.main,
         padding: "5px",
         color: "white"
     },
@@ -102,7 +100,7 @@ const Login = () => {
             justify="center"
             alignItems="center"
         >
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} elevation={3}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>
@@ -134,7 +132,6 @@ const Login = () => {
                         id="password"
                         label="Пароль"
                         name="password"
-                        autoFocus
                         onChange={event => {
                             setPassword(event.target.value);
                         }}
