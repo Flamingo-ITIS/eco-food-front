@@ -18,6 +18,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
+import SortIcon from '@material-ui/icons/Sort';
 
 export const useStyles = makeStyles(theme => ({
     card: {
@@ -27,16 +28,20 @@ export const useStyles = makeStyles(theme => ({
         // backgroundColor: "#fdfdc8",
         margin: "20px",
         padding: "5px",
-        paddingBottom: "15px",
-        transition: "0.3s",
-        boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+        borderRadius: "12px",
+        transition: "0.5s",
+        // boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
         "&:hover": {
             boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
         },
     },
+    titleBar: {
+        borderRadius: "12px 12px 0 0"
+    },
     media: {
         height: 150,
         width: 250,
+        borderRadius: "12px",
         margin: "0 auto"
     },
     heading: {
@@ -62,7 +67,13 @@ export const useStyles = makeStyles(theme => ({
         padding: '30px',
         margin: '20px',
         backgroundColor: theme.palette.primary.light
-    }
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 0),
+        backgroundColor: theme.palette.primary.main,
+        padding: "5px",
+        color: "white"
+    },
 }));
 
 function valuetext(value) {
@@ -113,59 +124,80 @@ const ProductsList = ({products}) => {
             <Grid
                 container
                 direction="row"
+                justify="flex-end"
+                alignItems="center"
+            >
+                <Button>
+                    <SortIcon/>
+                    По цене
+                </Button>
+                <Button>
+                    <SortIcon/>
+                    По рейтингу
+                </Button>
+            </Grid>
+            <Grid
+                container
+                direction="row"
                 justify="flex-start"
                 alignItems="flex-start"
             >
-                <Card className={classes.filter}>
+                <Card className={classes.filter} >
                     <h3>Фильтры</h3>
                     <FormGroup>
-                        <Typography id="range-slider" gutterBottom>
-                            Цена
-                        </Typography>
-                        <Slider
-                            value={price}
-                            onChange={handleChangePrice}
-                            valueLabelDisplay="auto"
-                            aria-labelledby="range-slider"
-                            getAriaValueText={valuetext}
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Дата"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Оценка"
-                        />
-                        <br/>
-                        <InputLabel>Категория</InputLabel>
-                        <Select
-                            style={{width: 150}}
-                            open={open}
-                            onClose={handleClose}
-                            onOpen={handleOpen}
-                            value={age}
-                            onChange={event => {
-                                setAge(event.target.value);
-                            }}
+                        <Grid
+                            container
+                            direction="column"
+                            justify="center"
+                            alignItems="center"
                         >
-                            <MenuItem value="">
-                                <em>Нет</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Фрукты</MenuItem>
-                            <MenuItem value={20}>Овощи</MenuItem>
-                            <MenuItem value={30}>Орехи</MenuItem>
-                        </Select>
+                            <Typography id="range-slider" gutterBottom>
+                                Цена
+                            </Typography>
+                            <Slider
+                                value={price}
+                                onChange={handleChangePrice}
+                                valueLabelDisplay="auto"
+                                aria-labelledby="range-slider"
+                                getAriaValueText={valuetext}
+                            />
+                            {/*<FormControlLabel*/}
+                            {/*    control={*/}
+                            {/*        <Checkbox*/}
+                            {/*            value="checkedB"*/}
+                            {/*            color="primary"*/}
+                            {/*        />*/}
+                            {/*    }*/}
+                            {/*    label="Дата"*/}
+                            {/*/>*/}
+                            <br/>
+                            <InputLabel>Категория</InputLabel>
+                            <Select
+                                style={{width: 150}}
+                                open={open}
+                                onClose={handleClose}
+                                onOpen={handleOpen}
+                                value={age}
+                                onChange={event => {
+                                    setAge(event.target.value);
+                                }}
+                            >
+                                <MenuItem value="">
+                                    <em>Нет</em>
+                                </MenuItem>
+                                <MenuItem value={10}>Фрукты</MenuItem>
+                                <MenuItem value={20}>Овощи</MenuItem>
+                                <MenuItem value={30}>Орехи</MenuItem>
+                            </Select>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                            >
+                                Применить
+                            </Button>
+                        </Grid>
                     </FormGroup>
                 </Card>
 
@@ -178,7 +210,7 @@ const ProductsList = ({products}) => {
                     >
                         {products.map(product =>
                             <li key={product.id}>
-                                <Card className={classes.card}>
+                                <Card className={classes.card} elevation={5}>
                                     <CardMedia
                                         className={classes.media}
                                         image={product.pictureUrl}
