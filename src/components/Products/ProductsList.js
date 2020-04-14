@@ -80,22 +80,24 @@ function valuetext(value) {
     return `${value}°C`;
 }
 
-const ProductsList = ({products}) => {
+const ProductsList = () => {
     const classes = useStyles();
-    // const [products, setProducts] = useState([]);
-    // console.log(localStorage.getItem("token"));
-    // useEffect(() => {
-    //     const requestOptions = {
-    //         method: 'GET',
-    //         headers: { 'Content-Type': 'application/json',
-    //             'Access-Control-Allow-Origin': '*',
-    //             'Authorization': 'Bearer ' + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSaW5hdCIsImF1dGgiOlsiUEFSVE5FUiJdLCJpYXQiOjE1ODYxMTg0MTcsImV4cCI6MTU4NjcyMzIxN30.RZO9SzLAIzw9sN7DAUMAMWKcM0qL-8aRsUc4ZWJU1ao"
-    //         },
-    //     };
-    //     fetch('http://localhost:9000/product', requestOptions)
-    //         .then(response => response.json())
-    //         .then(data => setProducts(data));
-    // }, []);
+    const [products, setProducts] = useState([]);
+
+
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+            },
+        };
+        const url = 'http://localhost:9000/products';
+        fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(data => setProducts(data));
+    }, []);
     console.log(products);
 
     const [age, setAge] = React.useState('');

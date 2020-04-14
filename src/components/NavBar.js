@@ -6,13 +6,12 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/core/styles";
-import {IsTokenValid} from "./Session/Login";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartTwoTone';
 import Avatar from "@material-ui/core/Avatar";
 import DnsIcon from '@material-ui/icons/DnsTwoTone';
 import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
 import AppsIcon from '@material-ui/icons/Apps';
-
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 const style = {
     flexGrow: 1
 };
@@ -52,12 +51,27 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+export const isTokenValid = () => localStorage.getItem("token");
+
+async function handleExit() {
+    const url = "http://localhost:9000/logout";
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': 'Bearer ' + localStorage.getItem("token")
+        }
+    };
+    await fetch(url, requestOptions)
+    localStorage.clear();
+}
+
+
 const NavBar = () => {
     const classes = useStyles();
     const [search_input, setSearch_input] = useState("");
-    const exit = () => {
-        localStorage.clear();
-    };
 
     return (
         <div>
@@ -91,35 +105,38 @@ const NavBar = () => {
                             Корзина
                         </Button>
                     </div>
-                    {/*<div>*/}
-                    {/*    <Button href="/profile">*/}
-                    {/*        <AccountBoxIcon/>*/}
-                    {/*        Профиль*/}
-                    {/*    </Button>*/}
-                    {/*    <Button href="/" onClick={exit}>*/}
-                    {/*        <ExitToAppIcon/>*/}
-                    {/*        Выход*/}
-                    {/*    </Button>*/}
-                    {/*</div>*/}
-                    <div>
-                        <Button href="/login">
-                            <Avatar className={classes.avatar}>
-                                <LockOpenIcon/>
-                            </Avatar>
-                            Вход
-                        </Button>
+                    {isTokenValid() ? (
+                        <div>
+                            <Button href="/profile">
+                                <AccountBoxIcon/>
+                                Профиль
+                            </Button>
+                            <Button onClick={handleExit}>
+                                <ExitToAppIcon/>
+                                Выход
+                            </Button>
+                        </div>
+                    ) : (
+                        <div>
+                            <Button href="/login">
+                                <Avatar className={classes.avatar}>
+                                    <LockOpenIcon/>
+                                </Avatar>
+                                Вход
+                            </Button>
 
-                        <Button href="/sign_up">
-                            <Avatar className={classes.avatar}>
-                                <ContactsOutlinedIcon/>
-                            </Avatar>
-                            Регистрация
-                        </Button>
-                    </div>
-                </Toolbar>
+                            <Button href="/sign_up">
+                                <Avatar className={classes.avatar}>
+                                    <ContactsOutlinedIcon/>
+                                </Avatar>
+                                Регистрация
+                            </Button>
+                        </div>
+                    )}
+                    </Toolbar>
             </AppBar>
         </div>
-    )
+)
 };
 
 export default NavBar

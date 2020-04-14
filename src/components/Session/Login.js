@@ -1,18 +1,12 @@
-import React, {useEffect} from 'react';
-import Container from "@material-ui/core/Container";
+import React from 'react';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
-import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
-
-export const IsTokenValid = () => localStorage.getItem("token");
 
 export const useStyles = makeStyles(theme => ({
     paper: {
@@ -52,7 +46,7 @@ async function handleSubmit(event) {
     const username = userData.get("username");
     const password = userData.get("password");
     const data = "username=" + username + "&password=" + password;
-
+    console.log(data)
 
     // const express = require('express');
     // const cors = require('cors');
@@ -62,23 +56,33 @@ async function handleSubmit(event) {
     //     res.json({msg: 'This is CORS-enabled for a Single Route'})
     // })
 
-    console.log(data);
     const url = "http://localhost:9000/login";
-    console.log("start");
-    const response = await fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        credentials: 'same-origin',
-        mode: 'no-cors',
+
+    const requestOptions = {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Access-Control-Allow-Origin': '*',
             'Accept': 'application/json'
         },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *client
-        body: data // body data type must match "Content-Type" header
-    }).then(response => response.json())
-        .then(result => console.log(result));
+        body: data
+    };
+    await fetch(url, requestOptions)
+        .then(response => response.json())
+        .then(data => localStorage.setItem("token", data.token));
+
+    return (
+        <Redirect
+            to={{
+                pathname: "/profile"
+            }}
+        />
+    )
+    // axios.post(url, data, requestOptions)
+    //     .then((res) => {
+    //         console.log("RESPONSE RECEIVED: ", res);
+    //     })
+
     // if (response.body != null) {
     //     localStorage.setItem("token", response.body);
     //     return <Switch to="/profile"/>
@@ -90,8 +94,6 @@ async function handleSubmit(event) {
 
 const Login = () => {
     const classes = useStyles();
-    const [login, setLogin] = React.useState("");
-    const [password, setPassword] = React.useState("");
 
     return (
         <Grid
@@ -119,9 +121,6 @@ const Login = () => {
                         label="Логин"
                         name="username"
                         autoFocus
-                        onChange={event => {
-                            setLogin(event.target.value);
-                        }}
                     />
                     <TextField
                         variant="outlined"
@@ -132,9 +131,6 @@ const Login = () => {
                         id="password"
                         label="Пароль"
                         name="password"
-                        onChange={event => {
-                            setPassword(event.target.value);
-                        }}
                     />
                     <Button
                         type="submit"

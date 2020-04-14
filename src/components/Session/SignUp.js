@@ -1,16 +1,13 @@
 import React from 'react';
-import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import AddIcon from '@material-ui/icons/Add';
 import {useStyles} from "./Login";
 import Profile from "../User/Profile";
 import Grid from "@material-ui/core/Grid";
 import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
 import Paper from "@material-ui/core/Paper";
-
-export const IsTokenValid = () => localStorage.getItem("token") && ((localStorage.getItem("token").length) === 40);
+import {Redirect} from "react-router-dom";
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -35,7 +32,16 @@ async function handleSubmit(event) {
         referrerPolicy: 'no-referrer', // no-referrer, *client
         body: json // body data type must match "Content-Type" header
     }, []);
-    console.log(response.json());
+    console.log(response.status)
+    if (response.status === 200) {
+        return (
+            <Redirect
+                to={{
+                    pathname: "/profile"
+                }}
+            />
+        )
+    }
     // return await response.json(); // parses JSON response into native JavaScript objects
 }
 
