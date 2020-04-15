@@ -12,6 +12,8 @@ import DnsIcon from '@material-ui/icons/DnsTwoTone';
 import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
 import AppsIcon from '@material-ui/icons/Apps';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+
 const style = {
     flexGrow: 1
 };
@@ -100,10 +102,14 @@ const NavBar = () => {
                             <AppsIcon/>
                             Главная
                         </Button>
-                        <Button className={classes.button} href="/cart">
-                            <ShoppingCartIcon/>
-                            Корзина
+                        <Button className={classes.button} href="/payment_info">
+                            <LocalShippingIcon/>
+                            Доставка и оплата
                         </Button>
+                        {/*<Button className={classes.button} href="/cart">*/}
+                        {/*    <ShoppingCartIcon/>*/}
+                        {/*    Корзина*/}
+                        {/*</Button>*/}
                     </div>
                     {isTokenValid() ? (
                         <div>

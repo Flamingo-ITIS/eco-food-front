@@ -19,6 +19,7 @@ import Published_products from "./components/User/Seller/Published_products";
 import Orders from "./components/User/Orders";
 import FavouriteProducts from "./components/User/FavouriteProducts";
 import ChatPage from "./components/User/Seller/ChatPage";
+import PaymentInfo from "./components/PaymentInfo";
 
 const AppRouter = () => {
     return(
@@ -42,6 +43,9 @@ const AppRouter = () => {
                     </Route>
                     <Route path="/main">
                         <Main products={data.products}/>
+                    </Route>
+                    <Route path="/payment_info">
+                        <PaymentInfo/>
                     </Route>
                     <Route path="/profile">
                         <Profile/>

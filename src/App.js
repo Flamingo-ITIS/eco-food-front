@@ -70,7 +70,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <NavBar/>
-            <Container fixed>
+            <Container fixed >
                 <AppRouter/>
             </Container>
         </ThemeProvider>
