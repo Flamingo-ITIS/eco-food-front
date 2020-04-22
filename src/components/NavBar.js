@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     },
     logo: {
         height: '100px',
-        filter: 'invert(100%)',
+        // filter: 'invert(100%)',
     },
     avatar: {
         margin: theme.spacing(1),

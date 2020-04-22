@@ -80,9 +80,9 @@ function valuetext(value) {
     return `${value}°C`;
 }
 
-const ProductsList = () => {
+const ProductsList = ({products}) => {
     const classes = useStyles();
-    const [products, setProducts] = useState([]);
+    const [productsList, setProductsList] = useState([]);
 
 
     useEffect(() => {
@@ -96,9 +96,9 @@ const ProductsList = () => {
         const url = 'http://localhost:9000/products';
         fetch(url, requestOptions)
             .then(response => response.json())
-            .then(data => setProducts(data));
+            .then(data => setProductsList(data));
     }, []);
-    console.log(products);
+    console.log(productsList);
 
     const [age, setAge] = React.useState('');
     const [open, setOpen] = React.useState(false);
@@ -211,6 +211,39 @@ const ProductsList = () => {
                         alignItems="center"
                     >
                         {products.map(product =>
+                            <li key={product.id}>
+                                <Card className={classes.card} elevation={5}>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image={product.pictureUrl}
+                                        title="product"
+                                    />
+                                    <div>
+                                        <IconButton className={classes.iconButton}>
+                                            <InfoIcon fontSize="large"/>
+                                        </IconButton>
+                                        <IconButton className={classes.iconButton}>
+                                            <LoyaltyIcon fontSize="large"/>
+                                        </IconButton>
+                                        <IconButton className={classes.iconButton}>
+                                            <AddShoppingCartOutlinedIcon fontSize="large"/>
+                                        </IconButton>
+                                    </div>
+                                    <CardContent>
+                                        <h2 style={{margin: "0"}}>
+                                            <Link to={`/product/${product.id}`}
+                                                  style={{textDecoration: 'none'}}>
+                                                {product.title}
+                                            </Link>
+                                        </h2>
+                                        <div className={classes.description}>
+                                            {product.description}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </li>
+                        )}
+                        {productsList.map(product =>
                             <li key={product.id}>
                                 <Card className={classes.card} elevation={5}>
                                     <CardMedia

@@ -6,8 +6,12 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import Grid from "@material-ui/core/Grid";
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import AddIcon from '@material-ui/icons/Add';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
     info: {
         padding: 10,
         margin: 10,
@@ -15,7 +19,13 @@ export const useStyles = makeStyles({
         height: 200,
         textAlign: 'left',
     },
-});
+    button: {
+        margin: "10px",
+        padding: "5px",
+        color: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light
+    },
+}));
 
 
 const Profile = () => {
@@ -53,6 +63,12 @@ const Profile = () => {
                         justify="center"
                         alignItems="flex-start"
                     >
+                        <Button href="/product/new" variant="contained" color="primary" className={classes.button}>
+                            <AddIcon fontSize="large"/>
+                            <Typography variant="h4">
+                                Новый товар
+                            </Typography>
+                        </Button>
                         <div>
                             <Button href="/seller/published_products">
                                 <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
@@ -71,7 +87,7 @@ const Profile = () => {
                         </div>
                         <div>
                             <Button href="/user/favourite_products">
-                                <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
+                                <LoyaltyIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
                                 <h3>
                                     Избранное
                                 </h3>

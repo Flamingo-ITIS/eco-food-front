@@ -20,6 +20,7 @@ import Orders from "./components/User/Orders";
 import FavouriteProducts from "./components/User/FavouriteProducts";
 import ChatPage from "./components/User/Seller/ChatPage";
 import PaymentInfo from "./components/PaymentInfo";
+import NewProduct from "./components/Product/NewProduct";
 
 const AppRouter = () => {
     return(
@@ -37,6 +38,9 @@ const AppRouter = () => {
                     </Route>
                     <Route path="/products">
                         <ProductsList products={data.products}/>
+                    </Route>
+                    <Route path="/product/new">
+                        <NewProduct/>
                     </Route>
                     <Route path="/product/:id">
                         <GetProduct/>
