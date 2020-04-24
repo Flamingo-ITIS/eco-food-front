@@ -36,24 +36,37 @@ export const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.main,
         backgroundColor: theme.palette.primary.light
     },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 300,
+    },
 }));
 
 async function handleSubmit(event) {
     event.preventDefault();
     const productData = new FormData(event.target);
+    const object = {};
+    productData.forEach((value, key) => {
+        object[key] = value
+    });
 
-    const url = "http://localhost:9000/login";
+    object["count"] = parseInt(object["count"]);
+    const json = JSON.stringify(object);
+    console.log(json);
+
+
+    const url = "http://localhost:9000/products";
 
     const requestOptions = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Accept': 'application/json'
         },
-
+        body: json
     };
-    await fetch(url, requestOptions)
+    await fetch(url, requestOptions, [])
     // .then(response => response.json())
     // .then(data => localStorage.setItem("token", data.token));
 
@@ -120,6 +133,7 @@ const NewProduct = () => {
                                 label="Название"
                                 name="title"
                                 autoFocus
+                                className={classes.formControl}
                             />
                             <TextField
                                 variant="outlined"
@@ -127,25 +141,38 @@ const NewProduct = () => {
                                 required
                                 fullWidth
                                 type="number"
-                                id="description"
-                                label="Цена"
-                                name="description"
+                                id="count"
+                                label="Количество"
+                                name="count"
+                                className={classes.formControl}
                             />
                             {/*<h3>*/}
                             {/*    ₽*/}
                             {/*</h3>*/}
+                            <FormControl variant="outlined" required className={classes.formControl}>
+                                <InputLabel id="typeLabel">Тип</InputLabel>
+                                <Select
+                                    labelId="typeLabel"
+                                    id="countType"
+                                    name="countType"
+                                    label="Тип"
+                                >
+                                    <MenuItem value="KILOGRAM">Килограмм</MenuItem>
+                                    <MenuItem value="ITEM">Шт.</MenuItem>
+                                </Select>
+                            </FormControl>
 
-                            <FormControl
-                                fullWidth
-                                variant="outlined"
-                                margin="normal"
-                                required
-                            >
-                                <InputLabel>Категория</InputLabel>
-                                <Select>
-                                    <MenuItem value={10}>Фрукты</MenuItem>
-                                    <MenuItem value={20}>Овощи</MenuItem>
-                                    <MenuItem value={30}>Орехи</MenuItem>
+                            <FormControl variant="outlined" required className={classes.formControl}>
+                                <InputLabel id="categoryLabel">Категория</InputLabel>
+                                <Select
+                                    labelId="categoryLabel"
+                                    id="category"
+                                    name="category"
+                                    label="Категория"
+                                >
+                                    <MenuItem value="FRUIT">Фрукты</MenuItem>
+                                    <MenuItem value="VEGETABLES">Овощи</MenuItem>
+                                    <MenuItem value="NUTS">Орехи</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -169,7 +196,11 @@ const NewProduct = () => {
                             {/*    className={classes.description}*/}
                             {/*/>*/}
 
-                            <textarea placeholder="Описание" required/>
+                            <textarea placeholder="Описание"
+                                      id="description"
+                                      name="description"
+                                      required
+                            />
                             <input
                                 accept="image/*"
                                 className={classes.input}
@@ -180,7 +211,7 @@ const NewProduct = () => {
                             />
                             <label htmlFor="raised-button-file">
                                 <Fab component="span" className={classes.button}>
-                                    <AddPhotoAlternateIcon />
+                                    <AddPhotoAlternateIcon/>
                                 </Fab>
                                 Загрузить фото
                             </label>
