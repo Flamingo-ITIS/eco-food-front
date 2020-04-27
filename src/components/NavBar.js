@@ -55,25 +55,25 @@ const useStyles = makeStyles(theme => ({
 
 export const isTokenValid = () => localStorage.getItem("token");
 
-async function handleExit() {
-    const url = "http://localhost:9000/logout";
-
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Authorization': 'Bearer ' + localStorage.getItem("token")
-        }
-    };
-    await fetch(url, requestOptions)
-    localStorage.clear();
-}
-
 
 const NavBar = () => {
     const classes = useStyles();
     const [search_input, setSearch_input] = useState("");
+    async function handleExit() {
+        const url = "http://localhost:9000/logout";
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+            }
+        };
+        await fetch(url, requestOptions)
+        localStorage.clear();
+        // history.push('/main');
+    }
 
     return (
         <div>

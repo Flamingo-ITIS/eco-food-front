@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import '../../App.css';
 import {makeStyles} from "@material-ui/styles";
 import {Paper} from "@material-ui/core";
@@ -15,7 +15,7 @@ export const useStyles = makeStyles(theme => ({
     info: {
         padding: 10,
         margin: 10,
-        width: 400,
+        // width: 400,
         height: 200,
         textAlign: 'left',
     },
@@ -30,6 +30,25 @@ export const useStyles = makeStyles(theme => ({
 
 const Profile = () => {
     const classes = useStyles();
+    console.log(localStorage.getItem("username"));
+
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+        };
+        const username = localStorage.getItem("username");
+        const url = 'http://localhost:9000/' + username + '/users';
+        fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(data => setUser(data));
+    }, []);
+
+    console.log(user);
     return (
         <div>
             <h1>Мой профиль</h1>
@@ -50,11 +69,12 @@ const Profile = () => {
                     </Button>
                 </Paper>
                 <Paper className={classes.info}>
-                    <h3>Имя: Ринат</h3>
-                    <h3>Фамилия: Ринатосов</h3>
-                    <h3>ДР: 01.01.01</h3>
-                    <h3>Пол: мужской</h3>
-                    <h3>Статус: продавец</h3>
+                    <h2 style={{textAlign: 'right'}}>{user.role}</h2>
+                    <h3>Имя пользователя: {user.username}</h3>
+                    <h3>Имя: {user.name}</h3>
+                    <h3>Номер телефона: {user.contactPhone}</h3>
+                    <h3>Адрес: {user.geoPosition}</h3>
+                    <h3>email: {user.email}</h3>
                 </Paper>
                 <Paper>
                     <Grid

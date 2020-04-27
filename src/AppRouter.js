@@ -43,7 +43,7 @@ const AppRouter = () => {
                         <NewProduct/>
                     </Route>
                     <Route path="/product/:id">
-                        <GetProduct/>
+                        <Product/>
                     </Route>
                     <Route path="/main">
                         <Main products={data.products}/>
@@ -58,7 +58,7 @@ const AppRouter = () => {
                         <Cart products={data.products}/>
                     </Route>
                     <Route path="/seller/published_products">
-                        <Published_products products={data.products}/>
+                        <Published_products/>
                     </Route>
                     <Route path="/seller/chat">
                         <ChatPage/>

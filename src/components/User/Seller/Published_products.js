@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import {Link} from "react-router-dom";
+import {Link, useHistory, Redirect} from "react-router-dom";
 import {makeStyles} from "@material-ui/styles";
 import IconButton from "@material-ui/core/IconButton";
 import AddBoxIcon from '@material-ui/icons/AddBox';
@@ -61,8 +61,51 @@ export const useStyles = makeStyles({
     }
 });
 
-export const Published_products = ({products}) => {
+export const Published_products = () => {
     const classes = useStyles();
+    const [products, setProducts] = useState([]);
+
+    const username = localStorage.getItem("username");
+
+    const history = useHistory();
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+        };
+        const url = 'http://localhost:9000/products/' + username + '/users';
+        fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(data => setProducts(data));
+    }, []);
+    console.log(products);
+
+    async function triggerDelete(id){
+        if(window.confirm("Are you sure you want to delete this task?")) {
+            const url = "http://localhost:9000/products/" + id.toString();
+
+            const requestOptions = {
+                method: 'DELETE',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                },
+            };
+            fetch(url, requestOptions, [])
+                .then(async response => {
+                    if (!response.ok) {
+                        const error = response.status;
+                        return Promise.reject(error);
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                });
+        }
+    }
+
     return (
         <div>
             <h1>
@@ -103,7 +146,13 @@ export const Published_products = ({products}) => {
                                     <Button style={{backgroundColor: "#62C5FF", width: "100%", margin: "5px", padding: "15px"}}>
                                         Изменить
                                     </Button>
-                                    <Button style={{backgroundColor: "#DA1313", width: "100%", margin: "5px"}}>
+                                    <Button
+                                        style={{backgroundColor: "#DA1313", width: "100%", margin: "5px"}}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            triggerDelete(product.id);
+                                        }}
+                                    >
                                         Удалить
                                     </Button>
                                 </div>

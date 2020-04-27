@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
@@ -15,6 +15,7 @@ import InfoIcon from '@material-ui/icons/InfoOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import Typography from "@material-ui/core/Typography";
+import data from "../../data";
 
 export const useStyles = makeStyles(theme => ({
     noWrapContainer: {
@@ -67,12 +68,25 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Product = ({product, similar_products}) => {
-    // let {id} = useParams();
-    console.log({product});
-    console.log({similar_products});
-    // product = products.find(product => (product.id === id));
+const Product = () => {
+    let {id} = useParams();
     const classes = useStyles();
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+        };
+        const url = 'http://localhost:9000/products/' + id;
+        fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(data => setProduct(data));
+    }, []);
+    console.log(product);
+
     return (
         <Grid
             container
@@ -144,35 +158,35 @@ const Product = ({product, similar_products}) => {
                     </Grid>
                 </Paper>
             </Grid>
-            <div>
-                <h1>Похожие товары</h1>
-                <ul className={classes.wrapContainer}>
-                    {similar_products.map(product =>
-                        <li key={product.id}>
-                            <Card className={classes.card}>
-                                <CardMedia
-                                    className={classes.media}
-                                    image={product.pictureUrl}
-                                    title={product.title}
-                                />
-                                <div>
-                                    <i className="fas fa-search-plus" style={{cursor: 'pointer'}}/>
-                                    <i className="far fa-heart" style={{cursor: 'pointer'}}/>
-                                    <i className="fas fa-cart-arrow-down" style={{cursor: 'pointer'}}/>
-                                </div>
-                                <CardContent>
-                                    <h2>
-                                        <Link to={``}
-                                              style={{textDecoration: 'none'}}>
-                                            {product.title}
-                                        </Link>
-                                    </h2>
-                                </CardContent>
-                            </Card>
-                        </li>
-                    )}
-                </ul>
-            </div>
+            {/*<div>*/}
+            {/*    <h1>Похожие товары</h1>*/}
+            {/*    <ul className={classes.wrapContainer}>*/}
+            {/*        {similar_products.map(product =>*/}
+            {/*            <li key={product.id}>*/}
+            {/*                <Card className={classes.card}>*/}
+            {/*                    <CardMedia*/}
+            {/*                        className={classes.media}*/}
+            {/*                        image={product.pictureUrl}*/}
+            {/*                        title={product.title}*/}
+            {/*                    />*/}
+            {/*                    <div>*/}
+            {/*                        <i className="fas fa-search-plus" style={{cursor: 'pointer'}}/>*/}
+            {/*                        <i className="far fa-heart" style={{cursor: 'pointer'}}/>*/}
+            {/*                        <i className="fas fa-cart-arrow-down" style={{cursor: 'pointer'}}/>*/}
+            {/*                    </div>*/}
+            {/*                    <CardContent>*/}
+            {/*                        <h2>*/}
+            {/*                            <Link to={``}*/}
+            {/*                                  style={{textDecoration: 'none'}}>*/}
+            {/*                                {product.title}*/}
+            {/*                            </Link>*/}
+            {/*                        </h2>*/}
+            {/*                    </CardContent>*/}
+            {/*                </Card>*/}
+            {/*            </li>*/}
+            {/*        )}*/}
+            {/*    </ul>*/}
+            {/*</div>*/}
         </Grid>
     )
 };

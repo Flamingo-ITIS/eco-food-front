@@ -4,8 +4,8 @@ import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {Link, Redirect} from "react-router-dom";
-import React from "react";
+import {Link, Redirect, useHistory} from "react-router-dom";
+import React, {useState} from "react";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -42,59 +42,74 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-async function handleSubmit(event) {
-    event.preventDefault();
-    const productData = new FormData(event.target);
-    const object = {};
-    productData.forEach((value, key) => {
-        object[key] = value
-    });
 
-    object["count"] = parseInt(object["count"]);
-    const json = JSON.stringify(object);
-    console.log(json);
-
-
-    const url = "http://localhost:9000/products";
-
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Accept': 'application/json'
-        },
-        body: json
-    };
-    await fetch(url, requestOptions, [])
-    // .then(response => response.json())
-    // .then(data => localStorage.setItem("token", data.token));
-
-    return (
-        <Redirect
-            to={{
-                pathname: "/profile"
-            }}
-        />
-    )
-    // axios.post(url, data, requestOptions)
-    //     .then((res) => {
-    //         console.log("RESPONSE RECEIVED: ", res);
-    //     })
-
-    // if (response.body != null) {
-    //     localStorage.setItem("token", response.body);
-    //     return <Switch to="/profile"/>
-    // } else {
-    //     return <Switch to="/login"/>
-    // }
-    // return await response.json(); // parses JSON response into native JavaScript objects
-}
 
 
 const NewProduct = () => {
     const classes = useStyles();
+    const history = useHistory();
 
+    async function handleSubmit(event) {
+        event.preventDefault();
+        // const {history} = this.props;
+        const productData = new FormData(event.target);
+        const object = {};
+        productData.forEach((value, key) => {
+            object[key] = value
+        });
+
+        object["count"] = parseInt(object["count"]);
+        const json = JSON.stringify(object);
+        console.log(json);
+
+
+        const url = "http://localhost:9000/products";
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+            },
+            body: json
+        };
+        fetch(url, requestOptions, [])
+            .then(async response => {
+                const data = await response.json();
+
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+
+                history.push('/product/'+ data.id.toString())
+            })
+            .catch(error => {
+                // setState({ errorMessage: error });
+                console.error('There was an error!', error);
+            });
+            // .then(response => response.json())
+            // .then(data => setProduct_id({data.id}));
+
+        // console.log(product_id);
+
+        // axios.post(url, data, requestOptions)
+        //     .then((res) => {
+        //         console.log("RESPONSE RECEIVED: ", res);
+        //     })
+
+        // if (response.body != null) {
+        //     localStorage.setItem("token", response.body);
+        //     return <Switch to="/profile"/>
+        // } else {
+        //     return <Switch to="/login"/>
+        // }
+        // return await response.json(); // parses JSON response into native JavaScript objects
+    }
     return (
         <Grid
             container

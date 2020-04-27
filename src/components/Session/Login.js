@@ -4,9 +4,14 @@ import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import {Link, Redirect} from "react-router-dom";
+import {
+    Link,
+    Redirect,
+    useHistory
+} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+
 
 export const useStyles = makeStyles(theme => ({
     paper: {
@@ -39,61 +44,72 @@ export const useStyles = makeStyles(theme => ({
     }
 }));
 
-
-async function handleSubmit(event) {
-    event.preventDefault();
-    const userData = new FormData(event.target);
-    const username = userData.get("username");
-    const password = userData.get("password");
-    const data = "username=" + username + "&password=" + password;
-    console.log(data)
-
-    // const express = require('express');
-    // const cors = require('cors');
-    // const app = express();
-    //
-    // app.get('/login', cors(), function (req, res, next) {
-    //     res.json({msg: 'This is CORS-enabled for a Single Route'})
-    // })
-
-    const url = "http://localhost:9000/login";
-
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Access-Control-Allow-Origin': '*',
-            'Accept': 'application/json'
-        },
-        body: data
-    };
-    await fetch(url, requestOptions)
-        .then(response => response.json())
-        .then(data => localStorage.setItem("token", data.token));
-
-    return (
-        <Redirect
-            to={{
-                pathname: "/profile"
-            }}
-        />
-    )
-    // axios.post(url, data, requestOptions)
-    //     .then((res) => {
-    //         console.log("RESPONSE RECEIVED: ", res);
-    //     })
-
-    // if (response.body != null) {
-    //     localStorage.setItem("token", response.body);
-    //     return <Switch to="/profile"/>
-    // } else {
-    //     return <Switch to="/login"/>
-    // }
-    // return await response.json(); // parses JSON response into native JavaScript objects
-}
-
 const Login = () => {
     const classes = useStyles();
+    const history = useHistory();
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+
+        const userData = new FormData(event.target);
+        const username = userData.get("username");
+        const password = userData.get("password");
+        const data = "username=" + username + "&password=" + password;
+        console.log(data)
+
+        const url = 'http://localhost:9000/login';
+
+        // axios({
+        //     method: 'post',
+        //     url: url,
+        //     body: data,
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded',
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Accept': 'application/json'
+        //     }
+        // })
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Access-Control-Allow-Origin': '*',
+                'Accept': 'application/json'
+            },
+            body: data
+        };
+
+        await fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("username", username);
+                history.push('/profile');
+            });
+
+
+
+        // await fetch(url, requestOptions)
+        //     .then(response => {
+        //         console.log(response);
+        //         if (response.status === 200) {
+        //             console.log("Login successfull");
+        //             console.log(response.json()
+        //                 .then(data => data.token));
+        //             // localStorage.setItem("token", response.json().token);
+        //             // history.push('/profile');
+        //         } else if (response.status === 204) {
+        //             console.log("Username password do not match");
+        //             alert("username password do not match")
+        //             history.push('/login');
+        //         } else {
+        //             console.log("Username does not exists");
+        //             alert("Username does not exist");
+        //             history.push('/login');
+        //         }
+        //     });
+    }
 
     return (
         <Grid

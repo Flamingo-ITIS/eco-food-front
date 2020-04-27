@@ -81,13 +81,11 @@ const ProductsList = ({products}) => {
     const classes = useStyles();
     const [productsList, setProductsList] = useState([]);
 
-
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                'Access-Control-Allow-Origin': '*'
             },
         };
         const url = 'http://localhost:9000/products';
