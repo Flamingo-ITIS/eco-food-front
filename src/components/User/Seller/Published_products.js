@@ -137,7 +137,7 @@ export const Published_products = () => {
                                     </h2>
                                 </CardContent>
                                 <div className={classes.noWrapContainer}>
-                                    <h2>10 шт.</h2>
+                                    <h4>{product.count + " " + product.countType}</h4>
                                 </div>
                                 <div>
                                     <h2>{product.price} РУБ</h2>
