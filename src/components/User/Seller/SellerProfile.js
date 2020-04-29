@@ -1,5 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import '../../App.css';
+import React, {useEffect, useState,} from 'react'
+import {
+    Link,
+    useParams,
+} from "react-router-dom";
 import {makeStyles} from "@material-ui/styles";
 import {Paper} from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
@@ -28,9 +31,9 @@ export const useStyles = makeStyles(theme => ({
 }));
 
 
-const Profile = () => {
+const SellerProfile = () => {
+    let {username} = useParams();
     const classes = useStyles();
-    console.log(localStorage.getItem("username"));
 
     const [user, setUser] = useState({});
 
@@ -41,11 +44,10 @@ const Profile = () => {
                 'Access-Control-Allow-Origin': '*'
             },
         };
-        const username = localStorage.getItem("username");
-        const url = 'http://localhost:9000/' + username + '/users';
+        const url = 'http://localhost:9000/products/' + username + '/users';
         fetch(url, requestOptions)
             .then(response => response.json())
-            .then(data => setUser(data));
+            .then(data => setUser(data[0].user));
     }, []);
 
     console.log(user);
@@ -83,44 +85,14 @@ const Profile = () => {
                         justify="center"
                         alignItems="flex-start"
                     >
-                        <Button href="/product/new" variant="contained" color="primary" className={classes.button}>
-                            <AddIcon fontSize="large"/>
-                            <Typography variant="h4">
-                                Новый товар
-                            </Typography>
-                        </Button>
-                        <div>
-                            <Button href="/user/published_products">
-                                <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
-                                <h3>
-                                    Опубликованные товары
-                                </h3>
-                            </Button>
-                        </div>
-                        <div>
-                            <Button href="/user/orders">
-                                <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
-                                <h3>
-                                    Мои покупки
-                                </h3>
-                            </Button>
-                        </div>
-                        <div>
-                            <Button href="/user/favourite_products">
-                                <LoyaltyIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
-                                <h3>
-                                    Избранное
-                                </h3>
-                            </Button>
-                        </div>
-                        <div>
-                            <Button href="/seller/chat">
-                                <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
-                                <h3>
-                                    Диалог с продавцом
-                                </h3>
-                            </Button>
-                        </div>
+                        {/*<div>*/}
+                        {/*    <Button href="/seller/published_products">*/}
+                        {/*        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>*/}
+                        {/*        <h3>*/}
+                        {/*            Опубликованные товары*/}
+                        {/*        </h3>*/}
+                        {/*    </Button>*/}
+                        {/*</div>*/}
                     </Grid>
                 </Paper>
             </Grid>
@@ -128,4 +100,4 @@ const Profile = () => {
     )
 };
 
-export default Profile;
+export default SellerProfile;

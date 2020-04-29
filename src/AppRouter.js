@@ -21,6 +21,7 @@ import FavouriteProducts from "./components/User/FavouriteProducts";
 import ChatPage from "./components/User/Seller/ChatPage";
 import PaymentInfo from "./components/PaymentInfo";
 import NewProduct from "./components/Product/NewProduct";
+import SellerProfile from "./components/User/Seller/SellerProfile";
 
 const AppRouter = () => {
     return(
@@ -54,10 +55,13 @@ const AppRouter = () => {
                     <Route path="/profile">
                         <Profile/>
                     </Route>
+                    <Route path="/seller/:username">
+                        <SellerProfile/>
+                    </Route>
                     <Route path="/cart">
                         <Cart products={data.products}/>
                     </Route>
-                    <Route path="/seller/published_products">
+                    <Route path="/user/published_products">
                         <Published_products/>
                     </Route>
                     <Route path="/seller/chat">

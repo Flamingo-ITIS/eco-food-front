@@ -16,42 +16,22 @@ import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutli
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import Typography from "@material-ui/core/Typography";
 import data from "../../data";
+import Button from "@material-ui/core/Button";
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 export const useStyles = makeStyles(theme => ({
-    noWrapContainer: {
-        display: 'flex',
-        flexWrap: 'nowrap',
-        justifyContent: 'center',
-    },
-    wrapContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-    },
-    card: {
-        width: 250,
-        height: 400,
-        margin: "20px",
-        padding: "5px",
-        transition: "0.3s",
-        boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-        "&:hover": {
-            boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
-        },
-    },
     info: {
         padding: 10,
         margin: 10,
         width: 800,
-        height: 350,
+        height: 400,
         textAlign: 'left',
         boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     },
     image: {
+        height: 400,
         padding: 10,
         margin: 10,
-        height: 350,
-        width: 300,
         boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     },
     media: {
@@ -66,26 +46,35 @@ export const useStyles = makeStyles(theme => ({
         padding: "10px",
         boxShadow: "0 8px 20px -12px rgba(0,0,0,0.8)",
     },
+    button: {
+        margin: theme.spacing(2),
+    }
 }));
 
 const Product = () => {
     let {id} = useParams();
     const classes = useStyles();
     const [product, setProduct] = useState({});
+    const [product_user, setProduct_user] = useState({});
 
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json',
+            headers: {
+                'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
         };
         const url = 'http://localhost:9000/products/' + id;
         fetch(url, requestOptions)
             .then(response => response.json())
-            .then(data => setProduct(data));
+            .then(data => {
+                setProduct(data);
+                setProduct_user(data.user)
+            });
     }, []);
-    console.log(product);
+    // console.log(product);
+    // console.log(product_user.username);
 
     return (
         <Grid
@@ -139,6 +128,16 @@ const Product = () => {
                         </IconButton>
 
                     </div>
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        component={Link}
+                        to={'/seller/' + product_user.username}
+                        className={classes.button}
+                    >
+                        <AccountBoxIcon/>
+                        Профиль продавца
+                    </Button>
                 </Paper>
                 <Paper className={classes.info}>
                     <Grid
