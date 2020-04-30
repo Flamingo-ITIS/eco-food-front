@@ -25,10 +25,30 @@ export const useStyles = makeStyles({
 const PaymentInfo = () => {
     const classes = useStyles();
     return (
-        <div>
-            <Typography variant="h3" align="center">
-                ДОСТАВКА И ОПЛАТА
-            </Typography>
+        <Grid container
+              direction="column"
+              justify="center"
+              alignItems="flex-start"
+        >
+            <Paper className={classes.info} elevation={3}>
+                <Grid container
+                      direction="row"
+                      justify="flex-start"
+                      alignItems="center"
+                >
+                    <img className={classes.deliveryLogo} src="/static/delivery.png"/>
+                    <Typography variant="h3" align="center">
+                        ДОСТАВКА И ОПЛАТА
+                    </Typography>
+                </Grid>
+                <Typography variant="subtitle1" align="left">
+                    Мы доставляем ваши покупки по всей территории Казани. Вы можете выбрать один из доступных
+                    способов
+                    доставки — курьером или самовывоз. Стоимость будет рассчитана автоматически во время
+                    оформления
+                    заказа.
+                </Typography>
+            </Paper>
             <Grid container
                   direction="row"
                   justify="center"
@@ -39,26 +59,7 @@ const PaymentInfo = () => {
                       alignItems="center"
                       className={classes.infoContainer}
                 >
-                    <Paper className={classes.info}>
-                        <Grid container
-                              direction="row"
-                              justify="flex-start"
-                              alignItems="center"
-                        >
-                            <img className={classes.deliveryLogo} src="/static/delivery.png"/>
-                            <Typography variant="h4" align="left" gutter>
-                                Доставка и оплата
-                            </Typography>
-                        </Grid>
-                        <Typography variant="subtitle1" align="left">
-                            Мы доставляем ваши покупки по всей территории Казани. Вы можете выбрать один из доступных
-                            способов
-                            доставки — курьером или самовывоз. Стоимость будет рассчитана автоматически во время
-                            оформления
-                            заказа.
-                        </Typography>
-                    </Paper>
-                    <Paper className={classes.info}>
+                    <Paper className={classes.info} elevation={3}>
                         <Grid container
                               direction="row"
                               justify="flex-start"
@@ -76,7 +77,7 @@ const PaymentInfo = () => {
                             Стоимость и время варьируется в зависимости от района города.
                         </Typography>
                     </Paper>
-                    <Paper className={classes.info}>
+                    <Paper className={classes.info} elevation={3}>
                         <Grid container
                               direction="row"
                               justify="flex-start"
@@ -100,7 +101,7 @@ const PaymentInfo = () => {
                       alignItems="center"
                       className={classes.infoContainer}
                 >
-                    <Paper className={classes.info}>
+                    <Paper className={classes.info} elevation={3}>
                         <Typography variant="h4" align="center" gutter>
                             Способ оплаты
                         </Typography>
@@ -131,10 +132,9 @@ const PaymentInfo = () => {
                             Оплачивайте заказ картой онлайн.
                         </Typography>
                     </Paper>
-
                 </Grid>
             </Grid>
-        </div>
+        </Grid>
     )
 };
 

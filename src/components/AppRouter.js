@@ -7,21 +7,21 @@ import {
     useParams
 } from "react-router-dom";
 import React from "react";
-import Profile from "./components/User/Profile";
-import ProductsList from "./components/Products/ProductsList";
-import Product from "./components/Product/Product";
-import Main from "./components/Main";
-import data from "./data"
-import Login from "./components/Session/Login";
-import SignUp from "./components/Session/SignUp";
-import Cart from "./components/Products/Cart";
-import Published_products from "./components/User/Seller/Published_products";
-import Orders from "./components/User/Orders";
-import FavouriteProducts from "./components/User/FavouriteProducts";
-import ChatPage from "./components/User/Seller/ChatPage";
-import PaymentInfo from "./components/PaymentInfo";
-import NewProduct from "./components/Product/NewProduct";
-import SellerProfile from "./components/User/Seller/SellerProfile";
+import Profile from "./User/Profile";
+import ProductsList from "./Products/ProductsList";
+import Product from "./Product/Product";
+import Main from "./Pages/Main";
+import data from "../data"
+import Login from "./Session/Login";
+import SignUp from "./Session/SignUp";
+import Cart from "./Products/Cart";
+import Published_products from "./User/Published_products";
+import Orders from "./User/Orders";
+import FavouriteProducts from "./User/FavouriteProducts";
+import ChatPage from "./Seller/ChatPage";
+import PaymentInfo from "./Pages/PaymentInfo";
+import NewProduct from "./Product/NewProduct";
+import SellerProfile from "./Seller/SellerProfile";
 
 const AppRouter = () => {
     return(
