@@ -13,6 +13,7 @@ import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
 import AppsIcon from '@material-ui/icons/Apps';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+import * as QueryString from "query-string";
 
 const style = {
     flexGrow: 1
@@ -57,8 +58,10 @@ export const isTokenValid = () => localStorage.getItem("token");
 
 
 const NavBar = () => {
+    const values = QueryString.parse(window.location.search);
     const classes = useStyles();
-    const [search_input, setSearch_input] = useState("");
+    const [search_input, setSearch_input] = useState(values.template);
+
     async function handleExit() {
         const url = "http://localhost:9000/logout";
 
@@ -80,19 +83,24 @@ const NavBar = () => {
             <AppBar className={classes.navBar} position="static">
                 <Toolbar className={classes.container}>
                     <img className={classes.logo} src="/static/logo.png"/>
-                    <TextField
-                        id="outlined-search"
-                        name="name"
-                        label="Поиск товара"
-                        type="search"
-                        className={classes.textField}
-                        margin="normal"
-                        variant="outlined"
-                        value={search_input}
-                        onChange={event => {
-                            setSearch_input(event.target.value);
-                        }}
-                    />
+                    {/*<div>*/}
+                        <TextField
+                            id="outlined-search"
+                            name="name"
+                            label="Поиск товара"
+                            type="search"
+                            className={classes.textField}
+                            margin="normal"
+                            variant="outlined"
+                            value={search_input}
+                            onChange={event => {
+                                setSearch_input(event.target.value);
+                            }}
+                        />
+                        <Button className={classes.button} href={"/search/products?template=" + search_input}>
+                            Найти
+                        </Button>
+                    {/*</div>*/}
                     <div>
                         <Button className={classes.button} href="/products">
                             <DnsIcon/>
@@ -139,10 +147,10 @@ const NavBar = () => {
                             </Button>
                         </div>
                     )}
-                    </Toolbar>
+                </Toolbar>
             </AppBar>
         </div>
-)
+    )
 };
 
 export default NavBar

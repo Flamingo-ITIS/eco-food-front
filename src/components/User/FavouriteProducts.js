@@ -14,7 +14,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 
-const ProductsList = ({products}) => {
+const FavouriteProducts = ({products}) => {
     const classes = useStyles();
     // const [products, setProducts] = useState([]);
     // useEffect(() => {
@@ -97,4 +97,4 @@ const ProductsList = ({products}) => {
         </div>
     );
 }
-export default ProductsList
+export default FavouriteProducts;

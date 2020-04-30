@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import React from "react";
 import Profile from "./User/Profile";
-import ProductsList from "./Products/ProductsList";
+import Products from "./Products/Products";
 import Product from "./Product/Product";
 import Main from "./Pages/Main";
 import data from "../data"
@@ -22,6 +22,7 @@ import ChatPage from "./Seller/ChatPage";
 import PaymentInfo from "./Pages/PaymentInfo";
 import NewProduct from "./Product/NewProduct";
 import SellerProfile from "./Seller/SellerProfile";
+import FoundProducts from "./Products/FoundProducts"
 
 const AppRouter = () => {
     return(
@@ -38,7 +39,12 @@ const AppRouter = () => {
                         <Profile/>
                     </Route>
                     <Route path="/products">
-                        <ProductsList products={data.products}/>
+                        <Products
+                            products={data.products}
+                        />
+                    </Route>
+                    <Route path="/search/products">
+                        <FoundProducts/>
                     </Route>
                     <Route path="/product/new">
                         <NewProduct/>

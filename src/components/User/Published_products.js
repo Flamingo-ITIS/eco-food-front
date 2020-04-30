@@ -113,7 +113,7 @@ export const Published_products = () => {
             </h1>
             <div className={classes.container}>
                 <ul className={classes.ulNoWrap}>
-                    {products.map(product =>
+                    {products?.map(product =>
                         <li key={product.id}>
                             <Card className={classes.card}>
                                 <div>

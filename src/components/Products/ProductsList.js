@@ -4,9 +4,6 @@ import {Link} from "react-router-dom";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import {makeStyles} from "@material-ui/styles";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import IconButton from "@material-ui/core/IconButton";
@@ -20,11 +17,15 @@ import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import SortIcon from '@material-ui/icons/Sort';
 import ProductsFilter from "./ProductsFilter";
+import Chip from "@material-ui/core/Chip";
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import TextTruncate from 'react-text-truncate';
+
 
 export const useStyles = makeStyles(theme => ({
     card: {
         width: 250,
-        height: 400,
+        // height: 400,
         // background: "linear-gradient(rgba(200,240,130,0.5),transparent)",
         // backgroundColor: "#fdfdc8",
         margin: "20px",
@@ -61,143 +62,155 @@ export const useStyles = makeStyles(theme => ({
         margin: "10px",
         padding: "10px"
     },
-    description: {
-        margin: "5px"
-    },
-    filter: {
-        padding: '30px',
-        margin: '20px',
-        backgroundColor: theme.palette.primary.light
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 0),
-        backgroundColor: theme.palette.primary.main,
-        padding: "5px",
-        color: "white"
-    },
+    buyButton: {
+        // margin: theme.spacing(1,1,1),
+        color: "white",
+    }
 }));
-
-const ProductsList = ({products}) => {
+const ProductsList = ({products, productsList}) => {
     const classes = useStyles();
-    const [productsList, setProductsList] = useState([]);
-
-    useEffect(() => {
-        const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-        };
-        const url = 'http://localhost:9000/products';
-        fetch(url, requestOptions)
-            .then(response => response.json())
-            .then(data => setProductsList(data));
-    }, []);
-    console.log(productsList);
-
+    const TextTruncate = require('react-text-truncate');
     return (
-        <div>
-            <h1>Каталог</h1>
+        <ul style={{width: "900px"}}>
             <Grid
                 container
                 direction="row"
-                justify="flex-end"
+                justify="center"
                 alignItems="center"
             >
-                <Button>
-                    <SortIcon/>
-                    По цене
-                </Button>
-                <Button>
-                    <SortIcon/>
-                    По рейтингу
-                </Button>
+                {products?.map(product =>
+                    <li key={product.id}>
+                        <Card className={classes.card} elevation={5}>
+                            <CardMedia
+                                className={classes.media}
+                                image={product.pictureUrl}
+                                title="product"
+                            />
+                            <div>
+                                <IconButton className={classes.iconButton}>
+                                    <InfoIcon fontSize="large"/>
+                                </IconButton>
+                                <IconButton className={classes.iconButton}>
+                                    <LoyaltyIcon fontSize="large"/>
+                                </IconButton>
+                                <IconButton className={classes.iconButton}>
+                                    <AddShoppingCartOutlinedIcon fontSize="large"/>
+                                </IconButton>
+                            </div>
+                            <CardContent>
+                                <Grid
+                                    container
+                                    direction="column"
+                                    alignItems="center"
+                                    justify="space-between"
+                                    style={{height: 100}}
+                                >
+                                    <Typography variant="h5" gutterBottom style={{width: 220}}>
+                                        <Link to={`/product/${product.id}`}
+                                              style={{textDecoration: 'none'}}>
+                                            <TextTruncate
+                                                line={1}
+                                                truncateText="…"
+                                                text={product.title}
+                                            />
+                                        </Link>
+                                    </Typography>
+                                    {/*<div className={classes.description}>*/}
+                                    {/*    {product.description}*/}
+                                    {/*</div>*/}
+                                    <Grid
+                                        container
+                                        direction="row"
+                                        alignItems="flex-end"
+                                        justify="space-between"
+                                    >
+                                        <Chip
+                                            variant="outlined"
+                                            color="secondary"
+                                            label={product.price + ' РУБ.'}
+                                        />
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.buyButton}
+                                        >
+                                            <ShoppingBasketIcon/>
+                                            Купить
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </CardContent>
+                        </Card>
+                    </li>
+                )}
+                {productsList.map(product =>
+                    <li key={product.id}>
+                        <Card className={classes.card} elevation={5}>
+                            <CardMedia
+                                className={classes.media}
+                                image={product.pictureUrl}
+                                title="product"
+                            />
+                            <div>
+                                <IconButton className={classes.iconButton}>
+                                    <InfoIcon fontSize="large"/>
+                                </IconButton>
+                                <IconButton className={classes.iconButton}>
+                                    <LoyaltyIcon fontSize="large"/>
+                                </IconButton>
+                                <IconButton className={classes.iconButton}>
+                                    <AddShoppingCartOutlinedIcon fontSize="large"/>
+                                </IconButton>
+                            </div>
+                            <CardContent>
+                                <Grid
+                                    container
+                                    direction="column"
+                                    alignItems="center"
+                                    justify="space-between"
+                                    style={{height: 100}}
+                                >
+                                    <Typography variant="h5" gutterBottom style={{width: 220}}>
+                                        <Link to={`/product/${product.id}`}
+                                              style={{textDecoration: 'none'}}>
+                                            <TextTruncate
+                                                line={1}
+                                                truncateText="…"
+                                                text={product.title}
+                                            />
+                                        </Link>
+                                    </Typography>
+                                    {/*<div className={classes.description}>*/}
+                                    {/*    {product.description}*/}
+                                    {/*</div>*/}
+                                    <Grid
+                                        container
+                                        direction="row"
+                                        alignItems="flex-end"
+                                        justify="space-between"
+                                    >
+                                        <Chip
+                                            variant="outlined"
+                                            color="secondary"
+                                            label={product.cost + ' РУБ.'}
+                                        />
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.buyButton}
+                                        >
+                                            <ShoppingBasketIcon/>
+                                            Купить
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </CardContent>
+                        </Card>
+                    </li>
+                )}
             </Grid>
-            <Grid
-                container
-                direction="row"
-                justify="flex-start"
-                alignItems="flex-start"
-            >
-                <ProductsFilter/>
+        </ul>
+    )
+};
 
-                <ul style={{width: "900px"}}>
-                    <Grid
-                        container
-                        direction="row"
-                        justify="center"
-                        alignItems="center"
-                    >
-                        {products.map(product =>
-                            <li key={product.id}>
-                                <Card className={classes.card} elevation={5}>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={product.pictureUrl}
-                                        title="product"
-                                    />
-                                    <div>
-                                        <IconButton className={classes.iconButton}>
-                                            <InfoIcon fontSize="large"/>
-                                        </IconButton>
-                                        <IconButton className={classes.iconButton}>
-                                            <LoyaltyIcon fontSize="large"/>
-                                        </IconButton>
-                                        <IconButton className={classes.iconButton}>
-                                            <AddShoppingCartOutlinedIcon fontSize="large"/>
-                                        </IconButton>
-                                    </div>
-                                    <CardContent>
-                                        <h2 style={{margin: "0"}}>
-                                            <Link to={`/product/${product.id}`}
-                                                  style={{textDecoration: 'none'}}>
-                                                {product.title}
-                                            </Link>
-                                        </h2>
-                                        <div className={classes.description}>
-                                            {product.description}
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </li>
-                        )}
-                        {productsList.map(product =>
-                            <li key={product.id}>
-                                <Card className={classes.card} elevation={5}>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={product.pictureUrl}
-                                        title="product"
-                                    />
-                                    <div>
-                                        <IconButton className={classes.iconButton}>
-                                            <InfoIcon fontSize="large"/>
-                                        </IconButton>
-                                        <IconButton className={classes.iconButton}>
-                                            <LoyaltyIcon fontSize="large"/>
-                                        </IconButton>
-                                        <IconButton className={classes.iconButton}>
-                                            <AddShoppingCartOutlinedIcon fontSize="large"/>
-                                        </IconButton>
-                                    </div>
-                                    <CardContent>
-                                        <h2 style={{margin: "0"}}>
-                                            <Link to={`/product/${product.id}`}
-                                                  style={{textDecoration: 'none'}}>
-                                                {product.title}
-                                            </Link>
-                                        </h2>
-                                        <div className={classes.description}>
-                                            {product.description}
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </li>
-                        )}
-                    </Grid>
-                </ul>
-            </Grid>
-        </div>
-    );
-}
-export default ProductsList
+export default ProductsList;

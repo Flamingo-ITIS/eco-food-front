@@ -18,6 +18,7 @@ import Typography from "@material-ui/core/Typography";
 import data from "../../data";
 import Button from "@material-ui/core/Button";
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import Chip from "@material-ui/core/Chip";
 
 export const useStyles = makeStyles(theme => ({
     info: {
@@ -51,11 +52,28 @@ export const useStyles = makeStyles(theme => ({
     }
 }));
 
+const CATEGORY_STATES = {
+    VEGETABLE: "Овощи",
+    FRUIT: "Фрукты",
+    NUT: "Орехи",
+    BERRY: "Ягоды",
+    MUSHROOM: "Грибы",
+    HONEY: "Мед",
+    GREEN_AND_SPICE: "Зелень и специи",
+    DRIED_FRUITS: "Сухофрукты",
+    DRINKS: "Напитки"
+};
+
+function category_text(category) {
+    return CATEGORY_STATES[category]
+}
+
 const Product = () => {
     let {id} = useParams();
     const classes = useStyles();
     const [product, setProduct] = useState({});
     const [product_user, setProduct_user] = useState({});
+    const [product_category, setProduct_category] = useState({});
 
     useEffect(() => {
         const requestOptions = {
@@ -70,10 +88,11 @@ const Product = () => {
             .then(response => response.json())
             .then(data => {
                 setProduct(data);
-                setProduct_user(data.user)
+                setProduct_user(data.user);
+                setProduct_category(data.category);
             });
     }, []);
-    // console.log(product);
+    console.log(product);
     // console.log(product_user.username);
 
     return (
@@ -84,7 +103,11 @@ const Product = () => {
             alignItems="center"
             spacing={40}
         >
-            <Typography variant="h2">
+            <Chip
+                color="secondary"
+                label={category_text(product_category.name)}
+            />
+            <Typography variant="h2" gutterBottom>
                 {product.title}
             </Typography>
             <Grid
@@ -147,11 +170,10 @@ const Product = () => {
                         alignItems="center"
                         spacing={40}
                     >
-                        <Typography variant="h4">
+                        <Typography variant="h4" gutterBottom>
                             Описание
                         </Typography>
-                        <br/>
-                        <Typography variant="body1">
+                        <Typography variant="body1" component="h6" gutterBottom>
                             {product.description}
                         </Typography>
                     </Grid>
