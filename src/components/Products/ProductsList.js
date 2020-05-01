@@ -20,6 +20,7 @@ import ProductsFilter from "./ProductsFilter";
 import Chip from "@material-ui/core/Chip";
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import TextTruncate from 'react-text-truncate';
+import LikeProduct from "../FavoriteProducts/LikeProduct";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -90,9 +91,7 @@ const ProductsList = ({products, productsList}) => {
                                 <IconButton className={classes.iconButton}>
                                     <InfoIcon fontSize="large"/>
                                 </IconButton>
-                                <IconButton className={classes.iconButton}>
-                                    <LoyaltyIcon fontSize="large"/>
-                                </IconButton>
+                                <LikeProduct product_id={product.id}/>
                                 <IconButton className={classes.iconButton}>
                                     <AddShoppingCartOutlinedIcon fontSize="large"/>
                                 </IconButton>

@@ -17,7 +17,7 @@ import SignUp from "./Session/SignUp";
 import Cart from "./Products/Cart";
 import Published_products from "./User/Published_products";
 import Orders from "./User/Orders";
-import FavouriteProducts from "./User/FavouriteProducts";
+import FavouriteProducts from "./FavoriteProducts/FavouriteProducts";
 import ChatPage from "./Seller/ChatPage";
 import PaymentInfo from "./Pages/PaymentInfo";
 import NewProduct from "./Product/NewProduct";

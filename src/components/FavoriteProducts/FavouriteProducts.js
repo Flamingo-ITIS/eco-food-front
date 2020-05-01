@@ -12,22 +12,25 @@ import Grid from "@material-ui/core/Grid";
 import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import DeleteProduct from "./DeleteProduct";
 
-const FavouriteProducts = ({products}) => {
+const FavouriteProducts = () => {
     const classes = useStyles();
-    // const [products, setProducts] = useState([]);
-    // useEffect(() => {
-    //     const requestOptions = {
-    //         method: 'GET',
-    //         headers: { 'Content-Type': 'application/json',
-    //             'Access-Control-Allow-Origin': '*'},
-    //     };
-    //     fetch('http://localhost:9000/product', requestOptions)
-    //         .then(response => response.json())
-    //         .then(data => setProducts(data));
-    // }, []);
-    // console.log(products);
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+            },
+        };
+        fetch('http://localhost:9000/favorites', requestOptions)
+            .then(response => response.json())
+            .then(data => setProducts(data));
+    }, []);
+    console.log(products);
     return (
         <div>
             <h1>Избранное</h1>
@@ -52,9 +55,7 @@ const FavouriteProducts = ({products}) => {
                                         title={product.title}
                                         titlePosition="top"
                                         actionIcon={
-                                            <IconButton className={classes.iconButton} style={{color: "red"}}>
-                                                <DeleteSweepIcon/>
-                                            </IconButton>
+                                            <DeleteProduct product_id={product.id}/>
                                         }
                                         actionPosition="right"
                                         className={classes.titleBar}
@@ -86,7 +87,6 @@ const FavouriteProducts = ({products}) => {
                                     <TextInfoContent
                                         overline={'Овощи'}
                                         heading={product.title}
-                                        body={product.description}
                                     />
                                 </CardContent>
                             </Card>
