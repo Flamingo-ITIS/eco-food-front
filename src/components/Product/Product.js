@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/styles";
 import CardMedia from "@material-ui/core/CardMedia";
-import Card from "@material-ui/core/Card";
 import {Paper} from "@material-ui/core";
-import CardContent from "@material-ui/core/CardContent";
 import {
     Link,
     useParams
@@ -15,7 +13,6 @@ import InfoIcon from '@material-ui/icons/InfoOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import Typography from "@material-ui/core/Typography";
-import data from "../../data";
 import Button from "@material-ui/core/Button";
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import Chip from "@material-ui/core/Chip";

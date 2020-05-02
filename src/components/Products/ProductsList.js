@@ -9,14 +9,8 @@ import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutli
 import IconButton from "@material-ui/core/IconButton";
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import SortIcon from '@material-ui/icons/Sort';
-import ProductsFilter from "./ProductsFilter";
 import Chip from "@material-ui/core/Chip";
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import TextTruncate from 'react-text-truncate';

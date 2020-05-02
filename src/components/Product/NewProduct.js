@@ -190,6 +190,17 @@ const NewProduct = () => {
                                     <MenuItem value="NUTS">Орехи</MenuItem>
                                 </Select>
                             </FormControl>
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                type="number"
+                                id="cost"
+                                label="Цена"
+                                name="cost"
+                                className={classes.formControl}
+                            />
                         </Grid>
 
                         <Grid

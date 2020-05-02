@@ -16,7 +16,7 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-const DeleteProduct = ({product_id}) => {
+const UnLikeProduct = ({product_id}) => {
     const classes = useStyles();
 
     async function triggerDelete() {
@@ -60,4 +60,4 @@ const DeleteProduct = ({product_id}) => {
     )
 };
 
-export default DeleteProduct;
+export default UnLikeProduct;

@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-import DeleteProduct from "./DeleteProduct";
+import UnLikeProduct from "./UnLikeProduct";
 
 const FavouriteProducts = () => {
     const classes = useStyles();
@@ -55,7 +55,7 @@ const FavouriteProducts = () => {
                                         title={product.title}
                                         titlePosition="top"
                                         actionIcon={
-                                            <DeleteProduct product_id={product.id}/>
+                                            <UnLikeProduct product_id={product.id}/>
                                         }
                                         actionPosition="right"
                                         className={classes.titleBar}

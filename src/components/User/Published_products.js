@@ -9,6 +9,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 export const useStyles = makeStyles({
     wrapContainer: {
@@ -107,11 +108,16 @@ export const Published_products = () => {
     }
 
     return (
-        <div>
+        <Grid>
             <h1>
                 Опубликованные товары
             </h1>
-            <div className={classes.container}>
+            <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+            >
                 <ul className={classes.ulNoWrap}>
                     {products?.map(product =>
                         <li key={product.id}>
@@ -140,7 +146,7 @@ export const Published_products = () => {
                                     <h4>{product.count + " " + product.countType}</h4>
                                 </div>
                                 <div>
-                                    <h2>{product.price} РУБ</h2>
+                                    <h2>{product.cost} РУБ</h2>
                                 </div>
                                 <div className={classes.wrapContainer} style={{maxWidth: "100px"}}>
                                     <Button style={{backgroundColor: "#62C5FF", width: "100%", margin: "5px", padding: "15px"}}>
@@ -160,8 +166,8 @@ export const Published_products = () => {
                         </li>
                     )}
                 </ul>
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     )
 }
 export default Published_products;
