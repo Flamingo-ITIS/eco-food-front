@@ -14,6 +14,7 @@ import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import * as QueryString from "query-string";
 import ProductsList from "./ProductsList";
+import API_URL from "../API";
 
 const FoundProducts = () => {
     const values = QueryString.parse(window.location.search);
@@ -28,7 +29,7 @@ const FoundProducts = () => {
                 'Access-Control-Allow-Origin': '*'
             },
         };
-        const url = 'http://localhost:9000/search/products?template=' + input;
+        const url = API_URL + '/search/products?template=' + input;
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => setProductsList(data));

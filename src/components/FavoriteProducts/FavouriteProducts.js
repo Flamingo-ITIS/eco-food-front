@@ -13,6 +13,7 @@ import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import UnLikeProduct from "./UnLikeProduct";
+import API_URL from "../API";
 
 const FavouriteProducts = () => {
     const classes = useStyles();
@@ -26,7 +27,7 @@ const FavouriteProducts = () => {
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
             },
         };
-        fetch('http://localhost:9000/favorites', requestOptions)
+        fetch(API_URL + '/favorites', requestOptions)
             .then(response => response.json())
             .then(data => setProducts(data));
     }, []);

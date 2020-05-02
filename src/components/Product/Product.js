@@ -16,6 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import Chip from "@material-ui/core/Chip";
+import API_URL from "../API";
 
 export const useStyles = makeStyles(theme => ({
     info: {
@@ -80,7 +81,7 @@ const Product = () => {
                 'Access-Control-Allow-Origin': '*'
             },
         };
-        const url = 'http://localhost:9000/products/' + id;
+        const url = API_URL + '/products/' + id;
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => {

@@ -10,6 +10,7 @@ import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import API_URL from "../API";
 
 export const useStyles = makeStyles({
     wrapContainer: {
@@ -76,7 +77,7 @@ export const Published_products = () => {
                 'Access-Control-Allow-Origin': '*'
             },
         };
-        const url = 'http://localhost:9000/products/' + username + '/users';
+        const url = API_URL + '/products/' + username + '/users';
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => setProducts(data));

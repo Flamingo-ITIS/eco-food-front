@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import API_URL from "../API";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -57,7 +58,7 @@ const Login = () => {
         const data = "username=" + username + "&password=" + password;
         console.log(data)
 
-        const url = 'http://localhost:9000/login';
+        const url = API_URL + '/login';
 
         // axios({
         //     method: 'post',

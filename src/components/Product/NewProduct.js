@@ -16,6 +16,7 @@ import CameraEnhanceIcon from '@material-ui/icons/CameraEnhance';
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import API_URL from "../API";
 
 export const useStyles = makeStyles(theme => ({
     paper: {
@@ -63,7 +64,7 @@ const NewProduct = () => {
         console.log(json);
 
 
-        const url = "http://localhost:9000/products";
+        const url = API_URL + "/products";
 
         const requestOptions = {
             method: 'POST',

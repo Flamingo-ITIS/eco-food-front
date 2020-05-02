@@ -5,6 +5,7 @@ import SortIcon from '@material-ui/icons/Sort';
 import ProductsFilter from "./ProductsFilter";
 import ProductsList from "./ProductsList";
 import Loader from "react-loader-spinner";
+import API_URL from "../API";
 
 const Products = ({products}) => {
     const [productsList, setProductsList] = useState([]);
@@ -19,7 +20,7 @@ const Products = ({products}) => {
                 'Access-Control-Allow-Origin': '*'
             },
         };
-        const url = 'http://localhost:9000/products';
+        const url = API_URL + '/products';
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(

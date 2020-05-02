@@ -23,6 +23,8 @@ import PaymentInfo from "./Pages/PaymentInfo";
 import NewProduct from "./Product/NewProduct";
 import SellerProfile from "./Seller/SellerProfile";
 import FoundProducts from "./Products/FoundProducts"
+import ArticlesList from "./Articles/ArticlesList";
+import Article from "./Articles/Article";
 
 const AppRouter = () => {
     return(
@@ -42,6 +44,9 @@ const AppRouter = () => {
                         <Products
                             products={data.products}
                         />
+                    </Route>
+                    <Route path="/articles/:id">
+                        <Article/>
                     </Route>
                     <Route path="/search/products">
                         <FoundProducts/>

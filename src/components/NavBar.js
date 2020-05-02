@@ -14,6 +14,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import * as QueryString from "query-string";
+import API_URL from "./API";
 
 const style = {
     flexGrow: 1
@@ -63,7 +64,7 @@ const NavBar = () => {
     const [search_input, setSearch_input] = useState(values.template);
 
     async function handleExit() {
-        const url = "http://localhost:9000/logout";
+        const url = API_URL + "/logout";
 
         const requestOptions = {
             method: 'POST',

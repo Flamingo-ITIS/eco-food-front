@@ -2,6 +2,7 @@ import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import IconButton from "@material-ui/core/IconButton";
 import React from "react";
 import {makeStyles} from "@material-ui/styles";
+import API_URL from "../API";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -30,7 +31,7 @@ const LikeProduct = ({product_id}) => {
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
             },
         };
-        const url = 'http://localhost:9000/' + product_id + '/favorites';
+        const url = API_URL + '/' + product_id + '/favorites';
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(

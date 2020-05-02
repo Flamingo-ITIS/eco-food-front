@@ -17,6 +17,7 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
+import API_URL from "../API";
 
 export const useStyles = makeStyles(theme => ({
     info: {
@@ -72,7 +73,7 @@ const SellerProfile = () => {
                 'Access-Control-Allow-Origin': '*'
             },
         };
-        const url = 'http://localhost:9000/products/' + username + '/users';
+        const url = API_URL + '/products/' + username + '/users';
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => {

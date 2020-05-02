@@ -10,6 +10,7 @@ import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from '@material-ui/icons/Add';
+import API_URL from "../API";
 
 export const useStyles = makeStyles(theme => ({
     info: {
@@ -38,11 +39,12 @@ const Profile = () => {
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
             },
         };
         const username = localStorage.getItem("username");
-        const url = 'http://localhost:9000/' + username + '/users';
+        const url = API_URL + '/' + username + '/users';
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => setUser(data));

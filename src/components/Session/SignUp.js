@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
 import Paper from "@material-ui/core/Paper";
 import {Redirect} from "react-router-dom";
+import API_URL from "../API";
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -19,7 +20,7 @@ async function handleSubmit(event) {
     const json = JSON.stringify(object);
     console.log(json);
 
-    const url = "http://localhost:9000/sign-up";
+    const url = API_URL + "/sign-up";
     console.log("start");
     const response = await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
