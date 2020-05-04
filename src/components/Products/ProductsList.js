@@ -27,10 +27,10 @@ export const useStyles = makeStyles(theme => ({
         margin: "20px",
         padding: "5px",
         borderRadius: "12px",
-        transition: "0.5s",
+        transition: "0.3s",
         // boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
         "&:hover": {
-            boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+            transform: 'scale(1.05)',
         },
     },
     titleBar: {

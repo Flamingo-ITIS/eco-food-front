@@ -8,6 +8,7 @@ import AutorenewIcon from '@material-ui/icons/Autorenew';
 import Icon from "@material-ui/core/Icon";
 import PaymentIcon from '@material-ui/icons/Payment';
 import Grid from "@material-ui/core/Grid";
+import ConfirmPurchase from "../ConfirmPurchase";
 
 export const useStyles = makeStyles({
     card: {
@@ -75,6 +76,9 @@ const OrdersList = ({orders}) => {
                                 <h2>Сумма</h2>
                             </Grid>
                             <Grid item xs={2}>
+                                <h2>Получение</h2>
+                            </Grid>
+                            <Grid item xs={2}>
                                 <h2>Способ оплаты</h2>
                             </Grid>
 
@@ -103,43 +107,57 @@ const OrdersList = ({orders}) => {
                             <Grid
                                 container
                                 direction="row"
-                                justify="center"
-                                alignItems="space-between"
+                                justify="space-between"
+                                alignItems="center"
                             >
-                                <div>
+                                <Grid item xs={2}>
                                     <h2>
                                         <Link to={`/order/${order.id}`}
                                               style={{textDecoration: 'none'}}>
                                             {order.id}
                                         </Link>
                                     </h2>
-                                </div>
-                                <div className={classes.field}>
+                                </Grid>
+                                <Grid item xs={2}>
                                     <h2>{order.title}</h2>
-                                </div>
-                                <div className={classes.field}>
-                                    {order.status === "закрыт" ? (
-                                        <Icon>
-                                            <AssignmentTurnedInIcon style={{color: "green"}}/>
-                                        </Icon>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    {order.status === "COMPLETED" ? (
+                                        <div>
+                                            <Icon>
+                                                <AssignmentTurnedInIcon style={{color: "green"}}/>
+                                            </Icon>
+                                            <h2>
+                                                {order.status}
+                                            </h2>
+                                        </div>
                                     ) : (
-                                        <Icon>
-                                            <AutorenewIcon style={{color: "#dbc500"}}/>
-                                        </Icon>
+                                        <div>
+                                            <Icon>
+                                                <AutorenewIcon style={{color: "#dbc500"}}/>
+                                            </Icon>
+                                            <h2>
+                                                {order.status}
+                                            </h2>
+                                            <ConfirmPurchase id={order.id}/>
+                                        </div>
                                     )}
-                                    <h2>
-                                        {order.status}
-                                    </h2>
-                                </div>
-                                <div className={classes.field}>
-                                    <h2>{order.total} РУБ</h2>
-                                </div>
-                                <div className={classes.field}>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <h2>{order.cost} РУБ</h2>
+                                </Grid>
+                                <Grid item xs={2}>
                                     <Icon>
                                         <PaymentIcon/>
                                     </Icon>
-                                    <h2>{order.payment}</h2>
-                                </div>
+                                    <h2>{order.deliveryType}</h2>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <Icon>
+                                        <PaymentIcon/>
+                                    </Icon>
+                                    <h2>{order.paymentType}</h2>
+                                </Grid>
                             </Grid>
                         </Card>
                     </li>

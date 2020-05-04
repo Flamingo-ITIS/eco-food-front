@@ -8,28 +8,30 @@ import ProductsList from "./ProductsList";
 import Loader from "react-loader-spinner";
 import API_URL from "../API";
 import * as QueryString from "query-string";
-import SortingByCost from "./SortingByCost";
+import SortingButton from "./SortingButton";
 
 const Products = ({products}) => {
     const [productsList, setProductsList] = useState([]);
+    const [category, setCategory] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
     const values = QueryString.parse(window.location.search);
     const history = useHistory();
 
     useEffect(() => {
-        let url = API_URL + "/products";
-        if (values.category !== undefined){
+        let url = API_URL + "/products" + window.location.search;
+        console.log(window.location.search);
+        if (values.category !== undefined) {
             const category = values.category;
-            console.log(category);
-            url = API_URL + "/products?category=" + category;
+            setCategory(category);
         };
 
-        if (values.sort !== undefined){
-            const sort = values.sort;
-            console.log(sort);
-            url = API_URL + "/products?sort=" + sort;
-        };
+        //
+        // if (values.sort !== undefined){
+        //     const sort = values.sort;
+        //     url = url + "?sort=" + sort;
+        //     console.log(url);
+        // };
 
         const requestOptions = {
             method: 'GET',
@@ -81,11 +83,9 @@ const Products = ({products}) => {
                     justify="flex-end"
                     alignItems="center"
                 >
-                    <SortingByCost/>
-                    <Button>
-                        <SortIcon/>
-                        По рейтингу
-                    </Button>
+                    <SortingButton sorting_field="По цене"/>
+                    <SortingButton sorting_field="По названию"/>
+                    <SortingButton sorting_field="По рейтингу"/>
                 </Grid>
                 <Grid
                     container
@@ -93,7 +93,7 @@ const Products = ({products}) => {
                     justify="flex-start"
                     alignItems="flex-start"
                 >
-                    <ProductsFilter/>
+                    <ProductsFilter categoryName={category}/>
                     <ProductsList products={products} productsList={productsList}/>
                 </Grid>
             </div>

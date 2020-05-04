@@ -87,7 +87,7 @@ const BuyProduct = ({product}) => {
                     return Promise.reject(error);
                 }
                 setBoughtProduct(data);
-                history.push('/buy/confirmation/' + data.id.toString())
+                history.push('/user/orders');
             })
             .catch(error => {
                 // setState({ errorMessage: error });

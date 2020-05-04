@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import FormGroup from "@material-ui/core/FormGroup";
 import Grid from "@material-ui/core/Grid";
@@ -13,6 +13,7 @@ import {makeStyles} from "@material-ui/styles";
 import {CATEGORY_STATES} from "../Product/Product";
 import FormControl from "@material-ui/core/FormControl";
 import API_URL from "../API";
+import * as QueryString from "query-string";
 
 const useStyles = makeStyles(theme => ({
     filter: {
@@ -36,14 +37,15 @@ function valuetext(value) {
     return `${value}°C`;
 }
 
-const ProductsFilter = () => {
+const ProductsFilter = ({categoryName}) => {
     const classes = useStyles();
     const history = useHistory();
 
-    const [products, setProducts] = React.useState('');
-    const [price, setPrice] = React.useState([0, 10000]);
+    const [products, setProducts] = useState('');
+    const [price, setPrice] = useState([0, 10000]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
+    const [category, setCategory] = useState(categoryName);
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -56,7 +58,10 @@ const ProductsFilter = () => {
 
         const category = object["category"];
         console.log(category);
-        history.push("/products?category=" + category);
+        const values = QueryString.parse(window.location.search);
+        values["category"] = category;
+        const query = QueryString.stringify(values);
+        history.push("/products?" + query);
     }
 
     const handleChangePrice = (event, newValue) => {
@@ -91,9 +96,14 @@ const ProductsFilter = () => {
                         <Select
                             labelId="categoryLabel"
                             id="category"
+                            value={category}
                             name="category"
                             label="Категория"
+                            onChange={(event) => {
+                                setCategory(event.target.value);
+                            }}
                         >
+                            <MenuItem value="">Нет</MenuItem>
                             {Object.keys(CATEGORY_STATES).map(key =>
                                 <MenuItem value={key}>{CATEGORY_STATES[key]}</MenuItem>
                             )}
