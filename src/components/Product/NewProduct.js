@@ -17,6 +17,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import API_URL from "../API";
+import {CATEGORY_STATES} from "./Product";
 
 export const useStyles = makeStyles(theme => ({
     paper: {
@@ -125,8 +126,7 @@ const NewProduct = () => {
                 <h1>
                     Новый товар
                 </h1>
-                <form className={classes.form}
-                      noValidate
+                <form noValidate
                       onSubmit={handleSubmit}>
                     <Grid
                         container
@@ -186,9 +186,9 @@ const NewProduct = () => {
                                     name="category"
                                     label="Категория"
                                 >
-                                    <MenuItem value="FRUIT">Фрукты</MenuItem>
-                                    <MenuItem value="VEGETABLES">Овощи</MenuItem>
-                                    <MenuItem value="NUTS">Орехи</MenuItem>
+                                    {Object.keys(CATEGORY_STATES).map(key =>
+                                        <MenuItem value={key}>{CATEGORY_STATES[key]}</MenuItem>
+                                    )}
                                 </Select>
                             </FormControl>
                             <TextField

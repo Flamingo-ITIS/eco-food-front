@@ -16,7 +16,7 @@ import Login from "./Session/Login";
 import SignUp from "./Session/SignUp";
 import Cart from "./Products/Cart";
 import Published_products from "./User/Published_products";
-import Orders from "./User/Orders";
+import Orders from "./Orders/UserOrder/Orders";
 import FavouriteProducts from "./FavoriteProducts/FavouriteProducts";
 import ChatPage from "./Seller/ChatPage";
 import PaymentInfo from "./Pages/PaymentInfo";
@@ -25,6 +25,7 @@ import SellerProfile from "./Seller/SellerProfile";
 import FoundProducts from "./Products/FoundProducts"
 import ArticlesList from "./Articles/ArticlesList";
 import Article from "./Articles/Article";
+import ConfirmPurchase from "./Orders/ConfirmPurchase";
 
 const AppRouter = () => {
     return(
@@ -57,7 +58,7 @@ const AppRouter = () => {
                     <Route path="/product/:id">
                         <Product/>
                     </Route>
-                    <Route path="/main">
+                    <Route exact path="/">
                         <Main products={data.products}/>
                     </Route>
                     <Route path="/payment_info">
@@ -79,10 +80,13 @@ const AppRouter = () => {
                         <ChatPage/>
                     </Route>
                     <Route path="/user/orders">
-                        <Orders orders={data.orders}/>
+                        <Orders/>
                     </Route>
                     <Route path="/user/favourite_products">
                         <FavouriteProducts products={data.products}/>
+                    </Route>
+                    <Route path="/buy/confirmation/:id">
+                        <ConfirmPurchase/>
                     </Route>
                 </Switch>
             </Router>

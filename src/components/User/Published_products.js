@@ -81,12 +81,12 @@ export const Published_products = () => {
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => setProducts(data));
-    }, []);
+    });
     console.log(products);
 
     async function triggerDelete(id){
-        if(window.confirm("Are you sure you want to delete this task?")) {
-            const url = "http://localhost:9000/products/" + id.toString();
+        if(window.confirm("Вы уверены, что хотите удалить данный товар?")) {
+            const url = API_URL + "/products/" + id.toString();
 
             const requestOptions = {
                 method: 'DELETE',
