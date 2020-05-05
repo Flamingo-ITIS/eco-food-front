@@ -15,6 +15,7 @@ import Chip from "@material-ui/core/Chip";
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import TextTruncate from 'react-text-truncate';
 import LikeProduct from "../FavoriteProducts/LikeProduct";
+import BuyProduct from "../Orders/BuyProduct";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -26,10 +27,10 @@ export const useStyles = makeStyles(theme => ({
         margin: "20px",
         padding: "5px",
         borderRadius: "12px",
-        transition: "0.5s",
+        transition: "0.3s",
         // boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
         "&:hover": {
-            boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+            transform: 'scale(1.05)',
         },
     },
     titleBar: {
@@ -73,7 +74,63 @@ const ProductsList = ({products, productsList}) => {
                 justify="center"
                 alignItems="center"
             >
-                {products?.map(product =>
+                {/*{products?.map(product =>*/}
+                {/*    <li key={product.id}>*/}
+                {/*        <Card className={classes.card} elevation={5}>*/}
+                {/*            <CardMedia*/}
+                {/*                className={classes.media}*/}
+                {/*                image={product.pictureUrl}*/}
+                {/*                title="product"*/}
+                {/*            />*/}
+                {/*            <div>*/}
+                {/*                <IconButton className={classes.iconButton}>*/}
+                {/*                    <InfoIcon fontSize="large"/>*/}
+                {/*                </IconButton>*/}
+                {/*                <LikeProduct product_id={product.id}/>*/}
+                {/*                <IconButton className={classes.iconButton}>*/}
+                {/*                    <AddShoppingCartOutlinedIcon fontSize="large"/>*/}
+                {/*                </IconButton>*/}
+                {/*            </div>*/}
+                {/*            <CardContent>*/}
+                {/*                <Grid*/}
+                {/*                    container*/}
+                {/*                    direction="column"*/}
+                {/*                    alignItems="center"*/}
+                {/*                    justify="space-between"*/}
+                {/*                    style={{height: 100}}*/}
+                {/*                >*/}
+                {/*                    <Typography variant="h5" gutterBottom style={{width: 220}}>*/}
+                {/*                        <Link to={`/product/${product.id}`}*/}
+                {/*                              style={{textDecoration: 'none'}}>*/}
+                {/*                            <TextTruncate*/}
+                {/*                                line={1}*/}
+                {/*                                truncateText="…"*/}
+                {/*                                text={product.title}*/}
+                {/*                            />*/}
+                {/*                        </Link>*/}
+                {/*                    </Typography>*/}
+                {/*                    /!*<div className={classes.description}>*!/*/}
+                {/*                    /!*    {product.description}*!/*/}
+                {/*                    /!*</div>*!/*/}
+                {/*                    <Grid*/}
+                {/*                        container*/}
+                {/*                        direction="row"*/}
+                {/*                        alignItems="flex-end"*/}
+                {/*                        justify="space-between"*/}
+                {/*                    >*/}
+                {/*                        <Chip*/}
+                {/*                            variant="outlined"*/}
+                {/*                            color="secondary"*/}
+                {/*                            label={product.price + ' РУБ.'}*/}
+                {/*                        />*/}
+                {/*                        <BuyProduct product={product}/>*/}
+                {/*                    </Grid>*/}
+                {/*                </Grid>*/}
+                {/*            </CardContent>*/}
+                {/*        </Card>*/}
+                {/*    </li>*/}
+                {/*)}*/}
+                {productsList.map(product =>
                     <li key={product.id}>
                         <Card className={classes.card} elevation={5}>
                             <CardMedia
@@ -120,81 +177,9 @@ const ProductsList = ({products, productsList}) => {
                                         <Chip
                                             variant="outlined"
                                             color="secondary"
-                                            label={product.price + ' РУБ.'}
-                                        />
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.buyButton}
-                                        >
-                                            <ShoppingBasketIcon/>
-                                            Купить
-                                        </Button>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                        </Card>
-                    </li>
-                )}
-                {productsList.map(product =>
-                    <li key={product.id}>
-                        <Card className={classes.card} elevation={5}>
-                            <CardMedia
-                                className={classes.media}
-                                image={product.pictureUrl}
-                                title="product"
-                            />
-                            <div>
-                                <IconButton className={classes.iconButton}>
-                                    <InfoIcon fontSize="large"/>
-                                </IconButton>
-                                <IconButton className={classes.iconButton}>
-                                    <LoyaltyIcon fontSize="large"/>
-                                </IconButton>
-                                <IconButton className={classes.iconButton}>
-                                    <AddShoppingCartOutlinedIcon fontSize="large"/>
-                                </IconButton>
-                            </div>
-                            <CardContent>
-                                <Grid
-                                    container
-                                    direction="column"
-                                    alignItems="center"
-                                    justify="space-between"
-                                    style={{height: 100}}
-                                >
-                                    <Typography variant="h5" gutterBottom style={{width: 220}}>
-                                        <Link to={`/product/${product.id}`}
-                                              style={{textDecoration: 'none'}}>
-                                            <TextTruncate
-                                                line={1}
-                                                truncateText="…"
-                                                text={product.title}
-                                            />
-                                        </Link>
-                                    </Typography>
-                                    {/*<div className={classes.description}>*/}
-                                    {/*    {product.description}*/}
-                                    {/*</div>*/}
-                                    <Grid
-                                        container
-                                        direction="row"
-                                        alignItems="flex-end"
-                                        justify="space-between"
-                                    >
-                                        <Chip
-                                            variant="outlined"
-                                            color="secondary"
                                             label={product.cost + ' РУБ.'}
                                         />
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.buyButton}
-                                        >
-                                            <ShoppingBasketIcon/>
-                                            Купить
-                                        </Button>
+                                        <BuyProduct product={product}/>
                                     </Grid>
                                 </Grid>
                             </CardContent>

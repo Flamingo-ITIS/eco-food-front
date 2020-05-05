@@ -37,7 +37,7 @@ const LikeProduct = ({product_id}) => {
             .then(
                 data => {
                     // setIsLoaded(true);
-                    // setProductsList(data)
+                    console.log(data)
                 },
                 (error) => {
                     // setIsLoaded(true);
