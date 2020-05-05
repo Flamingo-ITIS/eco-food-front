@@ -50,7 +50,7 @@ export const useStyles = makeStyles(theme => ({
     }
 }));
 
-const CATEGORY_STATES = {
+export const CATEGORY_STATES = {
     VEGETABLE: "Овощи",
     FRUIT: "Фрукты",
     NUT: "Орехи",

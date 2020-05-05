@@ -3,7 +3,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import LockOpenIcon from '@material-ui/icons/LockOpen';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/core/styles";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartTwoTone';
@@ -15,6 +14,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import * as QueryString from "query-string";
 import API_URL from "./API";
+import Logout from "./Session/Logout";
 
 const style = {
     flexGrow: 1
@@ -63,22 +63,6 @@ const NavBar = () => {
     const classes = useStyles();
     const [search_input, setSearch_input] = useState(values.template);
 
-    async function handleExit() {
-        const url = API_URL + "/logout";
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
-            }
-        };
-        await fetch(url, requestOptions)
-        localStorage.clear();
-        // history.push('/main');
-    }
-
     return (
         <div>
             <AppBar className={classes.navBar} position="static">
@@ -107,7 +91,7 @@ const NavBar = () => {
                             <DnsIcon/>
                             Каталог
                         </Button>
-                        <Button className={classes.button} href="/main">
+                        <Button className={classes.button} href="/">
                             <AppsIcon/>
                             Главная
                         </Button>
@@ -126,10 +110,7 @@ const NavBar = () => {
                                 <AccountBoxIcon/>
                                 Профиль
                             </Button>
-                            <Button onClick={handleExit}>
-                                <ExitToAppIcon/>
-                                Выход
-                            </Button>
+                            <Logout/>
                         </div>
                     ) : (
                         <div>

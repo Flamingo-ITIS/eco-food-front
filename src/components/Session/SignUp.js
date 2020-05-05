@@ -50,10 +50,6 @@ async function handleSubmit(event) {
 const SignUp = () => {
     const classes = useStyles();
 
-    const [name, setName] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
-
     return (
         <Grid
             container
@@ -99,9 +95,6 @@ const SignUp = () => {
                         id="name"
                         label="Имя"
                         name="name"
-                        onChange={event => {
-                            setName(event.target.value);
-                        }}
                     />
                     <TextField
                         variant="outlined"
@@ -112,9 +105,6 @@ const SignUp = () => {
                         id="password"
                         label="Пароль"
                         name="password"
-                        onChange={event => {
-                            setPassword(event.target.value);
-                        }}
                     />
                     <TextField
                         variant="outlined"
