@@ -26,6 +26,7 @@ import FoundProducts from "./Products/FoundProducts"
 import ArticlesList from "./Articles/ArticlesList";
 import Article from "./Articles/Article";
 import ConfirmPurchase from "./Orders/ConfirmPurchase";
+import UpdateUser from "./User/UpdateUser";
 
 const AppRouter = () => {
     return(
@@ -75,6 +76,9 @@ const AppRouter = () => {
                     </Route>
                     <Route path="/user/published_products">
                         <Published_products/>
+                    </Route>
+                    <Route path="/user/update">
+                        <UpdateUser/>
                     </Route>
                     <Route path="/seller/chat">
                         <ChatPage/>

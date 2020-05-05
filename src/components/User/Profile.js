@@ -10,17 +10,17 @@ import Grid from "@material-ui/core/Grid";
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import AddIcon from '@material-ui/icons/Add';
 import API_URL from "../API";
 import Loader from "react-loader-spinner";
+import UploadUserPhoto from "./UploadUserPhoto";
+import Chip from "@material-ui/core/Chip";
 
 export const useStyles = makeStyles(theme => ({
     info: {
         padding: 10,
         margin: 10,
         // width: 400,
-        height: 200,
-        textAlign: 'left',
+        height: 250,
     },
     button: {
         margin: "10px",
@@ -62,13 +62,13 @@ const Profile = () => {
                         return Promise.reject(error);
                     }
                     setUser(data);
-                    history.push('/profile');
+                    // history.push('/profile');
                 })
                 .catch(error => {
                     setError(error);
                     console.error('There was an error!', error);
                 });
-        }, []);
+        });
 
         console.log(user);
         if (error) {
@@ -86,7 +86,9 @@ const Profile = () => {
         } else {
             return (
                 <div>
-                    <h1>Мой профиль</h1>
+                    <Typography variant="h3" gutterBottom>
+                        Мой профиль
+                    </Typography>
                     <Grid
                         container
                         direction="row"
@@ -96,20 +98,36 @@ const Profile = () => {
                         <Paper className={classes.image}>
                             <div>
                                 <Avatar variant="square"
-                                        style={{width: '200px', height: '200px'}}
+                                        style={{width: '250px', height: '250px'}}
                                 />
                             </div>
-                            <Button>
-                                Изменить профиль
-                            </Button>
+                            <UploadUserPhoto/>
                         </Paper>
-                        <Paper className={classes.info}>
-                            <h2 style={{textAlign: 'right'}}>{user.role}</h2>
-                            <h3>Имя пользователя: {user.username}</h3>
-                            <h3>Имя: {user.name}</h3>
-                            <h3>Номер телефона: {user.contactPhone}</h3>
-                            <h3>Адрес: {user.geoPosition}</h3>
-                            <h3>email: {user.email}</h3>
+                        <Paper>
+                            <Grid
+                                container
+                                direction="column"
+                                justify="space-between"
+                                alignItems="flex-start"
+                                className={classes.info}
+                            >
+                                <Chip
+                                    label={user.role === "PARTNER" ? ("Продавец") : ("Покупатель")}
+                                    color="secondary"
+                                />
+                                <h3>Имя пользователя: {user.username}</h3>
+                                <h3>Имя: {user.name}</h3>
+                                <h3>Номер телефона: {user.contactPhone}</h3>
+                                <h3>Адрес: {user.geoPosition}</h3>
+                                <h3>email: {user.email}</h3>
+                                <Button
+                                    variant="outlined"
+                                    color="secondary"
+                                    href="/user/update"
+                                >
+                                    Изменить профиль
+                                </Button>
+                            </Grid>
                         </Paper>
                         <Paper>
                             <Grid
@@ -118,12 +136,6 @@ const Profile = () => {
                                 justify="center"
                                 alignItems="flex-start"
                             >
-                                <Button href="/product/new" variant="contained" color="primary" className={classes.button}>
-                                    <AddIcon fontSize="large"/>
-                                    <Typography variant="h4">
-                                        Новый товар
-                                    </Typography>
-                                </Button>
                                 <div>
                                     <Button href="/user/published_products">
                                         <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>

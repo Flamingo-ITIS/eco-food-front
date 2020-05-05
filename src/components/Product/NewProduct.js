@@ -226,6 +226,8 @@ const NewProduct = () => {
                             <textarea placeholder="Описание"
                                       id="description"
                                       name="description"
+                                      rows="12"
+                                      cols="60"
                                       required
                             />
                             <input

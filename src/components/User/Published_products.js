@@ -11,6 +11,8 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import API_URL from "../API";
+import AddIcon from '@material-ui/icons/Add';
+import Typography from "@material-ui/core/Typography";
 
 export const useStyles = makeStyles({
     wrapContainer: {
@@ -73,7 +75,8 @@ export const Published_products = () => {
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json',
+            headers: {
+                'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
         };
@@ -84,8 +87,8 @@ export const Published_products = () => {
     });
     console.log(products);
 
-    async function triggerDelete(id){
-        if(window.confirm("Вы уверены, что хотите удалить данный товар?")) {
+    async function triggerDelete(id) {
+        if (window.confirm("Вы уверены, что хотите удалить данный товар?")) {
             const url = API_URL + "/products/" + id.toString();
 
             const requestOptions = {
@@ -115,10 +118,28 @@ export const Published_products = () => {
             </h1>
             <Grid
                 container
-                direction="row"
+                direction="column"
                 justify="center"
                 alignItems="center"
             >
+                <Grid
+                    container
+                    direction="row"
+                    justify="flex-end"
+                    alignItems="center"
+                >
+                    <Button
+                        href="/product/new"
+                        variant="outlined"
+                        color="primary"
+                        // className={classes.button}
+                    >
+                        <AddIcon fontSize="large"/>
+                        <Typography variant="h5">
+                            Новый товар
+                        </Typography>
+                    </Button>
+                </Grid>
                 <ul className={classes.ulNoWrap}>
                     {products?.map(product =>
                         <li key={product.id}>
@@ -150,7 +171,12 @@ export const Published_products = () => {
                                     <h2>{product.cost} РУБ</h2>
                                 </div>
                                 <div className={classes.wrapContainer} style={{maxWidth: "100px"}}>
-                                    <Button style={{backgroundColor: "#62C5FF", width: "100%", margin: "5px", padding: "15px"}}>
+                                    <Button style={{
+                                        backgroundColor: "#62C5FF",
+                                        width: "100%",
+                                        margin: "5px",
+                                        padding: "15px"
+                                    }}>
                                         Изменить
                                     </Button>
                                     <Button
