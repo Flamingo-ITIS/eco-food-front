@@ -14,6 +14,7 @@ import API_URL from "../API";
 import Loader from "react-loader-spinner";
 import UploadUserPhoto from "./UploadUserPhoto";
 import Chip from "@material-ui/core/Chip";
+import {Image} from "@material-ui/icons";
 
 export const useStyles = makeStyles(theme => ({
     info: {
@@ -39,6 +40,7 @@ const Profile = () => {
         const [user, setUser] = useState({});
         const [isLoaded, setIsLoaded] = useState(false);
         const [error, setError] = useState(null);
+        const [binaryData, setBinaryData] = useState();
 
         useEffect(() => {
             const requestOptions = {
@@ -68,7 +70,19 @@ const Profile = () => {
                     setError(error);
                     console.error('There was an error!', error);
                 });
-        });
+            const photoURL = API_URL + '/profile-photo';
+            fetch(photoURL, requestOptions, [])
+                .then(async response => {
+                    response.blob().then(blob => {
+                        const fileReaderInstance = new FileReader();
+                        fileReaderInstance.readAsDataURL(blob);
+                        fileReaderInstance.onload = () => {
+                            setBinaryData(fileReaderInstance.result);
+                            console.log(binaryData);
+                        }
+                    })
+                });
+        }, []);
 
         console.log(user);
         if (error) {
@@ -99,6 +113,7 @@ const Profile = () => {
                             <div>
                                 <Avatar variant="square"
                                         style={{width: '250px', height: '250px'}}
+                                        src={binaryData}
                                 />
                             </div>
                             <UploadUserPhoto/>
