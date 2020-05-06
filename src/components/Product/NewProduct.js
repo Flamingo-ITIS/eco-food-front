@@ -1,23 +1,19 @@
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Avatar from "@material-ui/core/Avatar";
-import LockOutlinedIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {Link, Redirect, useHistory} from "react-router-dom";
-import React, {useState} from "react";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import {useHistory} from "react-router-dom";
+import React from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import CameraEnhanceIcon from '@material-ui/icons/CameraEnhance';
-import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import API_URL from "../API";
 import {CATEGORY_STATES} from "./Product";
+import {useCookies} from "react-cookie";
 
 export const useStyles = makeStyles(theme => ({
     paper: {
@@ -50,10 +46,10 @@ export const useStyles = makeStyles(theme => ({
 const NewProduct = () => {
     const classes = useStyles();
     const history = useHistory();
+    const [cookies] = useCookies();
 
     async function handleSubmit(event) {
         event.preventDefault();
-        // const {history} = this.props;
         const productData = new FormData(event.target);
         const object = {};
         productData.forEach((value, key) => {
@@ -73,7 +69,7 @@ const NewProduct = () => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                'Authorization': 'Bearer ' + cookies.auth_token
             },
             body: json
         };

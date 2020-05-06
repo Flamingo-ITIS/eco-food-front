@@ -1,5 +1,4 @@
 import React from "react";
-import {Link, Redirect, useHistory} from "react-router-dom";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
 import API_URL from "../API";

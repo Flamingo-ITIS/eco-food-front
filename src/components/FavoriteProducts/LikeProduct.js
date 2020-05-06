@@ -3,6 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import React from "react";
 import {makeStyles} from "@material-ui/styles";
 import API_URL from "../API";
+import {useCookies} from "react-cookie";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -21,6 +22,7 @@ export const useStyles = makeStyles(theme => ({
 
 const LikeProduct = ({product_id}) => {
     const classes = useStyles();
+    const [cookies] = useCookies();
 
     async function triggerLike() {
         const requestOptions = {
@@ -28,7 +30,7 @@ const LikeProduct = ({product_id}) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                'Authorization': 'Bearer ' + cookies.auth_token
             },
         };
         const url = API_URL + '/' + product_id + '/favorites';

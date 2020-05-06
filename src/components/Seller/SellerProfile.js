@@ -6,13 +6,8 @@ import {
 import {makeStyles} from "@material-ui/styles";
 import {Paper} from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import ListAltIcon from '@material-ui/icons/ListAlt';
 import Grid from "@material-ui/core/Grid";
-import LoyaltyIcon from '@material-ui/icons/Loyalty';
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import AddIcon from '@material-ui/icons/Add';
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";

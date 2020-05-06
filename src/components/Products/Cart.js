@@ -7,7 +7,6 @@ import {makeStyles} from "@material-ui/styles";
 import IconButton from "@material-ui/core/IconButton";
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
-import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
 export const useStyles = makeStyles({

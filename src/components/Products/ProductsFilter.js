@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Link, Redirect, useHistory} from "react-router-dom";
-import FormGroup from "@material-ui/core/FormGroup";
+import React, {useState} from "react";
+import {useHistory} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
@@ -12,7 +11,6 @@ import Card from "@material-ui/core/Card";
 import {makeStyles} from "@material-ui/styles";
 import {CATEGORY_STATES} from "../Product/Product";
 import FormControl from "@material-ui/core/FormControl";
-import API_URL from "../API";
 import * as QueryString from "query-string";
 
 const useStyles = makeStyles(theme => ({

@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import {Link} from "react-router-dom";
 import {makeStyles} from "@material-ui/styles";
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';

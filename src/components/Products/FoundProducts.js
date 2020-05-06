@@ -1,20 +1,8 @@
 import React, {useEffect, useState} from "react";
-import Card from "@material-ui/core/Card";
-import {
-    Link,
-    useParams
-} from "react-router-dom";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import {makeStyles} from "@material-ui/styles";
-import Grid from "@material-ui/core/Grid";
-import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
-import IconButton from "@material-ui/core/IconButton";
-import LoyaltyIcon from '@material-ui/icons/Loyalty';
-import InfoIcon from '@material-ui/icons/InfoOutlined';
 import * as QueryString from "query-string";
 import ProductsList from "./ProductsList";
 import API_URL from "../API";
+import Typography from "@material-ui/core/Typography";
 
 const FoundProducts = () => {
     const values = QueryString.parse(window.location.search);
@@ -38,8 +26,18 @@ const FoundProducts = () => {
 
     return (
         <div>
-            <h1>Найденные товары</h1>
-            <ProductsList productsList={productsList}/>
+            <Typography variant="h4" gutterBottom>
+                Найденные товары
+            </Typography>
+            {productsList.length > 0 ? (
+                <ProductsList productsList={productsList}/>
+            ) : (
+                <div>
+                    <Typography variant="h6" gutterBottom>
+                        По запросу "{input}" ничего не найдено.
+                    </Typography>
+                </div>
+            )}
         </div>
     );
 }

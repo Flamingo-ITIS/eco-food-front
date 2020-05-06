@@ -2,10 +2,11 @@ import React, {useState} from "react";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import Button from "@material-ui/core/Button";
 import API_URL from "../API";
-import {useStyles} from "./Profile";
+import {useCookies} from "react-cookie";
 
 const UploadUserPhoto = () => {
     const [image, setImage] = useState({preview: "", raw: ""});
+    const [cookies] = useCookies();
 
     const handleUpload = async e => {
         e.preventDefault();
@@ -21,7 +22,7 @@ const UploadUserPhoto = () => {
             method: "POST",
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                'Authorization': 'Bearer ' + cookies.auth_token
             },
             body: formData
         };
@@ -55,6 +56,7 @@ const UploadUserPhoto = () => {
                 <Button
                     variant="raised"
                     component="span"
+                    fullWidth
                 >
                     <AddPhotoAlternateIcon/>
                     Загрузить фото

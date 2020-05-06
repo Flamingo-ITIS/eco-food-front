@@ -3,7 +3,6 @@ import {Link, Redirect, useHistory} from "react-router-dom";
 import '../../App.css';
 import {makeStyles} from "@material-ui/styles";
 import {Paper} from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import Grid from "@material-ui/core/Grid";
@@ -14,14 +13,14 @@ import API_URL from "../API";
 import Loader from "react-loader-spinner";
 import UploadUserPhoto from "./UploadUserPhoto";
 import Chip from "@material-ui/core/Chip";
-import {Image} from "@material-ui/icons";
 import {useCookies} from "react-cookie";
 import ProfilePhoto from "./ProfilePhoto";
+import SettingsIcon from '@material-ui/icons/Settings';
 
 export const useStyles = makeStyles(theme => ({
     info: {
         padding: 10,
-        margin: 10,
+        // margin: 10,
         // width: 400,
         height: 250,
     },
@@ -30,6 +29,13 @@ export const useStyles = makeStyles(theme => ({
         padding: "5px",
         color: theme.palette.primary.main,
         backgroundColor: theme.palette.primary.light
+    },
+    iconButton: {
+        // backgroundColor: theme.palette.secondary.light,
+        // "&:hover": {
+        //     backgroundColor: theme.palette.secondary.main,
+        // },
+        color: "black",
     },
 }));
 
@@ -112,10 +118,24 @@ const Profile = () => {
                                 alignItems="flex-start"
                                 className={classes.info}
                             >
-                                <Chip
-                                    label={user.role === "PARTNER" ? ("Продавец") : ("Покупатель")}
-                                    color="secondary"
-                                />
+                                <Grid
+                                    container
+                                    direction="row"
+                                    justify="space-between"
+                                    alignItems="center"
+                                    spacing={1}
+                                >
+                                    <Chip
+                                        label={user.role === "PARTNER" ? ("Продавец") : ("Покупатель")}
+                                        color="secondary"
+                                    />
+                                    <IconButton
+                                        href="/user/settings"
+                                        className={classes.iconButton}
+                                    >
+                                        <SettingsIcon/>
+                                    </IconButton>
+                                </Grid>
                                 <h3>Имя пользователя: {user.username}</h3>
                                 <h3>Имя: {user.name}</h3>
                                 <h3>Номер телефона: {user.contactPhone}</h3>

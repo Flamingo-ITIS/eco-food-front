@@ -11,12 +11,11 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import Fab from "@material-ui/core/Fab";
-import AddPhotoAlternateIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Paper from "@material-ui/core/Paper";
 import API_URL from "../API";
 import {useHistory} from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
+import {useCookies} from "react-cookie";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -52,6 +51,7 @@ const BuyProduct = ({product}) => {
     const [open, setOpen] = useState(false);
     const [boughtProduct, setBoughtProduct] = useState({});
     const history = useHistory();
+    const [cookies] = useCookies();
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -75,7 +75,7 @@ const BuyProduct = ({product}) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                'Authorization': 'Bearer ' + cookies.auth_token
             },
             body: json
         };
