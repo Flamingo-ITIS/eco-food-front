@@ -104,7 +104,7 @@ const NavBar = () => {
                         {/*    Корзина*/}
                         {/*</Button>*/}
                     </div>
-                    {(cookies.auth_token !== "undefined") ? (
+                    {(cookies.auth_token !== "undefined" && cookies.auth_token) ? (
                         <div>
                             <Button href="/profile">
                                 <AccountBoxIcon/>
