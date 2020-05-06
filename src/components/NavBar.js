@@ -15,6 +15,7 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import * as QueryString from "query-string";
 import API_URL from "./API";
 import Logout from "./Session/Logout";
+import {useCookies} from "react-cookie";
 
 const style = {
     flexGrow: 1
@@ -55,13 +56,12 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const isTokenValid = () => localStorage.getItem("token");
-
-
 const NavBar = () => {
     const values = QueryString.parse(window.location.search);
     const classes = useStyles();
     const [search_input, setSearch_input] = useState(values.template);
+    const [cookies] = useCookies();
+    console.log(cookies.auth_token)
 
     return (
         <div>
@@ -104,7 +104,7 @@ const NavBar = () => {
                         {/*    Корзина*/}
                         {/*</Button>*/}
                     </div>
-                    {isTokenValid() ? (
+                    {(cookies.auth_token !== "undefined") ? (
                         <div>
                             <Button href="/profile">
                                 <AccountBoxIcon/>

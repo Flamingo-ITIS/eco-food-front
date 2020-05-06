@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import API_URL from "../API";
 import AddIcon from '@material-ui/icons/Add';
 import Typography from "@material-ui/core/Typography";
+import {useCookies} from "react-cookie";
 
 export const useStyles = makeStyles({
     wrapContainer: {
@@ -67,6 +68,7 @@ export const useStyles = makeStyles({
 
 export const Published_products = () => {
     const classes = useStyles();
+    const [cookies] = useCookies();
     const [products, setProducts] = useState([]);
 
     const username = localStorage.getItem("username");
@@ -95,7 +97,7 @@ export const Published_products = () => {
                 method: 'DELETE',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
-                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                    'Authorization': 'Bearer ' + cookies.auth_token
                 },
             };
             fetch(url, requestOptions, [])

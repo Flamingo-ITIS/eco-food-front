@@ -15,6 +15,8 @@ import Loader from "react-loader-spinner";
 import UploadUserPhoto from "./UploadUserPhoto";
 import Chip from "@material-ui/core/Chip";
 import {Image} from "@material-ui/icons";
+import {useCookies} from "react-cookie";
+import ProfilePhoto from "./ProfilePhoto";
 
 export const useStyles = makeStyles(theme => ({
     info: {
@@ -41,6 +43,7 @@ const Profile = () => {
         const [isLoaded, setIsLoaded] = useState(false);
         const [error, setError] = useState(null);
         const [binaryData, setBinaryData] = useState();
+        const [cookies] = useCookies();
 
         useEffect(() => {
             const requestOptions = {
@@ -48,7 +51,7 @@ const Profile = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
-                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                    'Authorization': 'Bearer ' + cookies.auth_token
                 },
             };
             const username = localStorage.getItem("username");
@@ -64,25 +67,13 @@ const Profile = () => {
                         return Promise.reject(error);
                     }
                     setUser(data);
-                    // history.push('/profile');
                 })
                 .catch(error => {
+                    history.push('/login');
                     setError(error);
                     console.error('There was an error!', error);
                 });
-            const photoURL = API_URL + '/profile-photo';
-            fetch(photoURL, requestOptions, [])
-                .then(async response => {
-                    response.blob().then(blob => {
-                        const fileReaderInstance = new FileReader();
-                        fileReaderInstance.readAsDataURL(blob);
-                        fileReaderInstance.onload = () => {
-                            setBinaryData(fileReaderInstance.result);
-                            console.log(binaryData);
-                        }
-                    })
-                });
-        }, []);
+        });
 
         console.log(user);
         if (error) {
@@ -110,12 +101,7 @@ const Profile = () => {
                         alignItems="flex-start"
                     >
                         <Paper className={classes.image}>
-                            <div>
-                                <Avatar variant="square"
-                                        style={{width: '250px', height: '250px'}}
-                                        src={binaryData}
-                                />
-                            </div>
+                            <ProfilePhoto/>
                             <UploadUserPhoto/>
                         </Paper>
                         <Paper>

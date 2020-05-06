@@ -3,9 +3,11 @@ import {Link, Redirect, useHistory} from "react-router-dom";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
 import API_URL from "../API";
+import {useCookies} from "react-cookie";
 
 const Logout = () => {
     // const history = useHistory();
+    const [cookies,removeCookie] = useCookies();
 
     async function handleExit() {
         const url = API_URL + "/logout";
@@ -15,11 +17,11 @@ const Logout = () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                'Authorization': 'Bearer ' + cookies.auth_token
             }
         };
         await fetch(url, requestOptions);
-        localStorage.clear();
+        removeCookie('auth_token');
         // history.push('/main');
     }
     return (
