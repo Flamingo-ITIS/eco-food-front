@@ -9,6 +9,7 @@ import {
     Redirect,
     useHistory
 } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import API_URL from "../API";
@@ -48,6 +49,7 @@ export const useStyles = makeStyles(theme => ({
 const Login = () => {
     const classes = useStyles();
     const history = useHistory();
+    const [cookies, setCookie, removeCookie] = useCookies();
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -84,7 +86,10 @@ const Login = () => {
         await fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => {
-                localStorage.setItem("token", data.token);
+                if (data.token !== undefined) {
+                    setCookie('auth_token', data.token, { path: '/' });
+                }
+                // localStorage.setItem("token", data.token);
                 localStorage.setItem("username", username);
                 history.push('/profile');
             });
