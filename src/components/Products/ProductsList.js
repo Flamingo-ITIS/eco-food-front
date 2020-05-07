@@ -64,7 +64,9 @@ const ProductsList = ({products, productsList}) => {
     const classes = useStyles();
     const TextTruncate = require('react-text-truncate');
     return (
-        <ul style={{width: "900px"}}>
+        <ul
+            style={{padding: 0}}
+        >
             <Grid
                 container
                 direction="row"

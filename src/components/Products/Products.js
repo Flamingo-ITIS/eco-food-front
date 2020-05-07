@@ -9,6 +9,7 @@ import * as QueryString from "query-string";
 import SortingButton from "./SortingButton";
 import {useCookies} from "react-cookie";
 
+
 const Products = ({products}) => {
     const [productsList, setProductsList] = useState([]);
     const [category, setCategory] = useState('');
@@ -22,7 +23,8 @@ const Products = ({products}) => {
         if (values.category !== undefined) {
             const category = values.category;
             setCategory(category);
-        };
+        }
+        ;
 
         //
         // if (values.sort !== undefined){
@@ -91,8 +93,18 @@ const Products = ({products}) => {
                     justify="flex-start"
                     alignItems="flex-start"
                 >
-                    <ProductsFilter categoryName={category}/>
-                    <ProductsList products={products} productsList={productsList}/>
+                    <Grid item xs={3}>
+                        <ProductsFilter categoryName={category}/>
+                    </Grid>
+                    <Grid
+                        // style={{width: "900px"}}
+                        item xs={9}
+                    >
+                        <ProductsList
+                            products={products}
+                            productsList={productsList}
+                        />
+                    </Grid>
                 </Grid>
             </div>
         );

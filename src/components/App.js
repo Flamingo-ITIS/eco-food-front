@@ -23,7 +23,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <NavBar/>
-            <Container fixed >
+            <Container fixed style={{padding: 0}}>
                 <AppRouter/>
             </Container>
         </ThemeProvider>

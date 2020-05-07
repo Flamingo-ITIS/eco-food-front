@@ -89,7 +89,12 @@ const ProductsFilter = ({categoryName}) => {
                     />
                     <br/>
 
-                    <FormControl variant="outlined" required className={classes.formControl}>
+                    <FormControl
+                        variant="outlined"
+                        required
+                        fullWidth
+                        className={classes.formControl}
+                    >
                         <InputLabel id="categoryLabel">Категория</InputLabel>
                         <Select
                             labelId="categoryLabel"

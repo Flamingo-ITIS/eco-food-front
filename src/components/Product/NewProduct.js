@@ -3,7 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {useHistory} from "react-router-dom";
-import React from "react";
+import React, {useState} from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -14,19 +14,21 @@ import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import API_URL from "../API";
 import {CATEGORY_STATES} from "./Product";
 import {useCookies} from "react-cookie";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 export const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(8),
+        margin: theme.spacing(3),
         borderRadius: "5px",
         padding: "30px",
     },
     description: {
         width: 600,
-        margin: "15px",
+        margin: theme.spacing(3),
     },
     main: {
-        width: 300
+        width: 300,
+        margin: theme.spacing(3),
     },
     button: {
         margin: "10px",
@@ -41,12 +43,11 @@ export const useStyles = makeStyles(theme => ({
 }));
 
 
-
-
 const NewProduct = () => {
     const classes = useStyles();
     const history = useHistory();
     const [cookies] = useCookies();
+    const [type, setType] = useState("");
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -84,14 +85,14 @@ const NewProduct = () => {
                     return Promise.reject(error);
                 }
 
-                history.push('/product/'+ data.id.toString())
+                history.push('/product/' + data.id.toString())
             })
             .catch(error => {
                 // setState({ errorMessage: error });
                 console.error('There was an error!', error);
             });
-            // .then(response => response.json())
-            // .then(data => setProduct_id({data.id}));
+        // .then(response => response.json())
+        // .then(data => setProduct_id({data.id}));
 
         // console.log(product_id);
 
@@ -108,6 +109,7 @@ const NewProduct = () => {
         // }
         // return await response.json(); // parses JSON response into native JavaScript objects
     }
+
     return (
         <Grid
             container
@@ -161,20 +163,31 @@ const NewProduct = () => {
                             {/*<h3>*/}
                             {/*    ₽*/}
                             {/*</h3>*/}
-                            <FormControl variant="outlined" required className={classes.formControl}>
+                            <FormControl
+                                variant="outlined"
+                                required
+                                className={classes.formControl}
+                            >
                                 <InputLabel id="typeLabel">Тип</InputLabel>
                                 <Select
                                     labelId="typeLabel"
                                     id="countType"
                                     name="countType"
                                     label="Тип"
+                                    onChange={(event) => {
+                                        setType(event.target.value);
+                                    }}
                                 >
                                     <MenuItem value="KILOGRAM">Килограмм</MenuItem>
                                     <MenuItem value="ITEM">Шт.</MenuItem>
                                 </Select>
                             </FormControl>
 
-                            <FormControl variant="outlined" required className={classes.formControl}>
+                            <FormControl
+                                variant="outlined"
+                                required
+                                className={classes.formControl}
+                            >
                                 <InputLabel id="categoryLabel">Категория</InputLabel>
                                 <Select
                                     labelId="categoryLabel"
@@ -196,6 +209,9 @@ const NewProduct = () => {
                                 id="cost"
                                 label="Цена"
                                 name="cost"
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">₽ {type === "KILOGRAM" ? ("за кг") : ("за шт.")}</InputAdornment>,
+                                }}
                                 className={classes.formControl}
                             />
                         </Grid>
@@ -207,24 +223,15 @@ const NewProduct = () => {
                             alignItems="center"
                             className={classes.description}
                         >
-                            {/*<TextField*/}
-                            {/*    variant="outlined"*/}
-                            {/*    margin="normal"*/}
-                            {/*    required*/}
-                            {/*    fullWidth*/}
-                            {/*    type="textarea"*/}
-                            {/*    id="description"*/}
-                            {/*    label="Описание"*/}
-                            {/*    name="description"*/}
-                            {/*    className={classes.description}*/}
-                            {/*/>*/}
-
-                            <textarea placeholder="Описание"
-                                      id="description"
-                                      name="description"
-                                      rows="12"
-                                      cols="60"
-                                      required
+                            <TextField
+                                id="description"
+                                name="description"
+                                label="Описание"
+                                multiline
+                                rows={8}
+                                fullWidth
+                                variant="outlined"
+                                className={classes.formControl}
                             />
                             <input
                                 accept="image/*"
