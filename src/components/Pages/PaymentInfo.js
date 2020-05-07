@@ -3,8 +3,6 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/styles";
-import PaymentIcon from "@material-ui/icons/Payment";
-import Icon from "@material-ui/core/Icon";
 
 export const useStyles = makeStyles({
     info: {

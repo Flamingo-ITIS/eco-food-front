@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Card from "@material-ui/core/Card";
 import {Link} from "react-router-dom";
 import CardContent from "@material-ui/core/CardContent";
@@ -7,12 +7,9 @@ import {makeStyles} from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import IconButton from "@material-ui/core/IconButton";
-import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import TextTruncate from 'react-text-truncate';
 import LikeProduct from "../FavoriteProducts/LikeProduct";
 import BuyProduct from "../Orders/BuyProduct";
@@ -67,7 +64,9 @@ const ProductsList = ({products, productsList}) => {
     const classes = useStyles();
     const TextTruncate = require('react-text-truncate');
     return (
-        <ul style={{width: "900px"}}>
+        <ul
+            style={{padding: 0}}
+        >
             <Grid
                 container
                 direction="row"

@@ -1,8 +1,9 @@
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import IconButton from "@material-ui/core/IconButton";
-import React, {useEffect} from "react";
+import React from "react";
 import {makeStyles} from "@material-ui/styles";
 import API_URL from "../API";
+import {useCookies} from "react-cookie";
 
 export const useStyles = makeStyles(theme => ({
     iconButton: {
@@ -19,6 +20,7 @@ export const useStyles = makeStyles(theme => ({
 
 const UnLikeProduct = ({product_id}) => {
     const classes = useStyles();
+    const [cookies] = useCookies();
 
     async function triggerDelete() {
         if (window.confirm("Are you sure you want to delete this task?")) {
@@ -27,7 +29,7 @@ const UnLikeProduct = ({product_id}) => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
-                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                    'Authorization': 'Bearer ' + cookies.auth_token
                 },
             };
             const url = API_URL + '/' + product_id + '/favorites';

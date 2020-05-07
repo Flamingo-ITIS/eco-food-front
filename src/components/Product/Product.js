@@ -12,11 +12,16 @@ import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
+import GradeIcon from '@material-ui/icons/Grade';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import Chip from "@material-ui/core/Chip";
 import API_URL from "../API";
+import StarRatingComponent from 'react-star-rating-component';
+import RecallsList from "./RecallsList";
+import NewRecall from "./NewRecall";
+
 
 export const useStyles = makeStyles(theme => ({
     info: {
@@ -91,7 +96,6 @@ const Product = () => {
             });
     }, []);
     console.log(product);
-    // console.log(product_user.username);
 
     return (
         <Grid
@@ -132,22 +136,17 @@ const Product = () => {
                         </IconButton>
                     </div>
                     <div>
-                        <IconButton>
-                            <GradeOutlinedIcon/>
-                        </IconButton>
-                        <IconButton>
-                            <GradeOutlinedIcon/>
-                        </IconButton>
-                        <IconButton>
-                            <GradeOutlinedIcon/>
-                        </IconButton>
-                        <IconButton>
-                            <GradeOutlinedIcon/>
-                        </IconButton>
-                        <IconButton>
-                            <GradeOutlinedIcon/>
-                        </IconButton>
-
+                        <StarRatingComponent
+                            editing={false}
+                            renderStarIcon={() => <GradeIcon fontSize="large"/>}
+                            starCount={5}
+                            value={product.rating}
+                            emptyStarColor="#cfcfcf"
+                            // name="rate1"
+                            // starCount={5}
+                            // value={rating}
+                            // onStarClick={onStarClick.bind(this)}
+                        />
                     </div>
                     <Button
                         variant="outlined"
@@ -177,6 +176,30 @@ const Product = () => {
                     </Grid>
                 </Paper>
             </Grid>
+
+            <hr
+                style={{
+                    color: "black",
+                    margin: 20,
+                    width: 1100,
+                }}
+            />
+            <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+                style={{
+                    width: 1000,
+                }}
+            >
+                <Typography variant="h5">
+                    Отзывы
+                </Typography>
+                <NewRecall productId={id}/>
+            </Grid>
+
+            <RecallsList product_id={id}/>
             {/*<div>*/}
             {/*    <h1>Похожие товары</h1>*/}
             {/*    <ul className={classes.wrapContainer}>*/}

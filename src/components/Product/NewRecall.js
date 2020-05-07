@@ -1,22 +1,19 @@
 import React, {useState} from "react";
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import {useCookies} from "react-cookie";
+import {useHistory} from "react-router-dom";
+import API_URL from "../API";
 import Button from "@material-ui/core/Button";
-import {makeStyles} from "@material-ui/styles";
+import ShoppingBasketIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import Backdrop from "@material-ui/core/Backdrop";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import Paper from "@material-ui/core/Paper";
-import API_URL from "../API";
-import {useHistory} from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import {useCookies} from "react-cookie";
-
+import {makeStyles} from "@material-ui/styles";
+import StarRatingComponent from "react-star-rating-component";
+import GradeIcon from '@material-ui/icons/Grade';
 
 export const useStyles = makeStyles(theme => ({
     modal: {
@@ -31,10 +28,6 @@ export const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2, 4, 3),
         width: 500,
     },
-    buyButton: {
-        // margin: theme.spacing(1,1,1),
-        color: "white",
-    },
     button: {
         margin: "10px",
         padding: "5px",
@@ -46,29 +39,31 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-const BuyProduct = ({product}) => {
+const NewRecall = ({productId}) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [boughtProduct, setBoughtProduct] = useState({});
+    const [product_rating, setProduct_rating] = useState();
     const history = useHistory();
     const [cookies] = useCookies();
 
+    function onStarClick(nextValue) {
+        setProduct_rating(nextValue);
+    }
+
     async function handleSubmit(event) {
         event.preventDefault();
-        const buyProductData = new FormData(event.target);
+        const recallData = new FormData(event.target);
         const object = {};
-        buyProductData.forEach((value, key) => {
+        recallData.forEach((value, key) => {
             object[key] = value
         });
 
-        object["count"] = parseInt(object["count"]);
-        object["cost"] = product.cost;
-        object["productId"] = product.id;
+        object["productId"] = parseInt(productId);
         const json = JSON.stringify(object);
         console.log(json);
 
 
-        const url = API_URL + "/buys";
+        const url = API_URL + "/recalls";
 
         const requestOptions = {
             method: 'POST',
@@ -81,13 +76,13 @@ const BuyProduct = ({product}) => {
         };
         fetch(url, requestOptions, [])
             .then(async response => {
-                const data = await response.json();
+                const data = await response;
                 if (!response.ok) {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-                setBoughtProduct(data);
-                history.push('/user/orders');
+                console.log(data);
+                setOpen(false);
             })
             .catch(error => {
                 // setState({ errorMessage: error });
@@ -105,13 +100,11 @@ const BuyProduct = ({product}) => {
     return (
         <div>
             <Button
-                variant="contained"
+                variant="outlined"
                 color="primary"
-                className={classes.buyButton}
                 onClick={handleOpen}
             >
-                <ShoppingBasketIcon/>
-                Купить
+                Оставить отзыв
             </Button>
             <Modal
                 aria-labelledby="transition-modal-title"
@@ -128,7 +121,7 @@ const BuyProduct = ({product}) => {
                 <Fade in={open}>
                     <Paper className={classes.paper}>
                         <Typography variant="h5" gutterBottom id="transition-modal-title">
-                            Пожалуйста уточните
+                            Новый отзыв
                         </Typography>
                         <form noValidate
                               onSubmit={handleSubmit}
@@ -140,55 +133,27 @@ const BuyProduct = ({product}) => {
                                 justify="center"
                                 alignItems="center"
                             >
+                                <div>
+                                    <StarRatingComponent
+                                        required
+                                        renderStarIcon={() => <GradeIcon fontSize="large"/>}
+                                        emptyStarColor="#cfcfcf"
+                                        name="value"
+                                        starCount={5}
+                                        value={product_rating}
+                                        onStarClick={onStarClick.bind(this)}
+                                    />
+                                </div>
                                 <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
+                                    id="message"
+                                    name="message"
+                                    label="Отзыв"
+                                    multiline
+                                    rows={8}
                                     fullWidth
-                                    type="number"
-                                    id="count"
-                                    label="Количество"
-                                    name="count"
+                                    variant="outlined"
                                     className={classes.formControl}
                                 />
-                                {/*<h3>*/}
-                                {/*    ₽*/}
-                                {/*</h3>*/}
-                                <FormControl
-                                    fullWidth
-                                    variant="outlined"
-                                    required
-                                    className={classes.formControl}
-                                >
-                                    <InputLabel id="typeLabel">Получение товара</InputLabel>
-                                    <Select
-                                        labelId="typeLabel"
-                                        id="deliveryType"
-                                        name="deliveryType"
-                                        label="Получение товара"
-                                    >
-                                        <MenuItem value="COURIER">Доставка</MenuItem>
-                                        <MenuItem value="PICKUP">Самовывоз</MenuItem>
-                                    </Select>
-                                </FormControl>
-
-                                <FormControl
-                                    fullWidth
-                                    variant="outlined"
-                                    required
-                                    className={classes.formControl}
-                                >
-                                    <InputLabel id="paymentTypeLabel">Оплата</InputLabel>
-                                    <Select
-                                        labelId="paymentTypeLabel"
-                                        id="paymentType"
-                                        name="paymentType"
-                                        label="Оплата"
-                                    >
-                                        <MenuItem value="CARD">Банковская карта</MenuItem>
-                                        <MenuItem value="CASH">Наличные</MenuItem>
-                                    </Select>
-                                </FormControl>
                                 <Button
                                     type="submit"
                                     variant="contained"
@@ -204,6 +169,6 @@ const BuyProduct = ({product}) => {
             </Modal>
         </div>
     )
-};
+}
 
-export default BuyProduct;
+export default NewRecall;

@@ -5,7 +5,6 @@ import Button from "@material-ui/core/Button";
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/core/styles";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCartTwoTone';
 import Avatar from "@material-ui/core/Avatar";
 import DnsIcon from '@material-ui/icons/DnsTwoTone';
 import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
@@ -13,13 +12,10 @@ import AppsIcon from '@material-ui/icons/Apps';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import * as QueryString from "query-string";
-import API_URL from "./API";
 import Logout from "./Session/Logout";
 import {useCookies} from "react-cookie";
-
-const style = {
-    flexGrow: 1
-};
+import SearchIcon from '@material-ui/icons/Search';
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
     navBar: {
@@ -33,8 +29,10 @@ const useStyles = makeStyles(theme => ({
     },
     textField: {
         marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: 400,
+        width: 300,
+    },
+    search: {
+        width: 500,
     },
     centerRow: {
         padding: theme.spacing(3, 2),
@@ -50,7 +48,8 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.primary.main,
     },
     button: {
-        margin: "10px",
+        marginTop: theme.spacing(1),
+        height: 55,
         padding: "5px",
         color: "black"
     },
@@ -68,7 +67,13 @@ const NavBar = () => {
             <AppBar className={classes.navBar} position="static">
                 <Toolbar className={classes.container}>
                     <img className={classes.logo} src="/static/logo.png"/>
-                    {/*<div>*/}
+                    <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        className={classes.search}
+                    >
                         <TextField
                             id="outlined-search"
                             name="name"
@@ -82,11 +87,29 @@ const NavBar = () => {
                                 setSearch_input(event.target.value);
                             }}
                         />
-                        <Button className={classes.button} href={"/search/products?template=" + search_input}>
-                            Найти
+                        <Button
+                            className={classes.button}
+                            variant="outlined"
+                            href={"/search/products?template=" + search_input}
+                        >
+                            <SearchIcon/>
                         </Button>
-                    {/*</div>*/}
-                    <div>
+                    </Grid>
+                    {/*<SearchField*/}
+                    {/*    placeholder="Поиск товара"*/}
+                    {/*    onChange={event => {*/}
+                    {/*        setSearch_input(event.target.value);*/}
+                    {/*    }}*/}
+                    {/*    searchText={search_input}*/}
+                    {/*    classNames={classes.textField}*/}
+                    {/*/>*/}
+                    <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        className={classes.search}
+                    >
                         <Button className={classes.button} href="/products">
                             <DnsIcon/>
                             Каталог
@@ -103,7 +126,7 @@ const NavBar = () => {
                         {/*    <ShoppingCartIcon/>*/}
                         {/*    Корзина*/}
                         {/*</Button>*/}
-                    </div>
+                    </Grid>
                     {(cookies.auth_token !== "undefined" && cookies.auth_token) ? (
                         <div>
                             <Button href="/profile">

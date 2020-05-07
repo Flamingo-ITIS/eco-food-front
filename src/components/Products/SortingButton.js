@@ -1,7 +1,7 @@
 import SortIcon from '@material-ui/icons/Sort';
 import Button from "@material-ui/core/Button";
 import React from "react";
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import * as QueryString from "query-string";
 
 

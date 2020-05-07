@@ -3,6 +3,7 @@ import OrdersList from "./OrdersList";
 import API_URL from "../../API";
 import Typography from "@material-ui/core/Typography";
 import Loader from "react-loader-spinner";
+import {useCookies} from "react-cookie";
 
 const Orders = () => {
         // const classes = useStyles();
@@ -10,6 +11,8 @@ const Orders = () => {
         const [boughtProducts, setBoughtProducts] = useState([]);
         const [isLoaded, setIsLoaded] = useState(false);
         const [error, setError] = useState(null);
+        const [cookies] = useCookies();
+
 
         useEffect(() => {
             const requestOptions = {
@@ -17,7 +20,7 @@ const Orders = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
-                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                    'Authorization': 'Bearer ' + cookies.auth_token
                 },
             };
             const url = API_URL + '/buys';

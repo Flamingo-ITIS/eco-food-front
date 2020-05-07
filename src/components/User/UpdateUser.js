@@ -1,11 +1,12 @@
 import Button from "@material-ui/core/Button";
 import React, {useEffect, useState} from "react";
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import API_URL from "../API";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
+import {useCookies} from "react-cookie";
 
 export const useStyles = makeStyles(theme => ({
     paper: {
@@ -35,6 +36,7 @@ const UpdateUser = () => {
     const [user, setUser] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
+    const [cookies] = useCookies();
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -50,7 +52,7 @@ const UpdateUser = () => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                'Authorization': 'Bearer ' + cookies.auth_token
             },
             body: json
         };
@@ -79,7 +81,7 @@ const UpdateUser = () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                'Authorization': 'Bearer ' + cookies.auth_token
             },
         };
         const username = localStorage.getItem("username");

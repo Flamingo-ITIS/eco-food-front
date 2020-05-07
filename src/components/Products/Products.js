@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import SortIcon from '@material-ui/icons/Sort';
 import ProductsFilter from "./ProductsFilter";
 import ProductsList from "./ProductsList";
 import Loader from "react-loader-spinner";
 import API_URL from "../API";
 import * as QueryString from "query-string";
 import SortingButton from "./SortingButton";
+import {useCookies} from "react-cookie";
+
 
 const Products = ({products}) => {
     const [productsList, setProductsList] = useState([]);
@@ -16,7 +16,6 @@ const Products = ({products}) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
     const values = QueryString.parse(window.location.search);
-    const history = useHistory();
 
     useEffect(() => {
         let url = API_URL + "/products" + window.location.search;
@@ -24,7 +23,8 @@ const Products = ({products}) => {
         if (values.category !== undefined) {
             const category = values.category;
             setCategory(category);
-        };
+        }
+        ;
 
         //
         // if (values.sort !== undefined){
@@ -39,7 +39,7 @@ const Products = ({products}) => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                // 'Authorization': 'Bearer ' + cookies.auth_token
             },
         };
         fetch(url, requestOptions, [])
@@ -93,8 +93,18 @@ const Products = ({products}) => {
                     justify="flex-start"
                     alignItems="flex-start"
                 >
-                    <ProductsFilter categoryName={category}/>
-                    <ProductsList products={products} productsList={productsList}/>
+                    <Grid item xs={3}>
+                        <ProductsFilter categoryName={category}/>
+                    </Grid>
+                    <Grid
+                        // style={{width: "900px"}}
+                        item xs={9}
+                    >
+                        <ProductsList
+                            products={products}
+                            productsList={productsList}
+                        />
+                    </Grid>
                 </Grid>
             </div>
         );
