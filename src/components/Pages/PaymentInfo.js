@@ -3,6 +3,10 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/styles";
+import pickup_icon from '../../images/icons/pickup_icon.png';
+import courier_icon from '../../images/icons/courier_icon.png';
+import card_icon from '../../images/icons/card_icon.png';
+import cash_icon from '../../images/icons/cash_icon.png';
 
 export const useStyles = makeStyles({
     info: {
@@ -34,8 +38,11 @@ const PaymentInfo = () => {
                       justify="flex-start"
                       alignItems="center"
                 >
-                    <img className={classes.deliveryLogo} src="/static/delivery.png"/>
-                    <Typography variant="h3" align="center">
+                    <Typography
+                        variant="h3"
+                        align="center"
+                        gutterBottom
+                    >
                         ДОСТАВКА И ОПЛАТА
                     </Typography>
                 </Grid>
@@ -63,7 +70,7 @@ const PaymentInfo = () => {
                               justify="flex-start"
                               alignItems="center"
                         >
-                            <img className={classes.deliveryLogo} src="/static/delivery_logo.png"/>
+                            <img className={classes.deliveryLogo} src={courier_icon}/>
                             <Typography variant="h4" align="left" gutter>
                                 Курьерская доставка
                             </Typography>
@@ -81,7 +88,7 @@ const PaymentInfo = () => {
                               justify="flex-start"
                               alignItems="center"
                         >
-                            <img className={classes.deliveryLogo} src="/static/pickup_logo.png"/>
+                            <img className={classes.deliveryLogo} src={pickup_icon}/>
                             <Typography variant="h4" align="left" gutter>
                                 Самовывоз
                             </Typography>
@@ -108,7 +115,7 @@ const PaymentInfo = () => {
                               justify="flex-start"
                               alignItems="center"
                         >
-                            <img className={classes.deliveryLogo} src="/static/payment_logo.png"/>
+                            <img className={classes.deliveryLogo} src={cash_icon}/>
                             <Typography variant="h5" align="left" gutter>
                                 Наличный расчет
                             </Typography>
@@ -121,7 +128,7 @@ const PaymentInfo = () => {
                               justify="flex-start"
                               alignItems="center"
                         >
-                            <img className={classes.deliveryLogo} src="/static/card_logo.png"/>
+                            <img className={classes.deliveryLogo} src={card_icon}/>
                             <Typography variant="h5" align="left" gutter>
                                 Безналичный расчет
                             </Typography>

@@ -12,11 +12,12 @@ import { useCookies } from 'react-cookie';
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import API_URL from "../API";
+import {useAlert} from "react-alert";
 
 
 export const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(3),
         display: 'flex',
         maxWidth: 400,
         flexDirection: 'column',
@@ -49,6 +50,8 @@ const Login = () => {
     const classes = useStyles();
     const history = useHistory();
     const [cookies, setCookie, removeCookie] = useCookies();
+    const alert = useAlert();
+
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -87,10 +90,10 @@ const Login = () => {
             .then(data => {
                 if (data.token !== undefined) {
                     setCookie('auth_token', data.token, { path: '/' });
+                    localStorage.setItem("username", username);
+                    alert.success("Вы успешно вошли в профиль!")
+                    history.push('/profile');
                 }
-                // localStorage.setItem("token", data.token);
-                localStorage.setItem("username", username);
-                history.push('/profile');
             });
 
 
