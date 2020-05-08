@@ -16,6 +16,7 @@ import Logout from "./Session/Logout";
 import {useCookies} from "react-cookie";
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from "@material-ui/core/Grid";
+import logo from '../images/logo.png';
 
 const useStyles = makeStyles(theme => ({
     navBar: {
@@ -66,7 +67,7 @@ const NavBar = () => {
         <div>
             <AppBar className={classes.navBar} position="static">
                 <Toolbar className={classes.container}>
-                    <img className={classes.logo} src="/static/logo.png"/>
+                    <img className={classes.logo} src={logo}/>
                     <Grid
                         container
                         direction="row"

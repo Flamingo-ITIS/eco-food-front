@@ -4,6 +4,10 @@ import ProductsList from "../Products/ProductsList";
 import ArticlesList from "../Articles/ArticlesList";
 import API_URL from "../API";
 import Loader from "react-loader-spinner";
+import banner_1 from '../../images/banners/banner_1.jpg';
+import banner_2 from '../../images/banners/banner_2.png';
+import banner_3 from '../../images/banners/banner_3.png';
+import banner_4 from '../../images/banners/banner_4.png';
 
 const Main = () => {
     const [topProducts, setTopProducts] = useState([]);
@@ -51,20 +55,17 @@ const Main = () => {
             <div>
                 <div>
                     <Slider dots>
-                        {/*<div>*/}
-                        {/*    <img src="https://dizao-shop.ru/upload/iblock/106/slaydery_dizao_shopru1.jpg" alt={"banner"}/>*/}
-                        {/*</div>*/}
                         <div>
-                            <img src="/static/banners/banner_1.jpg" alt={"banner"}/>
+                            <img src={banner_1} alt={"banner_1"}/>
                         </div>
                         <div>
-                            <img src="/static/banners/banner_2.png" alt={"banner"}/>
+                            <img src={banner_2} alt={"banner_2"}/>
                         </div>
                         <div>
-                            <img src="/static/banners/banner_3.png" alt={"banner"}/>
+                            <img src={banner_3} alt={"banner_3"}/>
                         </div>
                         <div>
-                            <img src="/static/banners/banner_4.png" alt={"banner"}/>
+                            <img src={banner_4} alt={"banner_4"}/>
                         </div>
                     </Slider>
                 </div>
