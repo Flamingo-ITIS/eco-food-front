@@ -14,6 +14,7 @@ import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/styles";
 import StarRatingComponent from "react-star-rating-component";
 import GradeIcon from '@material-ui/icons/Grade';
+import {useAlert} from "react-alert";
 
 export const useStyles = makeStyles(theme => ({
     modal: {
@@ -44,6 +45,7 @@ const NewRecall = ({productId}) => {
     const [open, setOpen] = useState(false);
     const [product_rating, setProduct_rating] = useState();
     const history = useHistory();
+    const alert = useAlert();
     const [cookies] = useCookies();
 
     function onStarClick(nextValue) {
@@ -77,15 +79,16 @@ const NewRecall = ({productId}) => {
         fetch(url, requestOptions, [])
             .then(async response => {
                 const data = await response;
-                if (!response.ok) {
+                if (response.ok) {
+                    alert.success("Ваш отзыв успешно опубликован");
+                    setOpen(false);
+                } else {
+                    alert.error("Что-то пошло не так...");
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-                console.log(data);
-                setOpen(false);
             })
             .catch(error => {
-                // setState({ errorMessage: error });
                 console.error('There was an error!', error);
             });
     }
@@ -123,9 +126,9 @@ const NewRecall = ({productId}) => {
                         <Typography variant="h5" gutterBottom id="transition-modal-title">
                             Новый отзыв
                         </Typography>
-                        <form noValidate
-                              onSubmit={handleSubmit}
-                              id="transition-modal-description"
+                        <form
+                            onSubmit={handleSubmit}
+                            id="transition-modal-description"
                         >
                             <Grid
                                 container

@@ -21,6 +21,8 @@ import API_URL from "../API";
 import StarRatingComponent from 'react-star-rating-component';
 import RecallsList from "./RecallsList";
 import NewRecall from "./NewRecall";
+import {checkLoggedIn} from "../NavBar";
+import {useCookies} from "react-cookie";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -74,6 +76,7 @@ function category_text(category) {
 const Product = () => {
     let {id} = useParams();
     const classes = useStyles();
+    const [cookies] = useCookies();
     const [product, setProduct] = useState({});
     const [product_user, setProduct_user] = useState({});
     const [product_category, setProduct_category] = useState({});
@@ -193,10 +196,20 @@ const Product = () => {
                     width: 1000,
                 }}
             >
-                <Typography variant="h5">
+                <Typography variant="h5" gutterBottom>
                     Отзывы
                 </Typography>
-                <NewRecall productId={id}/>
+                {(checkLoggedIn(cookies.auth_token)) ? (
+                    <NewRecall productId={id}/>
+                ) : (
+                    <Typography variant="body1" gutterBottom>
+                        <Link to="/login">
+                            Войдите
+                        </Link>
+                        , чтобы оставить комментарий
+                    </Typography>
+                )
+                }
             </Grid>
 
             <RecallsList product_id={id}/>

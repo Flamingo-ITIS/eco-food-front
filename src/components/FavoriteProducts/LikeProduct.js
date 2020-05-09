@@ -4,7 +4,8 @@ import React from "react";
 import {makeStyles} from "@material-ui/styles";
 import API_URL from "../API";
 import {useCookies} from "react-cookie";
-
+import {useAlert} from "react-alert";
+import {useHistory} from "react-router-dom";
 
 export const useStyles = makeStyles(theme => ({
     iconButton: {
@@ -23,8 +24,10 @@ export const useStyles = makeStyles(theme => ({
 const LikeProduct = ({product_id}) => {
     const classes = useStyles();
     const [cookies] = useCookies();
+    const alert = useAlert();
+    const history = useHistory();
 
-    async function triggerLike() {
+    function triggerLike() {
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -35,17 +38,23 @@ const LikeProduct = ({product_id}) => {
         };
         const url = API_URL + '/' + product_id + '/favorites';
         fetch(url, requestOptions)
-            .then(response => response.json())
-            .then(
-                data => {
-                    // setIsLoaded(true);
-                    console.log(data)
-                },
-                (error) => {
-                    // setIsLoaded(true);
-                    // setError(error)
-                });
-
+            .then(async response => {
+                const data = await response;
+                if (response.status === 401){
+                    alert.success("Пожалуйста, авторизуйтесь.");
+                    history.push("/login")
+                }
+                if (response.ok) {
+                    alert.success("Товар добавлен в избранное");
+                } else {
+                    alert.error("Что-то пошло не так...");
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
     };
 
     return (

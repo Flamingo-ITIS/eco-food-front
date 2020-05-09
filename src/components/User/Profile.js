@@ -68,6 +68,7 @@ const Profile = () => {
 
                     setIsLoaded(true);
                     if (!response.ok) {
+                        history.push('/login');
                         // get error message from body or default to response status
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
@@ -75,7 +76,6 @@ const Profile = () => {
                     setUser(data);
                 })
                 .catch(error => {
-                    history.push('/login');
                     setError(error);
                     console.error('There was an error!', error);
                 });
@@ -181,14 +181,14 @@ const Profile = () => {
                                         </h3>
                                     </Button>
                                 </div>
-                                <div>
-                                    <Button href="/seller/chat">
-                                        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>
-                                        <h3>
-                                            Диалог с продавцом
-                                        </h3>
-                                    </Button>
-                                </div>
+                                {/*<div>*/}
+                                {/*    <Button href="/seller/chat">*/}
+                                {/*        <ListAltIcon fontSize="large" style={{width: "100px", height: "100px"}}/>*/}
+                                {/*        <h3>*/}
+                                {/*            Диалог с продавцом*/}
+                                {/*        </h3>*/}
+                                {/*    </Button>*/}
+                                {/*</div>*/}
                             </Grid>
                         </Paper>
                     </Grid>

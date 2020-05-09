@@ -124,8 +124,9 @@ const NewProduct = () => {
                 <h1>
                     Новый товар
                 </h1>
-                <form noValidate
-                      onSubmit={handleSubmit}>
+                <form
+                    onSubmit={handleSubmit}
+                >
                     <Grid
                         container
                         direction="row"

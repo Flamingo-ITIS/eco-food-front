@@ -8,6 +8,7 @@ import StarRatingComponent from "react-star-rating-component";
 import {makeStyles} from "@material-ui/styles";
 import Chip from "@material-ui/core/Chip";
 import API_URL from "../API";
+
 export const useStyles = makeStyles(theme => ({
     card: {
         width: 1000,
@@ -75,38 +76,45 @@ const RecallsList = ({product_id}) => {
                 justify="center"
                 alignItems="center"
             >
-                {recalls.map(recall =>
-                    <li key={recall.id}>
-                        <Card className={classes.card} elevation={5}>
-                            <CardContent>
-                                <Grid
-                                    container
-                                    direction="column"
-                                    alignItems="flex-start"
-                                    justify="space-between"
-                                >
-                                    <Chip
-                                        color="secondary"
-                                        label={recall.customer.username}
-                                        style={{margin: 10}}
-                                    />
-                                    <div>
-                                        <StarRatingComponent
-                                            editing={false}
-                                            renderStarIcon={() => <GradeIcon/>}
-                                            starCount={5}
-                                            value={recall.value}
-                                            emptyStarColor="#cfcfcf"
+                {recalls.length > 0 ?
+                    (recalls.map(recall =>
+                        <li key={recall.id}>
+                            <Card className={classes.card} elevation={5}>
+                                <CardContent>
+                                    <Grid
+                                        container
+                                        direction="column"
+                                        alignItems="flex-start"
+                                        justify="space-between"
+                                    >
+                                        <Chip
+                                            color="secondary"
+                                            label={recall.customer.username}
+                                            style={{margin: 10}}
                                         />
-                                    </div>
-                                    <Typography variant="body1" gutterBottom >
-                                        {recall.message}
-                                    </Typography>
-                                </Grid>
-                            </CardContent>
-                        </Card>
-                    </li>
-                )}
+                                        <div>
+                                            <StarRatingComponent
+                                                editing={false}
+                                                renderStarIcon={() => <GradeIcon/>}
+                                                starCount={5}
+                                                value={recall.value}
+                                                emptyStarColor="#cfcfcf"
+                                            />
+                                        </div>
+                                        <Typography variant="body1" gutterBottom>
+                                            {recall.message}
+                                        </Typography>
+                                    </Grid>
+                                </CardContent>
+                            </Card>
+                        </li>
+                    )) :
+                    (
+                        <Typography variant="body1" gutterBottom>
+                            Здесь пока ничего нет :(
+                        </Typography>
+                    )
+                }
             </Grid>
         </ul>
     );

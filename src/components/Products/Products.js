@@ -58,7 +58,7 @@ const Products = ({products}) => {
                 setError(error);
                 console.error('There was an error!', error);
             });
-    });
+    },[]);
     console.log(productsList);
 
     if (error) {
