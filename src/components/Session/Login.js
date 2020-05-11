@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import API_URL from "../API";
 import {useAlert} from "react-alert";
+import Typography from "@material-ui/core/Typography";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -91,8 +92,10 @@ const Login = () => {
                 if (data.token !== undefined) {
                     setCookie('auth_token', data.token, { path: '/' });
                     localStorage.setItem("username", username);
-                    alert.success("Вы успешно вошли в профиль!")
+                    alert.success("Вы успешно вошли в систему");
                     history.push('/profile');
+                } else {
+                    alert.error("Неверный логин или пароль");
                 }
             });
 
@@ -134,8 +137,8 @@ const Login = () => {
                     Вход
                 </h1>
                 <form className={classes.form}
-                      noValidate
-                      onSubmit={handleSubmit}>
+                      onSubmit={handleSubmit}
+                >
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -166,12 +169,12 @@ const Login = () => {
                         Вход
                     </Button>
                 </form>
-                <div>
+                <Typography variant="body1">
                     Еще не зарегистрированы?
                     <Link to="/sign_up">
                         Регистрация
                     </Link>
-                </div>
+                </Typography>
             </Paper>
         </Grid>
     )

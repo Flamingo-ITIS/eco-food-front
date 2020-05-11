@@ -14,8 +14,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import API_URL from "../API";
 import {useHistory} from "react-router-dom";
+import {useAlert} from "react-alert";
 import Typography from "@material-ui/core/Typography";
 import {useCookies} from "react-cookie";
+import CounterInput from "react-counter-input";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -49,8 +51,9 @@ export const useStyles = makeStyles(theme => ({
 const BuyProduct = ({product}) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [boughtProduct, setBoughtProduct] = useState({});
+    const [count, setCount] = useState();
     const history = useHistory();
+    const alert = useAlert();
     const [cookies] = useCookies();
 
     async function handleSubmit(event) {
@@ -61,7 +64,8 @@ const BuyProduct = ({product}) => {
             object[key] = value
         });
 
-        object["count"] = parseInt(object["count"]);
+        // object["count"] = parseInt(object["count"]);
+        object["count"] = count;
         object["cost"] = product.cost;
         object["productId"] = product.id;
         const json = JSON.stringify(object);
@@ -82,15 +86,18 @@ const BuyProduct = ({product}) => {
         fetch(url, requestOptions, [])
             .then(async response => {
                 const data = await response.json();
-                if (!response.ok) {
+                if (response.ok) {
+                    // setBoughtProduct(data);
+                    alert.success("Покупка совершена");
+                    history.push('/user/orders');
+                } else {
+                    alert.error("Пожалуйста, авторизуйтесь.");
+                    history.push("/login");
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-                setBoughtProduct(data);
-                history.push('/user/orders');
             })
             .catch(error => {
-                // setState({ errorMessage: error });
                 console.error('There was an error!', error);
             });
     }
@@ -128,10 +135,9 @@ const BuyProduct = ({product}) => {
                 <Fade in={open}>
                     <Paper className={classes.paper}>
                         <Typography variant="h5" gutterBottom id="transition-modal-title">
-                            Пожалуйста уточните
+                            Пожалуйста, уточните
                         </Typography>
-                        <form noValidate
-                              onSubmit={handleSubmit}
+                        <form onSubmit={handleSubmit}
                               id="transition-modal-description"
                         >
                             <Grid
@@ -140,17 +146,29 @@ const BuyProduct = ({product}) => {
                                 justify="center"
                                 alignItems="center"
                             >
-                                <TextField
-                                    variant="outlined"
-                                    margin="normal"
+                                <CounterInput
+                                    count={1}
+                                    min={1}
+                                    max={product.count}
                                     required
-                                    fullWidth
-                                    type="number"
-                                    id="count"
-                                    label="Количество"
-                                    name="count"
-                                    className={classes.formControl}
+                                    wrapperStyle={{margin: "20px"}}
+                                    btnStyle={{backgroundColor: "#699819", borderRadius: 20}}
+                                    onCountChange={count => setCount(count)}
                                 />
+                                <Typography>
+                                    {product.countType}
+                                </Typography>
+                                {/*<TextField*/}
+                                {/*    variant="outlined"*/}
+                                {/*    margin="normal"*/}
+                                {/*    required*/}
+                                {/*    fullWidth*/}
+                                {/*    type="number"*/}
+                                {/*    id="count"*/}
+                                {/*    label="Количество"*/}
+                                {/*    name="count"*/}
+                                {/*    className={classes.formControl}*/}
+                                {/*/>*/}
                                 {/*<h3>*/}
                                 {/*    ₽*/}
                                 {/*</h3>*/}

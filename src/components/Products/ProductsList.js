@@ -138,13 +138,16 @@ const ProductsList = ({products, productsList}) => {
                                 title="product"
                             />
                             <div>
-                                <IconButton className={classes.iconButton}>
+                                <IconButton
+                                    href={`/product/${product.id}`}
+                                    className={classes.iconButton}
+                                >
                                     <InfoIcon fontSize="large"/>
                                 </IconButton>
                                 <LikeProduct product_id={product.id}/>
-                                <IconButton className={classes.iconButton}>
-                                    <AddShoppingCartOutlinedIcon fontSize="large"/>
-                                </IconButton>
+                                {/*<IconButton className={classes.iconButton}>*/}
+                                {/*    <AddShoppingCartOutlinedIcon fontSize="large"/>*/}
+                                {/*</IconButton>*/}
                             </div>
                             <CardContent>
                                 <Grid

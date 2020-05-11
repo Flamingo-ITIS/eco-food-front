@@ -56,6 +56,10 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+export function checkLoggedIn(token) {
+    return (token !== "undefined" && token)
+}
+
 const NavBar = () => {
     const values = QueryString.parse(window.location.search);
     const classes = useStyles();
@@ -128,7 +132,7 @@ const NavBar = () => {
                         {/*    Корзина*/}
                         {/*</Button>*/}
                     </Grid>
-                    {(cookies.auth_token !== "undefined" && cookies.auth_token) ? (
+                    {(checkLoggedIn(cookies.auth_token)) ? (
                         <div>
                             <Button href="/profile">
                                 <AccountBoxIcon/>

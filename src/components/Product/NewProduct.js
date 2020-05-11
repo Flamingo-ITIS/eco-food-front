@@ -124,8 +124,9 @@ const NewProduct = () => {
                 <h1>
                     Новый товар
                 </h1>
-                <form noValidate
-                      onSubmit={handleSubmit}>
+                <form
+                    onSubmit={handleSubmit}
+                >
                     <Grid
                         container
                         direction="row"
@@ -210,7 +211,9 @@ const NewProduct = () => {
                                 label="Цена"
                                 name="cost"
                                 InputProps={{
-                                    endAdornment: <InputAdornment position="end">₽ {type === "KILOGRAM" ? ("за кг") : ("за шт.")}</InputAdornment>,
+                                    endAdornment: <InputAdornment position="end">
+                                        ₽ {type === "KILOGRAM" ? ("за кг") : ("за шт.")}
+                                    </InputAdornment>,
                                 }}
                                 className={classes.formControl}
                             />

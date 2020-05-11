@@ -6,12 +6,9 @@ import {useStyles} from "./Login";
 import Grid from "@material-ui/core/Grid";
 import ContactsOutlinedIcon from '@material-ui/icons/ContactsOutlined';
 import Paper from "@material-ui/core/Paper";
-import {
-    Link,
-    useHistory
-} from "react-router-dom";
 import API_URL from "../API";
 import {useCookies} from "react-cookie";
+import {useHistory} from "react-router-dom";
 import {useAlert} from "react-alert";
 
 const SignUp = () => {
@@ -50,9 +47,9 @@ const SignUp = () => {
                 if (response.ok) {
                     localStorage.setItem("username", username);
                     alert.success('Регистрация прошла успешно! Пожалуйста войдите.');
-                    history.push('/profile');
+                    history.push('/login');
                 } else {
-                    alert.error('Введенные данные невалидны...');
+                    alert.error('Введенные данные невалидны');
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
@@ -88,8 +85,8 @@ const SignUp = () => {
                         Регистрация
                     </h1>
                     <form className={classes.form}
-                          noValidate
-                          onSubmit={handleSubmit}>
+                          onSubmit={handleSubmit}
+                    >
                         <TextField
                             variant="outlined"
                             margin="normal"
