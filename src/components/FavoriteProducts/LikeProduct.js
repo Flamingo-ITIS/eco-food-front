@@ -40,14 +40,15 @@ const LikeProduct = ({product_id}) => {
         fetch(url, requestOptions)
             .then(async response => {
                 const data = await response;
-                if (response.status === 401){
-                    alert.success("Пожалуйста, авторизуйтесь.");
-                    history.push("/login")
-                }
+                // if (response.status === 401){
+                //     alert.success("Пожалуйста, авторизуйтесь.");
+                //     history.push("/login")
+                // }
                 if (response.ok) {
                     alert.success("Товар добавлен в избранное");
                 } else {
-                    alert.error("Что-то пошло не так...");
+                    alert.show("Для начала нужно авторизоваться.");
+                    history.push("/login")
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }

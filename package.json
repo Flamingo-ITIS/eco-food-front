@@ -14,8 +14,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
-    "cors": "^2.8.5",
     "express": "latest",
     "express-favicon": "^2.0.1",
     "infinite-react-carousel": "^1.2.11",
@@ -24,12 +22,11 @@
     "react-alert": "^7.0.0",
     "react-alert-template-basic": "^1.0.0",
     "react-cookie": "^4.0.3",
+    "react-counter-input": "^0.2.1",
     "react-dom": "^16.13.0",
     "react-loader-spinner": "^3.1.14",
-    "react-responsive-carousel": "^3.1.51",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "react-search-field": "^1.0.0",
     "react-star-rating-component": "^1.4.1",
     "react-text-truncate": "^0.16.0"
   },
@@ -55,10 +52,5 @@
     ]
   },
   "devDependencies": {
-    "@material-ui/icons": "^4.9.1",
-    "express-favicon": "^2.0.1",
-    "react-router-dom": "^5.1.2",
-    "stream-chat": "latest",
-    "stream-chat-react": "^0.11.6"
   }
 }

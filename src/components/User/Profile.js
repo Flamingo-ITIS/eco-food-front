@@ -79,7 +79,7 @@ const Profile = () => {
                     setError(error);
                     console.error('There was an error!', error);
                 });
-        });
+        },[]);
 
         console.log(user);
         if (error) {

@@ -23,6 +23,7 @@ import RecallsList from "./RecallsList";
 import NewRecall from "./NewRecall";
 import {checkLoggedIn} from "../NavBar";
 import {useCookies} from "react-cookie";
+import LikeProduct from "../FavoriteProducts/LikeProduct";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -128,15 +129,7 @@ const Product = () => {
                         title={product.title}
                     />
                     <div>
-                        <IconButton className={classes.iconButton}>
-                            <InfoIcon fontSize="large"/>
-                        </IconButton>
-                        <IconButton className={classes.iconButton}>
-                            <LoyaltyIcon fontSize="large"/>
-                        </IconButton>
-                        <IconButton className={classes.iconButton}>
-                            <AddShoppingCartOutlinedIcon fontSize="large"/>
-                        </IconButton>
+                        <LikeProduct product_id={product.id}/>
                     </div>
                     <div>
                         <StarRatingComponent

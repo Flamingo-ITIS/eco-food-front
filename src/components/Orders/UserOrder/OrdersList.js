@@ -111,10 +111,7 @@ const OrdersList = ({orders}) => {
                             >
                                 <Grid item xs={2}>
                                     <h2>
-                                        <Link to={`/order/${order.id}`}
-                                              style={{textDecoration: 'none'}}>
-                                            {order.id}
-                                        </Link>
+                                        {order.id}
                                     </h2>
                                 </Grid>
                                 <Grid item xs={2}>
