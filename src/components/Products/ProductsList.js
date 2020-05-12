@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Card from "@material-ui/core/Card";
 import {Link} from "react-router-dom";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,6 +13,9 @@ import Chip from "@material-ui/core/Chip";
 import TextTruncate from 'react-text-truncate';
 import LikeProduct from "../FavoriteProducts/LikeProduct";
 import BuyProduct from "../Orders/BuyProduct";
+import API_URL from "../API";
+import {useCookies} from "react-cookie";
+import UnLikeProduct from "../FavoriteProducts/UnLikeProduct";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -63,6 +66,41 @@ export const useStyles = makeStyles(theme => ({
 const ProductsList = ({products, productsList}) => {
     const classes = useStyles();
     const TextTruncate = require('react-text-truncate');
+
+
+    function handleCheckFavorites(id) {
+        console.log(favoriteProducts);
+        return favoriteProducts.includes(id);
+    }
+
+    const [cookies] = useCookies();
+    const [favoriteProducts, setFavoriteProducts] = useState([]);
+
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + cookies.auth_token
+            },
+        };
+        const url = API_URL + '/favorites';
+        fetch(url, requestOptions, [])
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+                setFavoriteProducts(data.map(item => item.id));
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+    }, []);
+
     return (
         <ul
             style={{padding: 0}}
@@ -144,7 +182,12 @@ const ProductsList = ({products, productsList}) => {
                                 >
                                     <InfoIcon fontSize="large"/>
                                 </IconButton>
-                                <LikeProduct product_id={product.id}/>
+
+                                {handleCheckFavorites(product.id) ? (
+                                    <UnLikeProduct product_id={product.id}/>
+                                ) : (
+                                    <LikeProduct product_id={product.id}/>
+                                )}
                                 {/*<IconButton className={classes.iconButton}>*/}
                                 {/*    <AddShoppingCartOutlinedIcon fontSize="large"/>*/}
                                 {/*</IconButton>*/}

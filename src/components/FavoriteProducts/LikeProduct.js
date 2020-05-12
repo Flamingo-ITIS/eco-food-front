@@ -1,11 +1,12 @@
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import IconButton from "@material-ui/core/IconButton";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/styles";
 import API_URL from "../API";
 import {useCookies} from "react-cookie";
 import {useAlert} from "react-alert";
 import {useHistory} from "react-router-dom";
+import UnLikeProduct from "./UnLikeProduct";
 
 export const useStyles = makeStyles(theme => ({
     iconButton: {
@@ -24,6 +25,7 @@ export const useStyles = makeStyles(theme => ({
 const LikeProduct = ({product_id}) => {
     const classes = useStyles();
     const [cookies] = useCookies();
+    const [isLiked, setIsLiked] = useState(false);
     const alert = useAlert();
     const history = useHistory();
 
@@ -45,6 +47,7 @@ const LikeProduct = ({product_id}) => {
                 //     history.push("/login")
                 // }
                 if (response.ok) {
+                    setIsLiked(true)
                     alert.success("Товар добавлен в избранное");
                 } else {
                     alert.show("Для начала нужно авторизоваться.");
@@ -58,14 +61,20 @@ const LikeProduct = ({product_id}) => {
             });
     };
 
-    return (
+    if (!isLiked) return (
         <IconButton className={classes.iconButton}
                     onClick={(e) => {
                         e.preventDefault();
                         triggerLike();
-                    }}>
-            <LoyaltyIcon fontSize="large"/>
+                    }}
+        >
+            <LoyaltyIcon
+                fontSize="large"
+            />
         </IconButton>
+    )
+    else return (
+        <UnLikeProduct product_id={product_id}/>
     )
 };
 

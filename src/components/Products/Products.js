@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import ProductsFilter from "./ProductsFilter";
@@ -15,23 +15,18 @@ const Products = ({products}) => {
     const [category, setCategory] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
+    const [isSorted, setIsSorted] = useState();
+    const [isFiltered, setIsFiltered] = useState();
     const values = QueryString.parse(window.location.search);
 
     useEffect(() => {
         let url = API_URL + "/products" + window.location.search;
         console.log(window.location.search);
+
         if (values.category !== undefined) {
             const category = values.category;
             setCategory(category);
         }
-        ;
-
-        //
-        // if (values.sort !== undefined){
-        //     const sort = values.sort;
-        //     url = url + "?sort=" + sort;
-        //     console.log(url);
-        // };
 
         const requestOptions = {
             method: 'GET',
@@ -53,12 +48,15 @@ const Products = ({products}) => {
                     return Promise.reject(error);
                 }
                 setProductsList(data);
+                setIsSorted(true);
+                setIsFiltered(true);
             })
             .catch(error => {
                 setError(error);
                 console.error('There was an error!', error);
             });
-    },[]);
+    }, [isSorted, isFiltered]);
+
     console.log(productsList);
 
     if (error) {
@@ -83,9 +81,14 @@ const Products = ({products}) => {
                     justify="flex-end"
                     alignItems="center"
                 >
-                    <SortingButton sorting_field="По цене"/>
-                    <SortingButton sorting_field="По названию"/>
-                    <SortingButton sorting_field="По рейтингу"/>
+                    <div onClick={() => {
+                        setIsSorted(false);
+                        setIsLoaded(false);
+                    }}>
+                        <SortingButton sorting_field="По цене"/>
+                        <SortingButton sorting_field="По названию"/>
+                        <SortingButton sorting_field="По рейтингу"/>
+                    </div>
                 </Grid>
                 <Grid
                     container
@@ -94,7 +97,11 @@ const Products = ({products}) => {
                     alignItems="flex-start"
                 >
                     <Grid item xs={3}>
-                        <ProductsFilter categoryName={category}/>
+                        <ProductsFilter
+                            categoryName={category}
+                            filterState={isFiltered => setIsFiltered(isFiltered)}
+                            loadedState={isLoaded => setIsLoaded(isLoaded)}
+                        />
                     </Grid>
                     <Grid
                         // style={{width: "900px"}}

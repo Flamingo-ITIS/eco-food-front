@@ -18,6 +18,7 @@ import {useAlert} from "react-alert";
 import Typography from "@material-ui/core/Typography";
 import {useCookies} from "react-cookie";
 import CounterInput from "react-counter-input";
+import {checkLoggedIn} from "../NavBar";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -91,8 +92,7 @@ const BuyProduct = ({product}) => {
                     alert.success("Покупка совершена");
                     history.push('/user/orders');
                 } else {
-                    alert.error("Пожалуйста, авторизуйтесь.");
-                    history.push("/login");
+                    alert.error("Введенные данные невалидны");
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
@@ -103,7 +103,12 @@ const BuyProduct = ({product}) => {
     }
 
     const handleOpen = () => {
-        setOpen(true);
+        if (checkLoggedIn(cookies.auth_token)) {
+            setOpen(true);
+        } else {
+            alert.error("Пожалуйста, авторизуйтесь.");
+            history.push("/login");
+        }
     };
 
     const handleClose = () => {

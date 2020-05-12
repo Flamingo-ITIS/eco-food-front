@@ -36,7 +36,7 @@ const Orders = () => {
                         setError(error)
                     });
 
-        });
+        },[]);
 
         console.log(boughtProducts);
         if (error) {

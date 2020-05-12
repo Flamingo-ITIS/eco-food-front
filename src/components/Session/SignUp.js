@@ -46,7 +46,7 @@ const SignUp = () => {
                 const data = await response.json();
                 if (response.ok) {
                     localStorage.setItem("username", username);
-                    alert.success('Регистрация прошла успешно! Пожалуйста войдите.');
+                    alert.success('Регистрация прошла успешно! Пожалуйста, войдите.');
                     history.push('/login');
                 } else {
                     alert.error('Введенные данные невалидны');
