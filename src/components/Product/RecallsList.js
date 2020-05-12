@@ -65,7 +65,7 @@ const RecallsList = ({product_id}) => {
             .then(data => {
                 setRecalls(data);
             });
-    });
+    },[]);
     return (
         <ul
             style={{padding: 0}}

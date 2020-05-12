@@ -24,6 +24,7 @@ const SortingButton = ({sorting_field}) => {
             return "black"
         }
     }
+
     function sort() {
         const values = QueryString.parse(window.location.search);
         checkSort(sort_param) === "primary" ? (
@@ -34,6 +35,7 @@ const SortingButton = ({sorting_field}) => {
         const query = QueryString.stringify(values);
         history.push("/products?" + query);
     }
+
     return (
         <Button
             onClick={sort}

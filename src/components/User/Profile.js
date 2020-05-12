@@ -21,8 +21,8 @@ export const useStyles = makeStyles(theme => ({
     info: {
         padding: 10,
         // margin: 10,
-        // width: 400,
-        height: 250,
+        width: 500,
+        height: 280,
     },
     button: {
         margin: "10px",
@@ -103,7 +103,7 @@ const Profile = () => {
                     <Grid
                         container
                         direction="row"
-                        justify="center"
+                        justify="space-between"
                         alignItems="flex-start"
                     >
                         <Paper className={classes.image}>
@@ -126,7 +126,7 @@ const Profile = () => {
                                     spacing={1}
                                 >
                                     <Chip
-                                        label={user.role === "PARTNER" ? ("Продавец") : ("Покупатель")}
+                                        label={user.username}
                                         color="secondary"
                                     />
                                     <IconButton
@@ -136,7 +136,6 @@ const Profile = () => {
                                         <SettingsIcon/>
                                     </IconButton>
                                 </Grid>
-                                <h3>Имя пользователя: {user.username}</h3>
                                 <h3>Имя: {user.name}</h3>
                                 <h3>Номер телефона: {user.contactPhone}</h3>
                                 <h3>Адрес: {user.geoPosition}</h3>

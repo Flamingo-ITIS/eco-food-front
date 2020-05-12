@@ -35,15 +35,14 @@ function valuetext(value) {
     return `${value}°C`;
 }
 
-const ProductsFilter = ({categoryName}) => {
+const ProductsFilter = ({categoryName, filterState, loadedState}) => {
     const classes = useStyles();
     const history = useHistory();
 
-    const [products, setProducts] = useState('');
     const [price, setPrice] = useState([0, 10000]);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [error, setError] = useState(null);
     const [category, setCategory] = useState(categoryName);
+    const [isLoaded, setIsLoaded] = useState();
+    const [isFiltered, setIsFiltered] = useState();
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -59,6 +58,12 @@ const ProductsFilter = ({categoryName}) => {
         const values = QueryString.parse(window.location.search);
         values["category"] = category;
         const query = QueryString.stringify(values);
+
+        setIsFiltered(true);
+        setIsLoaded(true);
+        filterState(isFiltered);
+        loadedState(isLoaded);
+
         history.push("/products?" + query);
     }
 
@@ -69,8 +74,9 @@ const ProductsFilter = ({categoryName}) => {
     return (
         <Card className={classes.filter}>
             <h3>Фильтры</h3>
-            <form noValidate
-                  onSubmit={handleSubmit}>
+            <form
+                onSubmit={handleSubmit}
+            >
                 <Grid
                     container
                     direction="column"
@@ -91,7 +97,6 @@ const ProductsFilter = ({categoryName}) => {
 
                     <FormControl
                         variant="outlined"
-                        required
                         fullWidth
                         className={classes.formControl}
                     >
