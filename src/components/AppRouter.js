@@ -74,9 +74,9 @@ const AppRouter = () => {
                     <Route path="/user/update">
                         <UpdateUser/>
                     </Route>
-                    <Route path="/seller/chat">
-                        <ChatPage/>
-                    </Route>
+                    {/*<Route path="/seller/chat">*/}
+                    {/*    <ChatPage/>*/}
+                    {/*</Route>*/}
                     <Route path="/user/orders">
                         <Orders/>
                     </Route>

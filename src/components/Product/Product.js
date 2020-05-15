@@ -24,6 +24,8 @@ import NewRecall from "./NewRecall";
 import {checkLoggedIn} from "../NavBar";
 import {useCookies} from "react-cookie";
 import LikeProduct from "../FavoriteProducts/LikeProduct";
+import UploadProductImages from "./UploadProductImages";
+import ProductImages from "./ProductImages";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -79,8 +81,13 @@ const Product = () => {
     const classes = useStyles();
     const [cookies] = useCookies();
     const [product, setProduct] = useState({});
+    const [images, setImages] = useState([]);
     const [product_user, setProduct_user] = useState({});
     const [product_category, setProduct_category] = useState({});
+
+    const get_images = () => {
+
+    };
 
     useEffect(() => {
         const requestOptions = {
@@ -97,10 +104,12 @@ const Product = () => {
                 setProduct(data);
                 setProduct_user(data.user);
                 setProduct_category(data.category);
+                setImages(data.images);
             });
     }, []);
-    console.log(product);
 
+
+    console.log(product);
     return (
         <Grid
             container
@@ -123,11 +132,11 @@ const Product = () => {
                 alignItems="center"
             >
                 <Paper className={classes.image}>
-                    <CardMedia
-                        className={classes.media}
-                        image={product.pictureUrl}
-                        title={product.title}
+                    <ProductImages
+                        product_id={product.id}
+                        images={images}
                     />
+                    <UploadProductImages product_id={product.id}/>
                     <div>
                         <LikeProduct product_id={product.id}/>
                     </div>

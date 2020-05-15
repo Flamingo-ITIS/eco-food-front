@@ -16,6 +16,7 @@ import BuyProduct from "../Orders/BuyProduct";
 import API_URL from "../API";
 import {useCookies} from "react-cookie";
 import UnLikeProduct from "../FavoriteProducts/UnLikeProduct";
+import ProductImages from "../Product/ProductImages";
 
 
 export const useStyles = makeStyles(theme => ({
@@ -63,6 +64,8 @@ export const useStyles = makeStyles(theme => ({
         color: "white",
     }
 }));
+
+
 const ProductsList = ({products, productsList}) => {
     const classes = useStyles();
     const TextTruncate = require('react-text-truncate');
@@ -170,10 +173,9 @@ const ProductsList = ({products, productsList}) => {
                 {productsList.map(product =>
                     <li key={product.id}>
                         <Card className={classes.card} elevation={5}>
-                            <CardMedia
-                                className={classes.media}
-                                image={product.pictureUrl}
-                                title="product"
+                            <ProductImages
+                                product_id={product.id}
+                                images={product.images}
                             />
                             <div>
                                 <IconButton

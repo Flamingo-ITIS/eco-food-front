@@ -19,7 +19,7 @@ const Products = ({products}) => {
     const [isFiltered, setIsFiltered] = useState();
     const values = QueryString.parse(window.location.search);
 
-    useEffect(() => {
+    useEffect( () => {
         let url = API_URL + "/products" + window.location.search;
         console.log(window.location.search);
 
@@ -68,7 +68,7 @@ const Products = ({products}) => {
                 color="primary"
                 height={100}
                 width={100}
-                timeout={3000} //3 secs
+                timeout={5000}
             />
         </div>
     } else {
