@@ -15,7 +15,6 @@ export const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.primary.main,
         },
         color: "black",
-        // border: "1px solid black",
         margin: "10px",
         padding: "10px"
     },

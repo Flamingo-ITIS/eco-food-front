@@ -236,20 +236,20 @@ const NewProduct = () => {
                                 variant="outlined"
                                 className={classes.formControl}
                             />
-                            <input
-                                accept="image/*"
-                                className={classes.input}
-                                style={{display: 'none'}}
-                                id="raised-button-file"
-                                multiple
-                                type="file"
-                            />
-                            <label htmlFor="raised-button-file">
-                                <Fab component="span" className={classes.button}>
-                                    <AddPhotoAlternateIcon/>
-                                </Fab>
-                                Загрузить фото
-                            </label>
+                            {/*<input*/}
+                            {/*    accept="image/*"*/}
+                            {/*    className={classes.input}*/}
+                            {/*    style={{display: 'none'}}*/}
+                            {/*    id="raised-button-file"*/}
+                            {/*    multiple*/}
+                            {/*    type="file"*/}
+                            {/*/>*/}
+                            {/*<label htmlFor="raised-button-file">*/}
+                            {/*    <Fab component="span" className={classes.button}>*/}
+                            {/*        <AddPhotoAlternateIcon/>*/}
+                            {/*    </Fab>*/}
+                            {/*    Загрузить фото*/}
+                            {/*</label>*/}
 
                             <Button
                                 type="submit"
