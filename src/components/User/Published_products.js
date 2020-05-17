@@ -10,6 +10,9 @@ import API_URL from "../API";
 import AddIcon from '@material-ui/icons/Add';
 import Typography from "@material-ui/core/Typography";
 import {useCookies} from "react-cookie";
+import UploadProductImages from "../Product/UploadProductImages";
+import ProductImages from "../Product/ProductImages";
+import TextTruncate from 'react-text-truncate';
 
 export const useStyles = makeStyles({
     wrapContainer: {
@@ -43,7 +46,7 @@ export const useStyles = makeStyles({
         },
     },
     content: {
-        width: '500px'
+        width: 400
     },
     media: {
         height: 150,
@@ -143,24 +146,23 @@ export const Published_products = () => {
                         <li key={product.id}>
                             <Card className={classes.card}>
                                 <div>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={product.pictureUrl}
-                                        title="product"
+                                    <ProductImages
+                                        product_id={product.id}
+                                        images={product.images}
                                     />
-                                    {/*<div>*/}
-                                    {/*    <i className="fas fa-search-plus fa-2x" style={{cursor: 'pointer'}}/>*/}
-                                    {/*    <i className="far fa-heart fa-2x" style={{cursor: 'pointer'}}/>*/}
-                                    {/*    <i className="fas fa-cart-arrow-down fa-2x" style={{cursor: 'pointer'}}/>*/}
-                                    {/*</div>*/}
+                                    <UploadProductImages product_id={product.id}/>
                                 </div>
                                 <CardContent className={classes.content}>
-                                    <h2 style={{margin: "0"}}>
+                                    <Typography variant="h5" gutterBottom >
                                         <Link to={`/product/${product.id}`}
                                               style={{textDecoration: 'none'}}>
-                                            {product.title}
+                                            <TextTruncate
+                                                line={1}
+                                                truncateText="…"
+                                                text={product.title}
+                                            />
                                         </Link>
-                                    </h2>
+                                    </Typography>
                                 </CardContent>
                                 <div className={classes.noWrapContainer}>
                                     <h4>{product.count + " " + product.countType}</h4>

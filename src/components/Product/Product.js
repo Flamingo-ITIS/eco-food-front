@@ -85,10 +85,6 @@ const Product = () => {
     const [product_user, setProduct_user] = useState({});
     const [product_category, setProduct_category] = useState({});
 
-    const get_images = () => {
-
-    };
-
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
@@ -136,7 +132,6 @@ const Product = () => {
                         product_id={product.id}
                         images={images}
                     />
-                    <UploadProductImages product_id={product.id}/>
                     <div>
                         <LikeProduct product_id={product.id}/>
                     </div>
@@ -189,31 +184,6 @@ const Product = () => {
                     width: 1100,
                 }}
             />
-            <Grid
-                container
-                direction="row"
-                justify="space-between"
-                alignItems="center"
-                style={{
-                    width: 1000,
-                }}
-            >
-                <Typography variant="h5" gutterBottom>
-                    Отзывы
-                </Typography>
-                {(checkLoggedIn(cookies.auth_token)) ? (
-                    <NewRecall productId={id}/>
-                ) : (
-                    <Typography variant="body1" gutterBottom>
-                        <Link to="/login">
-                            Войдите
-                        </Link>
-                        , чтобы оставить комментарий
-                    </Typography>
-                )
-                }
-            </Grid>
-
             <RecallsList product_id={id}/>
             {/*<div>*/}
             {/*    <h1>Похожие товары</h1>*/}

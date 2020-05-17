@@ -9,6 +9,8 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import UnLikeProduct from "./UnLikeProduct";
 import API_URL from "../API";
 import {useCookies} from "react-cookie";
+import Typography from "@material-ui/core/Typography";
+import {Link} from "react-router-dom";
 
 const FavouriteProducts = () => {
     const classes = useStyles();
@@ -31,41 +33,23 @@ const FavouriteProducts = () => {
     console.log(products);
     return (
         <div>
-            <h1>Избранное</h1>
-            <ul>
-                <Grid
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                >
-                    <ProductsList productsList={products}/>
-                    {/*{products.map(product =>*/}
-                    {/*    <li key={product.id}>*/}
-                    {/*        <Card className={classes.card} elevation={5}>*/}
-                    {/*            <GridListTile>*/}
-                    {/*                <img src={product.pictureUrl} className={classes.media}/>*/}
-                    {/*                <GridListTileBar*/}
-                    {/*                    title={product.title}*/}
-                    {/*                    titlePosition="top"*/}
-                    {/*                    actionIcon={*/}
-                    {/*                        <UnLikeProduct product_id={product.id}/>*/}
-                    {/*                    }*/}
-                    {/*                    actionPosition="right"*/}
-                    {/*                    className={classes.titleBar}*/}
-                    {/*                />*/}
-                    {/*            </GridListTile>*/}
-                    {/*            <CardContent>*/}
-                    {/*                <TextInfoContent*/}
-                    {/*                    overline={'Овощи'}*/}
-                    {/*                    heading={product.title}*/}
-                    {/*                />*/}
-                    {/*            </CardContent>*/}
-                    {/*        </Card>*/}
-                    {/*    </li>*/}
-                    {/*)}*/}
-                </Grid>
-            </ul>
+            <Typography variant="h3" gutterBottom>
+                Избранное
+            </Typography>
+            {products.length > 0 ? (
+                <ProductsList productsList={products}/>
+            ) : (
+                <div>
+                    <Typography variant="body1" gutterBottom>
+                        Здесь пока ничего нет :(
+                    </Typography>
+                    <Typography variant="body1" gutterBottom>
+                        Скорее перейдите в <Link to="/products">
+                        каталог
+                    </Link> и добавьте товары в избранное!
+                    </Typography>
+                </div>
+            )}
         </div>
     );
 }
