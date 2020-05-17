@@ -30,7 +30,6 @@ const ProductImages = ({images}) => {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Authorization': 'Bearer ' + cookies.auth_token
         },
     };
 

@@ -8,6 +8,10 @@ import StarRatingComponent from "react-star-rating-component";
 import {makeStyles} from "@material-ui/styles";
 import Chip from "@material-ui/core/Chip";
 import API_URL from "../API";
+import {checkLoggedIn} from "../NavBar";
+import NewRecall from "./NewRecall";
+import {Link} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 export const useStyles = makeStyles(theme => ({
     card: {
@@ -49,6 +53,8 @@ export const useStyles = makeStyles(theme => ({
 
 const RecallsList = ({product_id}) => {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
+    const [cookies] = useCookies();
     const [recalls, setRecalls] = useState([]);
 
     useEffect(() => {
@@ -64,59 +70,89 @@ const RecallsList = ({product_id}) => {
             .then(response => response.json())
             .then(data => {
                 setRecalls(data);
+                setOpen(false)
             });
-    },[]);
+    }, [open]);
     return (
-        <ul
-            style={{padding: 0}}
-        >
+        <div>
             <Grid
                 container
                 direction="row"
-                justify="center"
+                justify="space-between"
                 alignItems="center"
+                style={{
+                    width: 1000,
+                }}
             >
-                {recalls.length > 0 ?
-                    (recalls.map(recall =>
-                        <li key={recall.id}>
-                            <Card className={classes.card} elevation={5}>
-                                <CardContent>
-                                    <Grid
-                                        container
-                                        direction="column"
-                                        alignItems="flex-start"
-                                        justify="space-between"
-                                    >
-                                        <Chip
-                                            color="secondary"
-                                            label={recall.customer.username}
-                                            style={{margin: 10}}
-                                        />
-                                        <div>
-                                            <StarRatingComponent
-                                                editing={false}
-                                                renderStarIcon={() => <GradeIcon/>}
-                                                starCount={5}
-                                                value={recall.value}
-                                                emptyStarColor="#cfcfcf"
-                                            />
-                                        </div>
-                                        <Typography variant="body1" gutterBottom>
-                                            {recall.message}
-                                        </Typography>
-                                    </Grid>
-                                </CardContent>
-                            </Card>
-                        </li>
-                    )) :
-                    (
-                        <Typography variant="body1" gutterBottom>
-                            Здесь пока ничего нет :(
-                        </Typography>
-                    )
+                <Typography variant="h5" gutterBottom>
+                    Отзывы
+                </Typography>
+                {(checkLoggedIn(cookies.auth_token)) ? (
+                    <NewRecall
+                        productId={product_id}
+                        success_new_recall={open => setOpen(open)}
+                    />
+                ) : (
+                    <Typography variant="body1" gutterBottom>
+                        <Link to="/login">
+                            Войдите
+                        </Link>
+                        , чтобы оставить комментарий
+                    </Typography>
+                )
                 }
             </Grid>
-        </ul>
+            <ul
+                style={{padding: 0}}
+            >
+                <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
+                    {recalls.length > 0 ?
+                        (recalls.map(recall =>
+                            <li key={recall.id}>
+                                <Card className={classes.card} elevation={5}>
+                                    <CardContent>
+                                        <Grid
+                                            container
+                                            direction="column"
+                                            alignItems="flex-start"
+                                            justify="space-between"
+                                        >
+                                            <Chip
+                                                color="secondary"
+                                                label={recall.customer.username}
+                                                style={{margin: 10}}
+                                            />
+                                            <div>
+                                                <StarRatingComponent
+                                                    editing={false}
+                                                    renderStarIcon={() => <GradeIcon/>}
+                                                    starCount={5}
+                                                    value={recall.value}
+                                                    emptyStarColor="#cfcfcf"
+                                                />
+                                            </div>
+                                            <Typography variant="body1" gutterBottom>
+                                                {recall.message}
+                                            </Typography>
+                                        </Grid>
+                                    </CardContent>
+                                </Card>
+                            </li>
+                        )) :
+                        (
+                            <Typography variant="body1" gutterBottom>
+                                Здесь пока ничего нет :(
+                            </Typography>
+                        )
+                    }
+                </Grid>
+            </ul>
+        </div>
     );
 };
 

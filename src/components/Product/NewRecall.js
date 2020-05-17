@@ -40,11 +40,10 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-const NewRecall = ({productId}) => {
+const NewRecall = ({productId, success_new_recall}) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [product_rating, setProduct_rating] = useState();
-    const history = useHistory();
     const alert = useAlert();
     const [cookies] = useCookies();
 
@@ -81,6 +80,7 @@ const NewRecall = ({productId}) => {
                 const data = await response;
                 if (response.ok) {
                     alert.success("Ваш отзыв успешно опубликован");
+                    success_new_recall(true);
                     setOpen(false);
                 } else {
                     alert.error("Что-то пошло не так...");
